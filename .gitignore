@@ -83,3 +83,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+### project-specific
+.idea/FUP-programming-exam.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
