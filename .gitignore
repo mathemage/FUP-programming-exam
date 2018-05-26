@@ -1,4 +1,13 @@
-# Haskell
+### Scheme
+*.ss~
+*.ss#*
+.#*.ss
+
+*.scm~
+*.scm#*
+.#*.scm
+
+### Haskell
 dist
 dist-*
 cabal-dev
