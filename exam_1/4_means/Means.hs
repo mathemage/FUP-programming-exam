@@ -1,11 +1,14 @@
 stringToDoubles :: String -> [Double]
 stringToDoubles line = map read (words line)
 
+lengthAsDouble :: [a] -> Double
+lengthAsDouble = fromIntegral . length
+
 minMean :: [Double] -> Double
 minMean = minimum
 
 arithmeticMean :: [Double] -> Double
-arithmeticMean doubles = sum doubles / (fromIntegral . length $ doubles)
+arithmeticMean doubles = sum doubles / lengthAsDouble doubles
 
 maxMean :: [Double] -> Double
 maxMean = maximum
