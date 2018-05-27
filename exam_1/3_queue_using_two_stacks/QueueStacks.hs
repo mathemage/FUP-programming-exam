@@ -19,8 +19,11 @@ module QueueStacks where
   enqueue :: v -> Queue v -> Queue v
   enqueue value (InStackOutStack inStack outStack) = InStackOutStack (push value inStack) outStack
 
+  dispatch :: Queue v -> Queue v
+  dispatch q@(InStackOutStack [] outStack) = q
+  dispatch (InStackOutStack (top:inStack) outStack) = dispatch (InStackOutStack inStack (top:outStack))
+
 --   dequeue :: Queue v -> Maybe v
---   dispatch :: Queue v -> Queue v
 
 
   -- Tests:
@@ -58,3 +61,4 @@ module QueueStacks where
 
   listOfQueues = [q1, q2, q3]
   enqueueResults = map (enqueue 42) listOfQueues
+  dispatchResults = map dispatch listOfQueues -- only `dispatch q3` would be really called
