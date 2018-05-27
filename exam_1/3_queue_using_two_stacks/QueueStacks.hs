@@ -16,13 +16,9 @@ module QueueStacks where
 
   data Queue v = InStackOutStack (Stack v) (Stack v) deriving (Eq, Show)
 
---   getIncomingStack :: Queue v -> Stack v
---   getIncomingStack = fst
+  enqueue :: v -> Queue v -> Queue v
+  enqueue value (InStackOutStack inStack outStack) = InStackOutStack (push value inStack) outStack
 
---   getOutcomingStack :: Queue v -> Stack v
---   getOutcomingStack = snd
-
---   enqueue :: Queue v -> v -> Queue v
 --   dequeue :: Queue v -> Maybe v
 --   dispatch :: Queue v -> Queue v
 
@@ -53,3 +49,12 @@ module QueueStacks where
   -- Queues
   q1 :: Queue Int
   q1 = InStackOutStack inStack outStack
+
+  q2 :: Queue Int
+  q2 = InStackOutStack emptyStack outStack
+
+  q3 :: Queue Int
+  q3 = InStackOutStack inStack emptyStack
+
+  listOfQueues = [q1, q2, q3]
+  enqueueResults = map (enqueue 42) listOfQueues
