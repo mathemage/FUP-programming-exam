@@ -1,21 +1,24 @@
-stringToFloats :: String -> [Float]
-stringToFloats line = map read (words line)
+stringToDoubles :: String -> [Double]
+stringToDoubles line = map read (words line)
 
-minMean :: [Float] -> Float
+minMean :: [Double] -> Double
 minMean = minimum
 
-maxMean :: [Float] -> Float
+arithmeticMean :: [Double] -> Double
+arithmeticMean doubles = sum doubles / (fromIntegral . length $ doubles)
+
+maxMean :: [Double] -> Double
 maxMean = maximum
 
 -- testLine   = "1 2 39.3 2 3 -12 3.1415 -3.1415"
 testLine   = "1 2 3 4"
-testFloats = stringToFloats testLine
+testDoubles = stringToDoubles testLine
 
 main :: IO ()
 main = do
 --   line <- getLine
---   print . stringToFloats $ line
-  print testFloats
-  print $ "min == " ++ (show . minMean $ testFloats)
-  print $ "max == " ++ (show . maxMean $ testFloats)
---   print . maxMean $ testFloats
+--   print . stringToDoubles $ line
+  print testDoubles
+  print $ "minMean == " ++ (show . minMean $ testDoubles)
+  print $ "arithmeticMean == " ++ (show . arithmeticMean $ testDoubles)
+  print $ "maxMean == " ++ (show . maxMean $ testDoubles)
