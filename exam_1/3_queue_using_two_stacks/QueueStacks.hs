@@ -14,16 +14,21 @@ module QueueStacks where
   pop (_:newStack) = newStack
 
 
---   type Queue v = (Stack v, Stack v)
---
+  data Queue v = InStackOutStack (Stack v) (Stack v) deriving (Eq, Show)
+
+--   getIncomingStack :: Queue v -> Stack v
+--   getIncomingStack = fst
+
+--   getOutcomingStack :: Queue v -> Stack v
+--   getOutcomingStack = snd
+
 --   enqueue :: Queue v -> v -> Queue v
---
 --   dequeue :: Queue v -> Maybe v
---
 --   dispatch :: Queue v -> Queue v
 
 
-  -- Tests
+  -- Tests:
+  -- Stacks
   emptyStack :: Stack Int
   emptyStack = []
 
@@ -39,5 +44,12 @@ module QueueStacks where
   stack42 :: Stack Int
   stack42 = push 7 . push 6 . push 5 . push 42 . pop . pop . pop . pop $ completeStack
 
-  listOfStacks = [emptyStack, stack0, stack01, completeStack, stack42]
+  inStack  = push 7 . push 6 . push 5 . push 4 $ emptyStack
+  outStack = push 3 . push 2 . push 1 . push 0 $ emptyStack
+
+  listOfStacks = [emptyStack, stack0, stack01, completeStack, stack42, inStack, outStack]
   topResults = map top listOfStacks
+
+  -- Queues
+  q1 :: Queue Int
+  q1 = InStackOutStack inStack outStack
