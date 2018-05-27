@@ -23,7 +23,10 @@ module QueueStacks where
   dispatch q@(InStackOutStack [] outStack) = q
   dispatch (InStackOutStack (top:inStack) outStack) = dispatch (InStackOutStack inStack (top:outStack))
 
---   dequeue :: Queue v -> Maybe v
+  dequeue :: Queue v -> Queue v
+  dequeue q@(InStackOutStack [] [])          = q
+  dequeue q@(InStackOutStack _ [])           = dequeue . dispatch $ q
+  dequeue (InStackOutStack inStack outStack) = InStackOutStack inStack (pop outStack)
 
 
   -- Tests:
@@ -62,3 +65,8 @@ module QueueStacks where
   listOfQueues = [q1, q2, q3]
   enqueueResults = map (enqueue 42) listOfQueues
   dispatchResults = map dispatch listOfQueues -- only `dispatch q3` would be really called
+  dequeueResults = map dequeue listOfQueues
+  dequeue2TimesResults = map (dequeue . dequeue) listOfQueues
+  dequeue3TimesResults = map (dequeue . dequeue . dequeue) listOfQueues
+  dequeue4TimesResults = map (dequeue . dequeue . dequeue . dequeue) listOfQueues
+  dequeue5TimesResults = map (dequeue . dequeue . dequeue . dequeue . dequeue) listOfQueues
