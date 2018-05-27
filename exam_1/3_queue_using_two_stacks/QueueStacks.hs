@@ -28,6 +28,8 @@ module QueueStacks where
   dequeue q@(InStackOutStack _ [])           = dequeue . dispatch $ q
   dequeue (InStackOutStack inStack outStack) = InStackOutStack inStack (pop outStack)
 
+  -- front?
+  -- back?
 
   -- Tests:
   -- Stacks
