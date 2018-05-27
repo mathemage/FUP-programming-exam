@@ -7,12 +7,16 @@ lengthAsDouble = fromIntegral . length
 minMean :: [Double] -> Double
 minMean = minimum
 
--- -- https://en.wikipedia.org/wiki/Geometric_mean
+-- https://en.wikipedia.org/wiki/Geometric_mean
 geometricMean :: [Double] -> Double
 geometricMean doubles = product doubles ** (1 / lengthAsDouble doubles)
 
 arithmeticMean :: [Double] -> Double
 arithmeticMean doubles = sum doubles / lengthAsDouble doubles
+
+-- https://en.wikipedia.org/wiki/Root_mean_square
+quadraticMean :: [Double] -> Double
+quadraticMean doubles = ( (sum . map (** 2) $ doubles) / lengthAsDouble doubles ) ** 0.5
 
 maxMean :: [Double] -> Double
 maxMean = maximum
@@ -29,4 +33,5 @@ main = do
   print $ "minMean == " ++ (show . minMean $ testDoubles)
   print $ "geometricMean == " ++ (show . geometricMean $ testDoubles)
   print $ "arithmeticMean == " ++ (show . arithmeticMean $ testDoubles)
+  print $ "quadraticMean == " ++ (show . quadraticMean $ testDoubles)
   print $ "maxMean == " ++ (show . maxMean $ testDoubles)
