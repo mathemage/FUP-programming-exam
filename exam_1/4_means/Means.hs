@@ -1,3 +1,4 @@
+-- created in ~70 min
 stringToDoubles :: String -> [Double]
 stringToDoubles line = map read (words line)
 
