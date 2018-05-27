@@ -1,3 +1,4 @@
+-- created in ~90 min
 module QueueStacks where
 
   type Stack v = [v]
