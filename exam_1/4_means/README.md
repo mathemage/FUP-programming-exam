@@ -39,7 +39,11 @@ stringToDoubles :: String -> [Double]
 ```
 
 ## Input
-A single line is read from the standard input containing real numbers separated by spaces.
+A single line is read from the standard input containing real numbers (possibly with the *minus* signs and *decimal points*).
+The numbers are separated by spaces.
+
+You may assume that the user-given input is **always valid**.
+In particular, at least one number will be always entered.
 
 ## Output
 The first line displays the list of input numbers (parsed into `[Double]`).
