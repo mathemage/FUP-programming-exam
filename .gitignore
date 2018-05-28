@@ -90,3 +90,6 @@ fabric.properties
 .idea/vcs.xml
 .idea/codeStyles/
 .idea/compiler.xml
+
+### FUP-exam-specific
+/exam_1/4_means/Means
