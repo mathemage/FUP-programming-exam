@@ -1,22 +1,6 @@
 # 1. Count Valid Matching of Parentheses [Scheme]
 
-Make a module `QueueStacks` that implements **a queue using two stacks**.
-
-### Stacks using Lists
-
-A **stack** (also called *Last In First Out* or *LIFO*) is a following data structure:
-
-![LIFO](stack.png)
-
-Stacks can be naturally implemented using Haskell lists:
-
-```haskell
-type Stack v = [v]
-```
-
-Implement stack operations with the type signatures below...
-
-* **push** that adds a new element to a stack:
+Count number of valid ways to arrange **n** pairs of parentheses.
 
 ```haskell
 push :: v -> Stack v -> Stack v
