@@ -76,97 +76,60 @@ dispatch :: Queue v -> Queue v
 This function would transform a queue by conveniently manipulating elements between the incoming stack and the outcoming stack.
 Doing so, the following `dequeue` operation afterwards could be done easily and with the desired amortized time complexity.
 
-## Input
-A single line is read from the standard input containing real numbers (possibly with the *minus* signs and *decimal points*).
-The numbers are separated by spaces.
-
-You may assume that the user-given input is **always valid**.
-In particular, at least one number will be always entered.
-
-## Output
-The first line displays the list of input numbers (parsed into `[Double]`).
-
-The second line displays `minMean == ` and the computed minimum.
-
-The third line displays `harmonicMean == ` and the computed harmonic mean.
-
-The fourth line displays `geometricMean == ` and the computed geometric mean.
-
-The fifth line displays `arithmeticMean == ` and the computed arithmetic mean.
-
-The sixth line displays `quadraticMean == ` and the computed quadratic mean.
-
-The last line displays `maxMean == ` and the computed maximum.
-
 ## Examples
+The modules will be loaded with command:
+```commandline
+ghci QueueStacks.hs
+```
+### Example 1 - stacks
+With following user-defined stacks:
+```haskell
+emptyStack = []
+stack0 = push 0 emptyStack
+stack01 = push 1 stack0
+completeStack = push 7 . push 6 . push 5 . push 4 . push 3 . push 2 . push 1 . push 0 $ emptyStack
+stack42 = push 7 . push 6 . push 5 . push 42 . pop . pop . pop . pop $ completeStack
+inStack  = push 7 . push 6 . push 5 . push 4 $ emptyStack
+outStack = push 3 . push 2 . push 1 . push 0 $ emptyStack
 
-**@Lasse: How should we check the results? It needs to be floating-point comparison with a tolerance of numerical error.**
-
-### Example 1
-input:
+listOfStacks = [emptyStack, stack0, stack01, completeStack, stack42, inStack, outStack]
 ```
-1
+we get:
 ```
-output:
-```
-[1.0]
-"minMean == 1.0"
-"harmonicMean == 1.0"
-"geometricMean == 1.0"
-"arithmeticMean == 1.0"
-"quadraticMean == 1.0"
-"maxMean == 1.0"
-```
-
-### Example 2
-input:
-```
-1 2 3 4
-```
-output:
-```
-[1.0,2.0,3.0,4.0]
-"minMean == 1.0"
-"harmonicMean == 1.9200000000000004"
-"geometricMean == 2.213363839400643"
-"arithmeticMean == 2.5"
-"quadraticMean == 2.7386127875258306"
-"maxMean == 4.0"
+*QueueStacks> map top listOfStacks
+[Nothing,Just 0,Just 1,Just 7,Just 7,Just 7,Just 3]
 ```
 
-### Example 3
-input:
-```
-1 2 3 4 5
-```
-output:
-```
-[1.0,2.0,3.0,4.0,5.0]
-"minMean == 1.0"
-"harmonicMean == 2.18978102189781"
-"geometricMean == 2.605171084697352"
-"arithmeticMean == 3.0"
-"quadraticMean == 3.3166247903554"
-"maxMean == 5.0"
-```
+### Example 2 - queues
+With following user-defined queues:
+```haskell
+emptyStack = []
+inStack  = push 7 . push 6 . push 5 . push 4 $ emptyStack
+outStack = push 3 . push 2 . push 1 . push 0 $ emptyStack
 
-### Example 4
-input:
-```
-1 2 39.3 2 3 -12 3.1415 -3.1415
-```
-output:
-```
-[1.0,2.0,39.3,2.0,3.0,-12.0,3.1415,-3.1415]
-"minMean == -12.0"
-"harmonicMean == 3.5157953592395867"
-"geometricMean == 3.920835722212454"
-"arithmeticMean == 4.4125"
-"quadraticMean == 14.689401130151628"
-"maxMean == 39.3"
-```
+q1 = InStackOutStack inStack outStack
+q2 = InStackOutStack emptyStack outStack
+q3 = InStackOutStack inStack emptyStack
 
-## Note
-Keep in mind that there are many useful functions in the `Prelude` of Haskell,
-e.g. `map`, `words`, `fromIntegral`, `minimum`, `maximum`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
-They may help you write the solution as fast as possible.
+listOfQueues = [q1, q2, q3]
+```
+we get:
+```
+*QueueStacks> map (enqueue 42) listOfQueues
+[InStackOutStack [42,7,6,5,4] [3,2,1,0],InStackOutStack [42] [3,2,1,0],InStackOutStack [42,7,6,5,4] []]
+
+*QueueStacks> map dequeue listOfQueues
+[InStackOutStack [7,6,5,4] [2,1,0],InStackOutStack [] [2,1,0],InStackOutStack [] [5,6,7]]
+
+*QueueStacks> map (dequeue . dequeue) listOfQueues
+[InStackOutStack [7,6,5,4] [1,0],InStackOutStack [] [1,0],InStackOutStack [] [6,7]]
+
+*QueueStacks> map (dequeue . dequeue . dequeue) listOfQueues
+[InStackOutStack [7,6,5,4] [0],InStackOutStack [] [0],InStackOutStack [] [7]]
+
+*QueueStacks> map (dequeue . dequeue . dequeue . dequeue) listOfQueues
+[InStackOutStack [7,6,5,4] [],InStackOutStack [] [],InStackOutStack [] []]
+
+*QueueStacks> map (dequeue . dequeue . dequeue . dequeue . dequeue) listOfQueues
+[InStackOutStack [] [5,6,7],InStackOutStack [] [],InStackOutStack [] []]
+```
