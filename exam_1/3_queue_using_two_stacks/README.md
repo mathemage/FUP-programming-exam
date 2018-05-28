@@ -81,7 +81,7 @@ The modules will be loaded with command:
 ```commandline
 ghci QueueStacks.hs
 ```
-### Example 1 - stacks
+### Example 1 (stacks)
 With following user-defined stacks:
 ```haskell
 emptyStack = []
@@ -100,7 +100,7 @@ we get:
 [Nothing,Just 0,Just 1,Just 7,Just 7,Just 7,Just 3]
 ```
 
-### Example 2 - queues
+### Example 2 (queues)
 With following user-defined queues:
 ```haskell
 emptyStack = []
