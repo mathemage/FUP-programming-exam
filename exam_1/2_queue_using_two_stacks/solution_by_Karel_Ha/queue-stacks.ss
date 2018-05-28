@@ -22,8 +22,22 @@
      (push 3
       (push 2
        stack01)))))))
+(define inStack
+ (push 7
+  (push 6
+   (push 5
+    (push 4
+     emptyStack)))))
+(define outStack
+ (push 3
+  (push 2
+   (push 1
+    (push 0
+     emptyStack)))))
 
 emptyStack
 stack0
 stack01
 completeStack
+inStack
+outStack
