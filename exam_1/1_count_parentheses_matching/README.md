@@ -8,7 +8,7 @@ Let a string **s** contain only 2 types of characters:
 * an **opening parenthesis** `(`
 * a **closing parenthesis** `)`
 
-A prefix of **s** is any initial segment **s[0:k]** of string **s**, where **0 <= k < length(s)**.
+A prefix of **s** is any initial segment **s[0]s[1]...s[k]** of string **s**, where **0 <= k < length(s)**.
 
 Parentheses in a string **s** are **validly matched** if and only if
 *every prefix of **s** has the count of opening parentheses `(` greater or equal to the count of closing parentheses `)`*.
