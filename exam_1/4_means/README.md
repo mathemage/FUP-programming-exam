@@ -125,9 +125,7 @@ output:
 ```
 
 ## Note
-The queries in the example are following:
+Keep in mind that there are many useful functions in the `Prelude` of Haskell.
+E.g. `map`, `words`, `fromIntegral`, `minimum`, `maximum`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
 
-substrings "a" and "a" are isomorphic: f(a) = a;
-substrings "ab" and "ca" are isomorphic: f(a) = c, f(b) = a;
-substrings "bac" and "aba" are not isomorphic since f(b) and f(c) must be equal to a at same time;
-substrings "bac" and "cab" are isomorphic: f(b) = c, f(a) = a, f(c) = b.
+They may help you write the solution as fast as possible.
