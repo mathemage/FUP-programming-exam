@@ -2,22 +2,16 @@
 
 Count number of valid ways to arrange **n** pairs of parentheses.
 
-```haskell
-push :: v -> Stack v -> Stack v
-```
+### Valid Matching of Parentheses
 
-* **top** that `top` returns the top of a stack **without** changing the stack.
-In case of an empty stack return `Nothing`, otherwise return `Just` the element.
+Let a string **s** contain only 2 types of characters:
+* an **opening parenthesis** `(`
+* a **closing parenthesis** `)`
 
-```haskell
-top :: Stack v -> Maybe v
-```
+A prefix of **s** is any initial segment **s[0:k]** of string **s**, where **0 <= k < length(s)**.
 
-* **pop** that removes the top element (the most recently added one) from a stack:
-
-```haskell
-pop :: Stack v -> Stack v
-```
+Parentheses in a string **s** are **correctly matched** if and only if
+*every prefix of **s** has the count of opening parentheses `(` greater or equal to the count of closing parentheses `)`*.
 
 ### Queues using Stacks
 
