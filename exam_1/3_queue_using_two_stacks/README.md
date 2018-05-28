@@ -10,39 +10,38 @@ A **stack** (also *Last In First Out* or *LIFO*) is a following data structure:
 
 ![LIFO](stack.png)
 
-
-
-
-The elements in the map will be constructed using data constructor KeyVal a b. The module will implement functions:
-
-
-
-
-Write a simple **stand-alone** program that computes various types of mathematical **means** (i.e. averages) of given numbers.
-It will read a line of **space-separated** real numbers from the standard input and return 6 kinds of means:
-
-* **minMean** as the minimum of numbers
-* **maxMean** as the maximum of numbers
-* **arithmeticMean** as the (standard) *arithmetic mean* (also called *average*):
-* **geometricMean** as the *geometric mean*:
-* **quadraticMean** as the *quadratic mean* (also called *root mean square* or *rms*):
-* **harmonicMean** as the *harmonic mean* (also called *subcontrary mean*):
-
-Preferably, implement following functions to make your stand-alone Haskell program work:
+Stacks can be naturally implemented using Haskell lists:
 
 ```haskell
-minMean :: [Double] -> Double
-maxMean :: [Double] -> Double
-arithmeticMean :: [Double] -> Double
-geometricMean :: [Double] -> Double
-quadraticMean :: [Double] -> Double
-harmonicMean :: [Double] -> Double
+type Stack v = [v]
 ```
 
-Moreover, it could be useful to implement a parsing function:
+Implement stack functions (with the type signatures below)
+
+* **push** that adds a new element to a stack:
 
 ```haskell
-stringToDoubles :: String -> [Double]
+push :: v -> Stack v -> Stack v
+```
+
+* **top** that `top` returns the top of a stack **without** changing the stack.
+In case of an empty stack return `Nothing`, otherwise return `Just` the element.
+
+```haskell
+top :: Stack v -> Maybe v
+```
+
+* **pop** that removes the top element (the least recently added) from a stack:
+
+```haskell
+pop :: Stack v -> Stack v
+```
+
+```haskell
+data Queue v = InStackOutStack (Stack v) (Stack v) deriving (Eq, Show)
+enqueue :: v -> Queue v -> Queue v
+dispatch :: Queue v -> Queue v
+dequeue :: Queue v -> Queue v
 ```
 
 ## Input
