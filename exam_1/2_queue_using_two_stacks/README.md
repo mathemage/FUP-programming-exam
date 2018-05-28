@@ -1,4 +1,4 @@
-# 3. Queue using Two Stacks [Haskell]
+# 2. Queue using Two Stacks [Scheme] - TODO 
 
 Make a module `QueueStacks` that implements **a queue using two stacks**.
 
