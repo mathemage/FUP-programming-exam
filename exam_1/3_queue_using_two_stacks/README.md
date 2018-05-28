@@ -1,4 +1,4 @@
-# 4. Queue using Two Stacks [Haskell]
+# 3. Queue using Two Stacks [Haskell]
 
 Write a simple **stand-alone** program that computes various types of mathematical **means** (i.e. averages) of given numbers.
 It will read a line of **space-separated** real numbers from the standard input and return 6 kinds of means:
