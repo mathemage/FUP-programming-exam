@@ -10,11 +10,15 @@ Let a string **s** contain only 2 types of characters:
 
 A prefix of **s** is any initial segment **s[0:k]** of string **s**, where **0 <= k < length(s)**.
 
-Parentheses in a string **s** are **correctly matched** if and only if
+Parentheses in a string **s** are **validly matched** if and only if
 *every prefix of **s** has the count of opening parentheses `(` greater or equal to the count of closing parentheses `)`*.
 
+### Implementation in Scheme
+
+In Scheme, implement the function `f(n)` that counts the **total number** of possible strings with validly matched **n** pairs of parentheses.
+
 ## Examples
-With correctly-implemented above-defined `f` we get:
+For `0`, `1`, `2`, `5` and `17` the corresponding values of `f(n)` are:
 ```
 > (map f '(0 1 2 5 17))
 (1 1 2 42 129644790)
