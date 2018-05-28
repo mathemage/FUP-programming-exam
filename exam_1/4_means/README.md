@@ -125,7 +125,6 @@ output:
 ```
 
 ## Note
-Keep in mind that there are many useful functions in the `Prelude` of Haskell.
-E.g. `map`, `words`, `fromIntegral`, `minimum`, `maximum`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
-
+Keep in mind that there are many useful functions in the `Prelude` of Haskell,
+e.g. `map`, `words`, `fromIntegral`, `minimum`, `maximum`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
 They may help you write the solution as fast as possible.
