@@ -58,7 +58,41 @@ The last line displays `maxMean == ` and the computed maximum.
 
 ## Examples
 
+**@Lasse: How should we check the results? It needs to be floating-point comparison with a tolerance of numerical error.**
+
 ### Example 1
+input:
+```
+1
+```
+output:
+```
+[1.0]
+"minMean == 1.0"
+"harmonicMean == 1.0"
+"geometricMean == 1.0"
+"arithmeticMean == 1.0"
+"quadraticMean == 1.0"
+"maxMean == 1.0"
+```
+
+### Example 2
+input:
+```
+1 2 3 4
+```
+output:
+```
+[1.0,2.0,3.0,4.0]
+"minMean == 1.0"
+"harmonicMean == 1.9200000000000004"
+"geometricMean == 2.213363839400643"
+"arithmeticMean == 2.5"
+"quadraticMean == 2.7386127875258306"
+"maxMean == 4.0"
+```
+
+### Example 3
 input:
 ```
 1 2 3 4 5
@@ -72,6 +106,22 @@ output:
 "arithmeticMean == 3.0"
 "quadraticMean == 3.3166247903554"
 "maxMean == 5.0"
+```
+
+### Example 4
+input:
+```
+1 2 39.3 2 3 -12 3.1415 -3.1415
+```
+output:
+```
+[1.0,2.0,39.3,2.0,3.0,-12.0,3.1415,-3.1415]
+"minMean == -12.0"
+"harmonicMean == 3.5157953592395867"
+"geometricMean == 3.920835722212454"
+"arithmeticMean == 4.4125"
+"quadraticMean == 14.689401130151628"
+"maxMean == 39.3"
 ```
 
 ## Note
