@@ -2,11 +2,9 @@
 
 Make a module `QueueStacks` that implements **a queue using two stacks**.
 
-A **queue** (also *First In Last Out* or *FIFO*) is a following data structure:
- 
-![FIFO](queue.svg)
-    
-A **stack** (also *Last In First Out* or *LIFO*) is a following data structure:
+### Stacks using Lists
+
+A **stack** (also called *Last In First Out* or *LIFO*) is a following data structure:
 
 ![LIFO](stack.png)
 
@@ -16,7 +14,7 @@ Stacks can be naturally implemented using Haskell lists:
 type Stack v = [v]
 ```
 
-Implement stack functions (with the type signatures below)
+Implement stack operations with the type signatures below...
 
 * **push** that adds a new element to a stack:
 
@@ -31,18 +29,52 @@ In case of an empty stack return `Nothing`, otherwise return `Just` the element.
 top :: Stack v -> Maybe v
 ```
 
-* **pop** that removes the top element (the least recently added) from a stack:
+* **pop** that removes the top element (the most recently added one) from a stack:
 
 ```haskell
 pop :: Stack v -> Stack v
 ```
 
+### Queues using Stacks
+
+A **queue** (also called *First In Last Out* or *FIFO*) is a following data structure:
+ 
+![FIFO](queue.svg)
+    
+Unfortunately, queues are not that straightforward to implement in Haskell.
+At least not with the basic data structures we have learned so far.
+Using a list directly as a queue would not give desired time complexities for queue operations `enqueue` and `dequeue`.
+
+However, it is possible to achieve at least good **amortized** complexities using **two stacks in a smart way**.
+I.e., such a way that a sequence of **e** operations of `enqueue` and **d** operations of `dequeue`** would take **O(e + d)** time. 
+This can be done if:
+* one stack is dedicated for enqueueing incoming elements
+* the other stack is dedicated for dequeueing outcoming elements
+
+Implement such a queue using a new data type:
 ```haskell
 data Queue v = InStackOutStack (Stack v) (Stack v) deriving (Eq, Show)
+```
+and implement queue operations with the type signatures below...
+
+* **enqueue** that adds a new element to the front of a stack:
+
+```haskell
 enqueue :: v -> Queue v -> Queue v
-dispatch :: Queue v -> Queue v
+```
+
+* **dequeue** that removes an element (the least recently added one) from the back of a stack:
+
+```haskell
 dequeue :: Queue v -> Queue v
 ```
+
+Moreover, you may find useful to have a function that "prepares" a queue for a `dequeue` operation.
+```haskell
+dispatch :: Queue v -> Queue v
+```
+This function would transform a queue by conveniently manipulating elements between the incoming stack and the outcoming stack.
+Doing so, the following `dequeue` operation afterwards could be done easily and with the desired amortized time complexity.
 
 ## Input
 A single line is read from the standard input containing real numbers (possibly with the *minus* signs and *decimal points*).
