@@ -1,26 +1,33 @@
 # 3. Queue using Two Stacks [Haskell]
 
+Make a module `QueueStacks` that implements **a queue using two stacks**.
+
+A **queue** (also *First In Last Out* or *FIFO*) is a following data structure:
+ 
+![FIFO](queue.svg)
+    
+A **stack** (also *Last In First Out* or *LIFO*) is a following data structure:
+
+![LIFO](stack.png)
+
+
+
+
+The elements in the map will be constructed using data constructor KeyVal a b. The module will implement functions:
+
+
+
+
 Write a simple **stand-alone** program that computes various types of mathematical **means** (i.e. averages) of given numbers.
 It will read a line of **space-separated** real numbers from the standard input and return 6 kinds of means:
 
 * **minMean** as the minimum of numbers
 * **maxMean** as the maximum of numbers
 * **arithmeticMean** as the (standard) *arithmetic mean* (also called *average*):
-
-    ![arithmetic mean](arithmeticMean.svg)
-    
 * **geometricMean** as the *geometric mean*:
-
-    ![geometric mean](geometricMean.svg)
-    
 * **quadraticMean** as the *quadratic mean* (also called *root mean square* or *rms*):
-
-    ![quadratic mean](quadraticMean.svg)
-    
 * **harmonicMean** as the *harmonic mean* (also called *subcontrary mean*):
 
-    ![harmonic mean](harmonicMean.svg)
-    
 Preferably, implement following functions to make your stand-alone Haskell program work:
 
 ```haskell
