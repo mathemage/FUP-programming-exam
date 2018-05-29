@@ -20,6 +20,9 @@
 (define (getOutStack q)
  (cadr q)
 )
+(define (enqueue v q) ; q == ((ist) (ost))
+ (inStackOutStack (push v (getInStack q)) (getOutStack q))
+)
 
 
 ; test - stacks
@@ -92,3 +95,5 @@
 (map (lambda (q) (displayln (getInStack q))) listOfQueues)
 (displayln "Their outStacks: ")
 (map (lambda (q) (displayln (getOutStack q))) listOfQueues)
+(displayln "Enqueues: ")
+(map (lambda (q) (displayln (enqueue 42 q))) listOfQueues)
