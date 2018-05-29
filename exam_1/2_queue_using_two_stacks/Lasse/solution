@@ -1,0 +1,27 @@
+#lang scheme
+
+(define (push v st)
+  (cons v st))
+
+(define (top st)
+  (if (null? st) st
+      (car st)))
+
+(define (pop st)
+  (cdr st))
+
+(define (inStackOutStack ist ost)
+  (list ist ost))
+
+(define (enqueue v q)
+  (list (cons v (car q)) (cadr q)))
+
+(define (dispatch q)
+  (list '() (append (cadr q) (reverse (car q)))))
+
+(define (dequeue q)
+  (let ((ls1 (car q)) (ls2 (cadr q)))
+    (cond
+      ((and (null? ls1) (null? ls2)) (list '() '()))
+      ((not (null? ls2)) (list ls1 (cdr ls2)))
+      (else (dequeue (dispatch q))))))
