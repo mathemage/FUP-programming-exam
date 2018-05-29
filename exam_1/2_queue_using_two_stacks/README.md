@@ -79,27 +79,47 @@ This function would transform a queue by conveniently manipulating elements betw
 Doing so, the following `dequeue` operation afterwards could be done easily and with the desired amortized time complexity.
 
 ## Examples
-The modules will be loaded with command:
-```commandline
-ghci QueueStacks.hs
-```
 ### Example 1 (stacks)
 With following user-defined stacks:
-```haskell
-emptyStack = []
-stack0 = push 0 emptyStack
-stack01 = push 1 stack0
-completeStack = push 7 . push 6 . push 5 . push 4 . push 3 . push 2 . push 1 . push 0 $ emptyStack
-stack42 = push 7 . push 6 . push 5 . push 42 . pop . pop . pop . pop $ completeStack
-inStack  = push 7 . push 6 . push 5 . push 4 $ emptyStack
-outStack = push 3 . push 2 . push 1 . push 0 $ emptyStack
+```scheme
+(define emptyStack '())
+(define stack0
+ (push 0 emptyStack))
+(define stack01
+ (push 1 stack0))
+(define completeStack
+ (push 7 (push 6 (push 5 (push 4 (push 3 (push 2 stack01)))))))
+(define stack42
+ (push 7 (push 6 (push 5 (push 42 (pop (pop (pop (pop completeStack)))))))))
+(define inStack
+ (push 7 (push 6 (push 5 (push 4 emptyStack)))))
+(define outStack
+ (push 3 (push 2 (push 1 (push 0 emptyStack)))))
+(define listOfStacks
+ (list emptyStack stack0 stack01 completeStack stack42 inStack outStack))
+```
+we get following stacks:
+```
+> (map displayln listOfStacks)
+()
+(0)
+(1 0)
+(7 6 5 4 3 2 1 0)
+(7 6 5 42 3 2 1 0)
+(7 6 5 4)
+(3 2 1 0)
+```
+Their results of `top` operations would be:
+```
+> (map (lambda (st) (displayln (top st))) listOfStacks)
 
-listOfStacks = [emptyStack, stack0, stack01, completeStack, stack42, inStack, outStack]
-```
-we get:
-```
-*QueueStacks> map top listOfStacks
-[Nothing,Just 0,Just 1,Just 7,Just 7,Just 7,Just 3]
+()
+0
+1
+7
+7
+7
+3
 ```
 
 ### Example 2 (queues)
