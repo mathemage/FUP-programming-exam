@@ -26,11 +26,25 @@
 (define (dispatch q) ; q == ((ist) (ost))
  (let ( (ist (getInStack q))
         (ost (getOutStack q)) )
-  (cond ((null? ist) q)
+  (cond
+   ((null? ist) q)
    (else (dispatch
           (inStackOutStack
            (pop ist)
-           (push (top ist) ost)))))))
+           (push (top ist) ost))))
+  )
+ )
+)
+(define (dequeue q) ; q == ((ist) (ost))
+ (let ((ist (getInStack q))
+       (ost (getOutStack q)))
+  (cond
+   ((and (null? ist) (null? ost)) q)
+   ((null? ost) (dequeue (dispatch q)))
+   (else (inStackOutStack ist (pop ost)))
+  )
+ )
+)
 
 
 ; test - stacks
@@ -107,3 +121,5 @@
 (map (lambda (q) (displayln (enqueue 42 q))) listOfQueues)
 (displayln "Dispatches: ")
 (map (lambda (q) (displayln (dispatch q))) listOfQueues)
+(displayln "Dequeues: ")
+(map (lambda (q) (displayln (dequeue q))) listOfQueues)
