@@ -1,9 +1,12 @@
 #lang scheme
 
-; total time:
+; total time: not measured by Karel Ha
 
 (define (push v st)
  (cons v st)
+)
+(define (pop st)
+ (cdr st)
 )
 
 ; test
@@ -22,6 +25,16 @@
      (push 3
       (push 2
        stack01)))))))
+(define stack42
+ (push 7
+  (push 6
+   (push 5
+    (push 42
+     (pop
+      (pop
+       (pop
+        (pop
+         completeStack)))))))))
 (define inStack
  (push 7
   (push 6
@@ -39,5 +52,6 @@ emptyStack
 stack0
 stack01
 completeStack
+stack42
 inStack
 outStack
