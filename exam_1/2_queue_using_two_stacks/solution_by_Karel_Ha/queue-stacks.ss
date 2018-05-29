@@ -6,7 +6,9 @@
  (cons v st))
 (define (top st)
  (cond ((null? st) '())
-       (else car st)))
+       (else (car st))
+ )
+)
 (define (pop st)
  (cdr st))
 
@@ -52,7 +54,6 @@
    (push 1
     (push 0
      emptyStack)))))
-(displayln "Stacks: ")
 (define listOfStacks
  (list
     emptyStack
