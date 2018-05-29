@@ -62,14 +62,7 @@
     stack42
     inStack
     outStack))
-emptyStack
-stack0
-stack01
-completeStack
-stack42
-inStack
-outStack
-listOfStacks
+(map displayln listOfStacks)
 
 ; test - queues
 (define q1
