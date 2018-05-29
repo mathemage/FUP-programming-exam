@@ -69,7 +69,7 @@ enqueue :: v -> Queue v -> Queue v
 dequeue :: Queue v -> Queue v
 ```
 
-Moreover, you may find useful to have a function that "prepares" a queue for a `dequeue` operation.
+Moreover, you may find useful to have a function that "prepares" a queue for the `dequeue` operation.
 ```haskell
 dispatch :: Queue v -> Queue v
 ```
