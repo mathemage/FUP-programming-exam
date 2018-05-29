@@ -72,6 +72,9 @@
 (define q3
  (createQueue inStack emptyStack))
 (displayln "Queues: ")
-q1
-q2
-q3
+(define listOfQueues
+ (list
+  q1
+  q2
+  q3))
+(map displayln listOfQueues)
