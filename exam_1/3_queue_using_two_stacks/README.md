@@ -22,7 +22,7 @@ Implement stack operations with the type signatures below...
 push :: v -> Stack v -> Stack v
 ```
 
-* **top** that `top` returns the top of a stack **without** changing the stack.
+* **top** that returns the top of a stack **without** changing the stack.
 In case of an empty stack return `Nothing`, otherwise return `Just` the element.
 
 ```haskell
@@ -57,13 +57,13 @@ data Queue v = InStackOutStack (Stack v) (Stack v) deriving (Eq, Show)
 ```
 and implement queue operations with the type signatures below...
 
-* **enqueue** that adds a new element to the front of a stack:
+* **enqueue** that adds a new element to the front of a queue:
 
 ```haskell
 enqueue :: v -> Queue v -> Queue v
 ```
 
-* **dequeue** that removes an element (the least recently added one) from the back of a stack:
+* **dequeue** that removes an element (the least recently added one) from the back of a queue:
 
 ```haskell
 dequeue :: Queue v -> Queue v
