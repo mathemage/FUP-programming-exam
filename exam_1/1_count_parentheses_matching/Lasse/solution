@@ -1,0 +1,75 @@
+; Solution 1 - Most obvious solution
+; Simply generate all possible parenthesis and check how many are valid
+
+(define (generate n m)
+  (cond
+      ((and (= 0 n) (= 0 m)) '(()))
+      ((or (< n 0) (< m 0)) '())
+      (else (append
+             (map (lambda (ls) (cons 'a ls)) (generate (- n 1) m))
+             (map (lambda (ls) (cons 'b ls)) (generate n (- m 1)))))))
+
+(define (valid s m)
+  (and (>= m 0)
+       (cond ((null? s) #t)
+             ((eq? (car s) 'a) (valid (cdr s) (+ m 1)))
+             ((eq? (car s) 'b) (valid (cdr s) (- m 1))))))
+
+(define (f1 n)
+  (apply + (map (lambda (s) (if (valid s 0) 1 0)) (generate n n))))
+
+; Solution 2 - Recursive solution
+; The function (contains a b) calculates how many possible valid strings
+; exist with a openening parens and b closing parens.
+; This function can be easily adapted for dynamic programming.
+
+(define (contains as bs)
+  (cond
+      ((> bs as) 0)
+      ((= 0 as) 1)
+      ((= 0 bs) 1)
+      (else (+ (contains (- as 1) bs) (contains as (- bs 1))))))
+
+(define (f2 n)
+  (contains n n))
+
+; Solution 3 - Dynamic programming solution
+; This is a version of solution 2 that has been adapted for dynamic
+; programming.
+
+(define (process-list ls n)
+  (if (null? ls) (list n)
+      (let ((n-new (+ (car ls) n)))
+        (cons n-new (process-list (cdr ls) n-new)))))
+
+(define (iterate f x n)
+  (cond ((= 0 n) x)
+        (else (iterate f (f x) (- n 1)))))
+
+(define (last ls)
+  (if (null? (cdr ls))
+      (car ls)
+      (last (cdr ls))))
+
+(define (f3 n)
+  (last (iterate (lambda (ls) (process-list ls 0)) '(1) n)))
+
+; Solution 4 - Calculate using combinatorics.
+
+(define (seq n m)
+  (if (>= n m)
+      (list n)
+      (cons n (seq (+ n 1) m))))
+
+(define (factorial n) (apply * (seq 1 n)))
+
+(define (f4 n)
+  (/ (factorial (* 2 n)) (* (factorial n) (factorial (+ n 1)))))
+
+; Solution 5 - Solution I got from following Karels hints.
+
+(define (f5 n)
+  (if (= n 0) 1
+      (apply +
+             (map * (map f5 (seq 0 (- n 1)))
+                    (map (lambda (k) (f5 (- n 1 k))) (seq 0 (- n 1)))))))
