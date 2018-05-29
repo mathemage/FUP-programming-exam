@@ -3,13 +3,15 @@
 ; total time: not measured by Karel Ha
 
 (define (push v st)
- (cons v st)
-)
+ (cons v st))
 (define (pop st)
- (cdr st)
-)
+ (cdr st))
 
-; test
+(define (createQueue ist ost)
+ (list ist ost))
+
+
+; test - stacks
 (define emptyStack '())
 (define stack0
  (push 0 emptyStack)
@@ -47,7 +49,7 @@
    (push 1
     (push 0
      emptyStack)))))
-
+(displayln "Stacks: ")
 emptyStack
 stack0
 stack01
@@ -55,3 +57,15 @@ completeStack
 stack42
 inStack
 outStack
+
+; test - queues
+(define q1
+ (createQueue inStack outStack))
+(define q2
+ (createQueue emptyStack outStack))
+(define q3
+ (createQueue inStack emptyStack))
+(displayln "Queues: ")
+q1
+q2
+q3
