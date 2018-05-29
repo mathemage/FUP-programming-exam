@@ -14,6 +14,12 @@
 
 (define (inStackOutStack ist ost)
  (list ist ost))
+(define (getInStack q)
+ (car q)
+)
+(define (getOutStack q)
+ (cadr q)
+)
 
 
 ; test - stacks
@@ -75,10 +81,14 @@
  (inStackOutStack emptyStack outStack))
 (define q3
  (inStackOutStack inStack emptyStack))
-(displayln "Queues: ")
 (define listOfQueues
  (list
   q1
   q2
   q3))
+(displayln "Queues: ")
 (map displayln listOfQueues)
+(displayln "Their inStacks: ")
+(map (lambda (q) (displayln (getInStack q))) listOfQueues)
+(displayln "Their outStacks: ")
+(map (lambda (q) (displayln (getOutStack q))) listOfQueues)
