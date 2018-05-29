@@ -12,7 +12,7 @@
 (define (pop st)
  (cdr st))
 
-(define (createQueue ist ost)
+(define (inStackOutStack ist ost)
  (list ist ost))
 
 
@@ -70,11 +70,11 @@
 
 ; test - queues
 (define q1
- (createQueue inStack outStack))
+ (inStackOutStack inStack outStack))
 (define q2
- (createQueue emptyStack outStack))
+ (inStackOutStack emptyStack outStack))
 (define q3
- (createQueue inStack emptyStack))
+ (inStackOutStack inStack emptyStack))
 (displayln "Queues: ")
 (define listOfQueues
  (list
