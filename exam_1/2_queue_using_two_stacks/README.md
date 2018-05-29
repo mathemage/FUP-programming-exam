@@ -1,6 +1,6 @@
-# 2. Queue using Two Stacks [Scheme] - TODO 
+# 2. Queue using Two Stacks [Scheme]
 
-Make a module `QueueStacks` that implements **a queue using two stacks**.
+Implement **a queue using two stacks**.
 
 ### Stacks using Lists
 
@@ -8,32 +8,29 @@ A **stack** (also called *Last In First Out* or *LIFO*) is a following data stru
 
 ![LIFO](stack.png)
 
-Stacks can be naturally implemented using Haskell lists:
-
-```haskell
-type Stack v = [v]
-```
-
+Stacks can be naturally implemented using Scheme lists.
 Implement stack operations with the type signatures below...
 
-* **push** that adds a new element to a stack:
+* **push** that adds a new element `v` to a stack `st` (represented as a list):
 
-```haskell
-push :: v -> Stack v -> Stack v
+```scheme
+(push v st)
 ```
 
-* **top** that `top` returns the top of a stack **without** changing the stack.
-In case of an empty stack return `Nothing`, otherwise return `Just` the element.
+* **top** that returns the top of a stack **without** changing the stack.
+In case of an empty stack return `'()`, otherwise return the element itself.
 
-```haskell
-top :: Stack v -> Maybe v
+```scheme
+(top st)
 ```
 
 * **pop** that removes the top element (the most recently added one) from a stack:
 
-```haskell
-pop :: Stack v -> Stack v
+```scheme
+(pop st)
 ```
+
+These operations should return **new stacks** with modified contents (depending on the called operation).
 
 ### Queues using Stacks
 
