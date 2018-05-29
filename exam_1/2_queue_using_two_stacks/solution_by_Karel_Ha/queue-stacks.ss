@@ -4,6 +4,9 @@
 
 (define (push v st)
  (cons v st))
+(define (top st)
+ (cond ((null? st) '())
+       (else car st)))
 (define (pop st)
  (cdr st))
 
@@ -50,6 +53,15 @@
     (push 0
      emptyStack)))))
 (displayln "Stacks: ")
+(define listOfStacks
+ (list
+    emptyStack
+    stack0
+    stack01
+    completeStack
+    stack42
+    inStack
+    outStack))
 emptyStack
 stack0
 stack01
@@ -57,6 +69,7 @@ completeStack
 stack42
 inStack
 outStack
+listOfStacks
 
 ; test - queues
 (define q1
