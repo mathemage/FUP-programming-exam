@@ -38,37 +38,42 @@ A **queue** (also called *First In Last Out* or *FIFO*) is a following data stru
  
 ![FIFO](queue.svg)
     
-Unfortunately, queues are not that straightforward to implement in Haskell.
+Unfortunately, queues are not that straightforward to implement in Scheme.
 At least not with the basic data structures we have learned so far.
 Using a list directly as a queue would not give desired time complexities for queue operations `enqueue` and `dequeue`.
 
-However, it is possible to achieve at least good **amortized** complexities using **two stacks in a smart way**.
-I.e., such a way that a sequence of **e** operations of `enqueue` and **d** operations of `dequeue`** would take **O(e + d)** time. 
+However, it is possible to achieve at least good **amortized** complexities using **two stacks in a smart way**,
+i.e., such a way that a sequence of **e** operations of `enqueue` and **d** operations of `dequeue`** would take **O(e + d)** time. 
 This can be done if:
 * one stack is dedicated for enqueueing incoming elements
 * the other stack is dedicated for dequeueing outcoming elements
 
-Implement such a queue using a new data type:
-```haskell
-data Queue v = InStackOutStack (Stack v) (Stack v) deriving (Eq, Show)
+Implement such a queue.
+In particular, implement a Scheme function
+```Scheme
+(inStackOutStack ist ost)
 ```
-and implement queue operations with the type signatures below...
+that returns a new queue with:
+* `ist` is the stack dedicated for enqueueing incoming elements 
+* and `ost` is the stack dedicated for dequeueing outcoming elements.
 
-* **enqueue** that adds a new element to the front of a stack:
+Furthermore, implement queue operations:
 
-```haskell
-enqueue :: v -> Queue v -> Queue v
+* **enqueue** that adds a new element **v** to the front of a queue **q**:
+
+```scheme
+(enqueue v q)
 ```
 
-* **dequeue** that removes an element (the least recently added one) from the back of a stack:
+* **dequeue** that removes an element (the least recently added one) from the back of a queue **q**:
 
-```haskell
-dequeue :: Queue v -> Queue v
+```scheme
+(dequeue q)
 ```
 
-Moreover, you may find useful to have a function that "prepares" a queue for a `dequeue` operation.
-```haskell
-dispatch :: Queue v -> Queue v
+Moreover, you may find useful to have a function that "prepares" a queue for the `dequeue` operation.
+```scheme
+(dispatch q)
 ```
 This function would transform a queue by conveniently manipulating elements between the incoming stack and the outcoming stack.
 Doing so, the following `dequeue` operation afterwards could be done easily and with the desired amortized time complexity.
