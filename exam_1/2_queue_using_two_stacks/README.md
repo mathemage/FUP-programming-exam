@@ -124,34 +124,77 @@ Their results of `top` operations would be:
 
 ### Example 2 (queues)
 With following user-defined queues:
-```haskell
-emptyStack = []
-inStack  = push 7 . push 6 . push 5 . push 4 $ emptyStack
-outStack = push 3 . push 2 . push 1 . push 0 $ emptyStack
-
-q1 = InStackOutStack inStack outStack
-q2 = InStackOutStack emptyStack outStack
-q3 = InStackOutStack inStack emptyStack
-
-listOfQueues = [q1, q2, q3]
+```scheme
+(define q1
+ (inStackOutStack inStack outStack))
+(define q2
+ (inStackOutStack emptyStack outStack))
+(define q3
+ (inStackOutStack inStack emptyStack))
+(define listOfQueues
+ (list q1 q2 q3))
 ```
 we get:
 ```
-*QueueStacks> map (enqueue 42) listOfQueues
-[InStackOutStack [42,7,6,5,4] [3,2,1,0],InStackOutStack [42] [3,2,1,0],InStackOutStack [42,7,6,5,4] []]
+> (map displayln listOfQueues)
 
-*QueueStacks> map dequeue listOfQueues
-[InStackOutStack [7,6,5,4] [2,1,0],InStackOutStack [] [2,1,0],InStackOutStack [] [5,6,7]]
+((7 6 5 4) (3 2 1 0))
+(() (3 2 1 0))
+((7 6 5 4) ())
+```
 
-*QueueStacks> map (dequeue . dequeue) listOfQueues
-[InStackOutStack [7,6,5,4] [1,0],InStackOutStack [] [1,0],InStackOutStack [] [6,7]]
+```
+> (map (lambda (q) (displayln (enqueue 42 q))) listOfQueues)
 
-*QueueStacks> map (dequeue . dequeue . dequeue) listOfQueues
-[InStackOutStack [7,6,5,4] [0],InStackOutStack [] [0],InStackOutStack [] [7]]
+((42 7 6 5 4) (3 2 1 0))
+((42) (3 2 1 0))
+((42 7 6 5 4) ())
+```
 
-*QueueStacks> map (dequeue . dequeue . dequeue . dequeue) listOfQueues
-[InStackOutStack [7,6,5,4] [],InStackOutStack [] [],InStackOutStack [] []]
+```
+> (map (lambda (q) (displayln (dispatch q))) listOfQueues)
 
-*QueueStacks> map (dequeue . dequeue . dequeue . dequeue . dequeue) listOfQueues
-[InStackOutStack [] [5,6,7],InStackOutStack [] [],InStackOutStack [] []]
+(() (4 5 6 7 3 2 1 0))
+(() (3 2 1 0))
+(() (4 5 6 7))
+```
+
+```
+> (map (lambda (q) (displayln (dequeue q))) listOfQueues)
+
+((7 6 5 4) (2 1 0))
+(() (2 1 0))
+(() (5 6 7))
+```
+
+```
+> (map (lambda (q) (displayln (dequeue (dequeue q)))) listOfQueues)
+
+((7 6 5 4) (1 0))
+(() (1 0))
+(() (6 7))
+```
+
+```
+> (map (lambda (q) (displayln (dequeue (dequeue (dequeue q))))) listOfQueues)
+
+((7 6 5 4) (0))
+(() (0))
+(() (7))
+```
+
+```
+> (map (lambda (q) (displayln (dequeue (dequeue (dequeue (dequeue q)))))) listOfQueues)
+
+((7 6 5 4) ())
+(() ())
+(() ())
+```
+
+```
+> (map (lambda (q) (displayln (dequeue (dequeue (dequeue (dequeue (dequeue q))))))) listOfQueues)
+
+(() (5 6 7))
+(() ())
+(() ())
 ```
