@@ -63,7 +63,10 @@
     stack42
     inStack
     outStack))
+(displayln "Stacks: ")
 (map displayln listOfStacks)
+(displayln "Their tops: ")
+(map (lambda (st) (displayln (top st))) listOfStacks)
 
 ; test - queues
 (define q1
