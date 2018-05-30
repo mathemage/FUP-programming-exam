@@ -27,6 +27,18 @@
   (reverse (ints n)))
 (define catalanSeq
   '(1 1 2 5 14 42 132 429 1430 4862 16796 58786 208012 742900 2674440 9694845 35357670 129644790 477638700 1767263190 6564120420))
+;intSeq
+;(map f intSeq)
+;catalanSeq
+
+(define (contains as bs)
+ (cond
+  ((> bs as) 0)
+  ((= 0 as) 1)
+  ((= 0 bs) 1)
+  (else (+ (contains (- as 1) bs) (contains as (- bs 1))))))
+(define (f2 n)
+ (contains n n))
 intSeq
-(map f intSeq)
+(map f2 intSeq)
 catalanSeq

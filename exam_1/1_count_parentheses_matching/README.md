@@ -30,9 +30,6 @@ For `0`, `1`, `2`, `5` and `17` the corresponding values of `f(n)` are:
 
 ## Note
 
-**@Lasse: Do not read following hints unless you are desperate and you really have no clue how to solve it, after let's say like 20-30 min.
-I am still considering whether to include such huge spoilers/hints, or not...**
-
 Some hints:
 * Notice that every valid matching must start with an opening parenthesis `(`.
 * This opening parenthesis must have its corresponding closing parenthesis `)`.
