@@ -3,19 +3,19 @@
 Write a simple **stand-alone** program that computes various types of mathematical **means** (i.e. averages) of given numbers.
 It will read a line of **space-separated** real numbers from the standard input and return 4 kinds of means/averages:
 
-* **harmonicMean** as the *harmonic mean* (also called *subcontrary mean*):
+* **harmonicMean** as the *harmonic mean* (also called *subcontrary mean*) of **n** numbers **x_1**, ..., **x_n**:
 
     ![harmonic mean](harmonicMean.svg)
     
-* **geometricMean** as the *geometric mean*:
+* **geometricMean** as the *geometric mean* of **n** numbers **a_1**, ..., **a_n**:
 
     ![geometric mean](geometricMean.svg)
     
-* **arithmeticMean** as the (standard) *arithmetic mean* (also called *average*):
+* **arithmeticMean** as the (standard) *arithmetic mean* (also called *average*) of **n** numbers **a_1**, ..., **a_n**:
 
     ![arithmetic mean](arithmeticMean.svg)
     
-* **quadraticMean** as the *quadratic mean* (also called *root mean square* or *rms*):
+* **quadraticMean** as the *quadratic mean* (also called *root mean square* or *rms*) of **n** numbers **x_1**, ..., **x_n**:
 
     ![quadratic mean](quadraticMean.svg)
     
