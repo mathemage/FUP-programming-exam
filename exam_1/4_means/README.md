@@ -38,6 +38,11 @@ Moreover, it could be useful to implement a parsing function:
 stringToDoubles :: String -> [Double]
 ```
 
+## Hints
+Keep in mind that there are many useful functions in the `Prelude` of Haskell,
+e.g. `map`, `words`, `fromIntegral`, `minimum`, `maximum`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
+They may help you write the solution as fast as possible.
+
 ## Input
 A single line is read from the standard input containing real numbers (possibly with the *minus* signs and *decimal points*).
 The numbers are separated by spaces.
@@ -127,8 +132,3 @@ output:
 "quadraticMean == 14.689401130151628"
 "maxMean == 39.3"
 ```
-
-## Note
-Keep in mind that there are many useful functions in the `Prelude` of Haskell,
-e.g. `map`, `words`, `fromIntegral`, `minimum`, `maximum`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
-They may help you write the solution as fast as possible.
