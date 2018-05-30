@@ -28,9 +28,12 @@ For `0`, `1`, `2`, `5` and `17` the corresponding values of `f(n)` are:
 (1 1 2 42 129644790)
 ```
 
-## Note
+## Hints
 
-Some hints:
+Any solution is okay, even the very inefficient one.
+We will test for **n <= 17** so if your solution can manage `(f 17)`, it's efficient enough for the exam.
+
+### Approach 1: recursive calculation
 * Notice that every valid matching must start with an opening parenthesis `(`.
 * This opening parenthesis must have its corresponding closing parenthesis `)`.
 * Thus, any valid matching **s** of **n** parentheses is of the form **"( s1 ) s2"** for some substrings **s1** and **s2**.
@@ -42,5 +45,9 @@ Let's say they are valid matchings for **n1** and **n2** pairs of parentheses, r
 Therefore, all these *combinations* would construct a valid matching of parentheses.
 
 From these hints, you can come up with a recursive formula for `(f n)`.
-Any solution is okay, even the very inefficient one.
-We will test for **n <= 17** so if your solution can manage `(f 17)`, it's efficient enough for the exam.
+
+### Approach 2: dynamic programming
+* Consider function
+`(contains as bs)`
+that answers how many valid strings there are with `as` opening parenthesis and `bs` closing parenthesis.
+* Think about how to recursively use such information to build up the final result.
