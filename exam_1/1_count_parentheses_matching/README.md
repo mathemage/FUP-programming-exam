@@ -45,3 +45,5 @@ Let's say they are valid matchings for **n1** and **n2** pairs of parentheses, r
 Therefore, all these *combinations* would construct a valid matching of parentheses.
 
 From these hints, you can come up with a recursive formula for `(f n)`.
+Any solution is okay, even the very inefficient one.
+We will test for **n <= 17** so if your solution can manage `(f 17)`, it's efficient enough for the exam.
