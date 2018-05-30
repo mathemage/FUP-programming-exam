@@ -69,17 +69,9 @@ You may assume that the user-given input is **always valid**.
 In particular, at least one number will be always entered, and the second line always contain only one of the four variants.
 
 ## Output
-The first line displays the list of input numbers (parsed into `[Double]`).
-
-The second line displays `harmonicMean == ` and the computed harmonic mean.
-
-The third line displays `geometricMean == ` and the computed geometric mean.
-
-The fourth line displays `arithmeticMean == ` and the computed arithmetic mean.
-
-The fifth line displays `quadraticMean == ` and the computed quadratic mean.
-
-**Please surround the second, third, fourth and fifth line by "double quotes".**
+The first (and the only) line of the output displays the result of `printMean` with:
+* the variant set by the second line of the input
+* the values of numbers set by the first line of the input
 
 ## Examples
 
