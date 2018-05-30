@@ -75,66 +75,107 @@ The first (and the only) line of the output displays the result of `printMean` w
 
 ## Examples
 
-### Example 1
-input:
-```
-1
-```
-output:
-```
-[1.0]
-"minMean == 1.0"
-"harmonicMean == 1.0"
-"geometricMean == 1.0"
-"arithmeticMean == 1.0"
-"quadraticMean == 1.0"
-"maxMean == 1.0"
-```
-
-### Example 2
-input:
+#### Harmonic Means
+Input:
 ```
 1 2 3 4
+harmonic
 ```
-output:
+Output:
 ```
-[1.0,2.0,3.0,4.0]
-"minMean == 1.0"
-"harmonicMean == 1.9200000000000004"
-"geometricMean == 2.213363839400643"
-"arithmeticMean == 2.5"
-"quadraticMean == 2.7386127875258306"
-"maxMean == 4.0"
+1.9200000000000004
 ```
-
-### Example 3
-input:
+___
+Input:
 ```
 1 2 3 4 5
+harmonic
 ```
-output:
+Output:
 ```
-[1.0,2.0,3.0,4.0,5.0]
-"minMean == 1.0"
-"harmonicMean == 2.18978102189781"
-"geometricMean == 2.605171084697352"
-"arithmeticMean == 3.0"
-"quadraticMean == 3.3166247903554"
-"maxMean == 5.0"
+2.18978102189781
 ```
-
-### Example 4
-input:
+___
+Input:
 ```
 1 2 39.3 2 3 -12 3.1415 -3.1415
 ```
+Output:
+```
+3.5157953592395867
+```
+
+#### Geometric Means
+Input:
+```
+1 2 3 4
+geometric
+```
 output:
 ```
-[1.0,2.0,39.3,2.0,3.0,-12.0,3.1415,-3.1415]
-"minMean == -12.0"
-"harmonicMean == 3.5157953592395867"
-"geometricMean == 3.920835722212454"
-"arithmeticMean == 4.4125"
-"quadraticMean == 14.689401130151628"
-"maxMean == 39.3"
+2.213363839400643
+```
+___
+Input:
+```
+1 2 3 4 5
+geometric
+```
+output:
+```
+2.605171084697352
+```
+___
+Input:
+```
+1 2 39.3 2 3 -12 3.1415 -3.1415
+geometric
+```
+Output:
+```
+2.605171084697352
+```
+
+#### Arithmetic Means
+
+Input:
+```
+1 2 39.3 2 3 -12 3.1415 -3.1415
+arithmetic
+```
+Output:
+```
+4.4125
+```
+
+#### Quadratic Means
+
+Input:
+```
+1 2 3 4
+quadratic
+```
+output:
+```
+2.7386127875258306
+```
+___
+Input:
+```
+1 2 3 4 5
+quadratic
+```
+output:
+```
+3.3166247903554
+```
+___
+Input:
+```
+1 2 39.3 2 3 -12 3.1415 -3.1415
+quadratic
+```
+Output:
+```
+14.689401130151628
 ```
