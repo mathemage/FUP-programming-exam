@@ -34,7 +34,7 @@ testLine
 testDoubles = stringToDoubles testLine
 
 printMean :: String -> IO ()
-printMean variant = print $ variant ++ "Mean == " ++ (show . mean variant $ testDoubles)
+printMean variant = print . mean variant $ testDoubles
 
 main :: IO ()
 main = do
