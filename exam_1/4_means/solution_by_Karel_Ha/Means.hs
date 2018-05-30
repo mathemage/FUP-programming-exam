@@ -5,12 +5,6 @@ stringToDoubles line = map read (words line)
 lengthAsDouble :: [a] -> Double
 lengthAsDouble = fromIntegral . length
 
-minMean :: [Double] -> Double
-minMean = minimum
-
-maxMean :: [Double] -> Double
-maxMean = maximum
-
 arithmeticMean :: [Double] -> Double
 arithmeticMean doubles = sum doubles / lengthAsDouble doubles
 
@@ -33,18 +27,14 @@ testDoubles = stringToDoubles testLine
 main :: IO ()
 main = do
 {-  print testDoubles
-  print $ "minMean == " ++ (show . minMean $ testDoubles)
   print $ "harmonicMean == " ++ (show . harmonicMean $ testDoubles)
   print $ "geometricMean == " ++ (show . geometricMean $ testDoubles)
   print $ "arithmeticMean == " ++ (show . arithmeticMean $ testDoubles)
-  print $ "quadraticMean == " ++ (show . quadraticMean $ testDoubles)
-  print $ "maxMean == " ++ (show . maxMean $ testDoubles)-}
+  print $ "quadraticMean == " ++ (show . quadraticMean $ testDoubles)-}
   -- from IO
   line <- getLine
   print . stringToDoubles $ line
-  print $ "minMean == " ++ (show . minMean . stringToDoubles $ line)
   print $ "harmonicMean == " ++ (show . harmonicMean . stringToDoubles $ line)
   print $ "geometricMean == " ++ (show . geometricMean . stringToDoubles $ line)
   print $ "arithmeticMean == " ++ (show . arithmeticMean . stringToDoubles $ line)
   print $ "quadraticMean == " ++ (show . quadraticMean . stringToDoubles $ line)
-  print $ "maxMean == " ++ (show . maxMean . stringToDoubles $ line)
