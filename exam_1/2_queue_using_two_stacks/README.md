@@ -49,11 +49,12 @@ This can be done if:
 * the other stack is dedicated for dequeueing outcoming elements
 
 Implement such a queue.
-In particular, implement a Scheme function
+In particular, use following Scheme function
 ```Scheme
-(inStackOutStack ist ost)
+(define (inStackOutStack ist ost)
+ (list ist ost))
 ```
-that returns a new queue with:
+to construct a new queue with:
 * `ist` is the stack dedicated for enqueueing incoming elements 
 * and `ost` is the stack dedicated for dequeueing outcoming elements.
 
