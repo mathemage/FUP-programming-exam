@@ -31,7 +31,11 @@ For `0`, `1`, `2`, `5` and `17` the corresponding values of `f(n)` are:
 ## Hints
 
 Any solution is okay, even the very inefficient one.
-We will test for **n <= 17** so if your solution can manage `(f 17)`, it's efficient enough for the exam.
+There are several ways how to solve this problem and we are not forcing you into any specific.
+Should you feel especially in need of hints, you may find some ideas to some approaches below.
+
+Keep in mind there may be alternative solutions to this and we are not pushing you into any specific implementation. 
+We will test for **n <= 17** so as long as your solution can manage `(f 17)`, it's efficient enough for this exam.
 
 ### Approach 1: recursive calculation
 * Notice that every valid matching must start with an opening parenthesis `(`.
