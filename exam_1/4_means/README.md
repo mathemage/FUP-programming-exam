@@ -61,8 +61,6 @@ The fifth line displays `quadraticMean == ` and the computed quadratic mean.
 
 ## Examples
 
-**@Lasse: How should we check the results? It needs to be floating-point comparison with a tolerance of numerical error.**
-
 ### Example 1
 input:
 ```
