@@ -14,26 +14,24 @@ Stacks can be naturally implemented using Haskell lists:
 type Stack v = [v]
 ```
 
-Implement stack operations with the type signatures below...
+and with following implementations of  stack operations:
 
 * **push** that adds a new element to a stack:
 
 ```haskell
 push :: v -> Stack v -> Stack v
-```
-
-* **top** that returns the top of a stack **without** changing the stack.
-In case of an empty stack return `Nothing`, otherwise return `Just` the element.
-
-```haskell
-top :: Stack v -> Maybe v
+push value stack = value:stack
 ```
 
 * **pop** that removes the top element (the most recently added one) from a stack:
 
 ```haskell
 pop :: Stack v -> Stack v
+pop []           = []
+pop (_:newStack) = newStack
 ```
+
+These operations return **new stacks** with modified contents.
 
 ### Queues using Stacks
 
@@ -45,25 +43,27 @@ Unfortunately, queues are not that straightforward to implement in Haskell.
 At least not with the basic data structures we have learned so far.
 Using a list directly as a queue would not give desired time complexities for queue operations `enqueue` and `dequeue`.
 
-However, it is possible to achieve at least good **amortized** complexities using **two stacks in a smart way**.
-I.e., such a way that a sequence of **e** operations of `enqueue` and **d** operations of `dequeue`** would take **O(e + d)** time. 
+However, it is possible to achieve at least good **amortized** complexities using **two stacks in a smart way**,
+i.e., such a way that a sequence of **e** operations of `enqueue` and **d** operations of `dequeue`** would take **O(e + d)** time. 
 This can be done if:
 * one stack is dedicated for enqueueing incoming elements
 * the other stack is dedicated for dequeueing outcoming elements
 
-Implement such a queue using a new data type:
+Implement such a queue **using the implementation of stacks from above**.
+
+In particular, define a new data type:
 ```haskell
 data Queue v = InStackOutStack (Stack v) (Stack v) deriving (Eq, Show)
 ```
-and implement queue operations with the type signatures below...
 
-* **enqueue** that adds a new element to the front of a queue:
+Furthermore, implement queue operations with the type signatures below...
+* **enqueue** that adds a new element **v** to the front of a queue **q**:
 
 ```haskell
 enqueue :: v -> Queue v -> Queue v
 ```
 
-* **dequeue** that removes an element (the least recently added one) from the back of a queue:
+* **dequeue** that removes an element (the least recently added one) from the back of a queue **q**:
 
 ```haskell
 dequeue :: Queue v -> Queue v
@@ -94,19 +94,15 @@ outStack = push 3 . push 2 . push 1 . push 0 $ emptyStack
 
 listOfStacks = [emptyStack, stack0, stack01, completeStack, stack42, inStack, outStack]
 ```
-we get:
+the forced implementation above gives following stacks:
 ```
-*QueueStacks> map top listOfStacks
-[Nothing,Just 0,Just 1,Just 7,Just 7,Just 7,Just 3]
+*QueueStacks> map show listOfStacks 
+["[]","[0]","[1,0]","[7,6,5,4,3,2,1,0]","[7,6,5,42,3,2,1,0]","[7,6,5,4]","[3,2,1,0]"]
 ```
 
 ### Example 2 (queues)
 With following user-defined queues:
 ```haskell
-emptyStack = []
-inStack  = push 7 . push 6 . push 5 . push 4 $ emptyStack
-outStack = push 3 . push 2 . push 1 . push 0 $ emptyStack
-
 q1 = InStackOutStack inStack outStack
 q2 = InStackOutStack emptyStack outStack
 q3 = InStackOutStack inStack emptyStack
@@ -115,21 +111,36 @@ listOfQueues = [q1, q2, q3]
 ```
 we get:
 ```
+*QueueStacks> map show listOfQueues 
+["InStackOutStack [7,6,5,4] [3,2,1,0]","InStackOutStack [] [3,2,1,0]","InStackOutStack [7,6,5,4] []"]
+```
+
+```
 *QueueStacks> map (enqueue 42) listOfQueues
 [InStackOutStack [42,7,6,5,4] [3,2,1,0],InStackOutStack [42] [3,2,1,0],InStackOutStack [42,7,6,5,4] []]
+```
 
+```
 *QueueStacks> map dequeue listOfQueues
 [InStackOutStack [7,6,5,4] [2,1,0],InStackOutStack [] [2,1,0],InStackOutStack [] [5,6,7]]
+```
 
+```
 *QueueStacks> map (dequeue . dequeue) listOfQueues
 [InStackOutStack [7,6,5,4] [1,0],InStackOutStack [] [1,0],InStackOutStack [] [6,7]]
+```
 
+```
 *QueueStacks> map (dequeue . dequeue . dequeue) listOfQueues
 [InStackOutStack [7,6,5,4] [0],InStackOutStack [] [0],InStackOutStack [] [7]]
+```
 
+```
 *QueueStacks> map (dequeue . dequeue . dequeue . dequeue) listOfQueues
 [InStackOutStack [7,6,5,4] [],InStackOutStack [] [],InStackOutStack [] []]
+```
 
+```
 *QueueStacks> map (dequeue . dequeue . dequeue . dequeue . dequeue) listOfQueues
 [InStackOutStack [] [5,6,7],InStackOutStack [] [],InStackOutStack [] []]
 ```
