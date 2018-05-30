@@ -38,15 +38,11 @@ printMean variant = print . mean variant . stringToDoubles
 
 main :: IO ()
 main = do
-  print testDoubles
-  printMean "harmonic" testLine
+{-  printMean "harmonic" testLine
   printMean "geometric" testLine
   printMean "arithmetic" testLine
-  printMean "quadratic" testLine
+  printMean "quadratic" testLine-}
   -- from IO
-{-  line <- getLine
-  print . stringToDoubles $ line
-  print $ "harmonicMean == " ++ (show . harmonicMean . stringToDoubles $ line)
-  print $ "geometricMean == " ++ (show . geometricMean . stringToDoubles $ line)
-  print $ "arithmeticMean == " ++ (show . arithmeticMean . stringToDoubles $ line)
-  print $ "quadraticMean == " ++ (show . quadraticMean . stringToDoubles $ line)-}
+  numbers <- getLine
+  variantOfMean <- getLine
+  printMean variantOfMean numbers
