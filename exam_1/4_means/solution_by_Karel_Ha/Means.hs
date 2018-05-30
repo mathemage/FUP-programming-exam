@@ -33,16 +33,16 @@ testLine
   | testVersion == 2 = "1 2 39.3 2 3 -12 3.1415 -3.1415"
 testDoubles = stringToDoubles testLine
 
-printMean :: String -> IO ()
-printMean variant = print . mean variant $ testDoubles
+printMean :: String -> String -> IO ()
+printMean variant = print . mean variant . stringToDoubles
 
 main :: IO ()
 main = do
   print testDoubles
-  printMean "harmonic"
-  printMean "geometric"
-  printMean "arithmetic"
-  printMean "quadratic"
+  printMean "harmonic" testLine
+  printMean "geometric" testLine
+  printMean "arithmetic" testLine
+  printMean "quadratic" testLine
   -- from IO
 {-  line <- getLine
   print . stringToDoubles $ line
