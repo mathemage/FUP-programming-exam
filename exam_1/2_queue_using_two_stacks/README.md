@@ -8,29 +8,23 @@ A **stack** (also called *Last In First Out* or *LIFO*) is a following data stru
 
 ![LIFO](stack.png)
 
-Stacks can be naturally implemented using Scheme lists.
-Implement stack operations with the type signatures below...
+Stacks can be naturally implemented using Scheme lists as below...
 
 * **push** that adds a new element `v` to a stack `st` (represented as a list):
 
 ```scheme
-(push v st)
-```
-
-* **top** that returns the top of a stack **without** changing the stack.
-In case of an empty stack return `'()`, otherwise return the element itself.
-
-```scheme
-(top st)
+(define (push v st)
+ (cons v st))
 ```
 
 * **pop** that removes the top element (the most recently added one) from a stack:
 
 ```scheme
-(pop st)
+(define (pop st)
+ (cdr st))
 ```
 
-These operations should return **new stacks** with modified contents (depending on the called operation).
+These operations return **new stacks** with modified contents.
 
 ### Queues using Stacks
 
@@ -48,7 +42,8 @@ This can be done if:
 * one stack is dedicated for enqueueing incoming elements
 * the other stack is dedicated for dequeueing outcoming elements
 
-Implement such a queue.
+Implement such a queue **using the implementation of stacks from above**.
+
 In particular, use following Scheme function
 ```Scheme
 (define (inStackOutStack ist ost)
@@ -80,7 +75,7 @@ This function would transform a queue by conveniently manipulating elements betw
 Doing so, the following `dequeue` operation afterwards could be done easily and with the desired amortized time complexity.
 
 ## Examples
-### Example 1 (stacks)
+### Example 1: stacks
 With following user-defined stacks:
 ```scheme
 (define emptyStack '())
@@ -99,7 +94,7 @@ With following user-defined stacks:
 (define listOfStacks
  (list emptyStack stack0 stack01 completeStack stack42 inStack outStack))
 ```
-we get following stacks:
+the forced implementation above gives following stacks:
 ```
 > (map displayln listOfStacks)
 ()
@@ -110,20 +105,8 @@ we get following stacks:
 (7 6 5 4)
 (3 2 1 0)
 ```
-Their results of `top` operations would be:
-```
-> (map (lambda (st) (displayln (top st))) listOfStacks)
 
-()
-0
-1
-7
-7
-7
-3
-```
-
-### Example 2 (queues)
+### Example 2: queues
 With following user-defined queues:
 ```scheme
 (define q1
