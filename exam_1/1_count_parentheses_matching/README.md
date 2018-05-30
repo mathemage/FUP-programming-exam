@@ -41,12 +41,6 @@ We will test for **n <= 17** so as long as your solution can manage `(f 17)`, it
 * Notice that every valid matching must start with an opening parenthesis `(`.
 * This opening parenthesis must have its corresponding closing parenthesis `)`.
 * Thus, any valid matching **s** of **n** parentheses is of the form **"( s1 ) s2"** for some substrings **s1** and **s2**.
-* Now notice that both **s1** and **s2** must again be valid matchings of parentheses.
-Let's say they are valid matchings for **n1** and **n2** pairs of parentheses, respectively.
-* Numbers **n1** and **n2** are such that **n1 + n2 = n**.
-* There are `(f n1)` ways to create **s1** and `(f n2)` ways to create **s2**.
-* Every possible way to create **s1**  can be combined every possible way to create **s2**.
-Therefore, all these *combinations* would construct a valid matching of parentheses.
 
 From these hints, you can come up with a recursive formula for `(f n)`.
 
