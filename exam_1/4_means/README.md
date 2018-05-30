@@ -27,17 +27,34 @@ geometricMean :: [Double] -> Double
 arithmeticMean :: [Double] -> Double
 quadraticMean :: [Double] -> Double
 ```
-
-Moreover, it could be useful to implement a parsing function:
-
+In your program, use the following function `mean`:
 ```haskell
-stringToDoubles :: String -> [Double]
+mean :: String -> [Double] -> Double
+mean variant
+  | variant == "harmonic"   = harmonicMean
+  | variant == "geometric"  = geometricMean
+  | variant == "arithmetic" = arithmeticMean
+  | variant == "quadratic"  = quadraticMean
 ```
+It gives a generates the variant of a mean function based on the parameter `variant`.
+
+Use this function to implement:
+```haskell
+printMean :: String -> String -> IO ()
+```
+which prints the result of a mean, given:
+* a `String` parameter for the variant of the mean -- see the cases in `mean` implementation
+* a `String` of real numbers to be used as values from which to compute the mean
 
 ## Hints
 Keep in mind that there are many useful functions in the `Prelude` of Haskell,
 e.g. `map`, `words`, `fromIntegral`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
 They may help you write the solution as fast as possible.
+
+Moreover, it could be also useful to implement a parsing function:
+```haskell
+stringToDoubles :: String -> [Double]
+```
 
 ## Input
 A single line is read from the standard input containing real numbers (possibly with the *minus* signs and *decimal points*).
