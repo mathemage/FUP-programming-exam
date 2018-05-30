@@ -27,14 +27,14 @@ mean variant
   | variant == "arithmetic" = arithmeticMean
   | variant == "quadratic"  = quadraticMean
 
+printMean :: String -> String -> IO ()
+printMean variant = print . mean variant . stringToDoubles
+
 testVersion = 1
 testLine
   | testVersion == 1 = "1 2 3 4"
   | testVersion == 2 = "1 2 39.3 2 3 -12 3.1415 -3.1415"
 testDoubles = stringToDoubles testLine
-
-printMean :: String -> String -> IO ()
-printMean variant = print . mean variant . stringToDoubles
 
 main :: IO ()
 main = do
