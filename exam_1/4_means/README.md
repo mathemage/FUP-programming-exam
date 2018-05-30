@@ -57,6 +57,8 @@ The fourth line displays `arithmeticMean == ` and the computed arithmetic mean.
 
 The fifth line displays `quadraticMean == ` and the computed quadratic mean.
 
+**Please surround the second, third, fourth and fifth line by "double quotes".**
+
 ## Examples
 
 **@Lasse: How should we check the results? It needs to be floating-point comparison with a tolerance of numerical error.**
