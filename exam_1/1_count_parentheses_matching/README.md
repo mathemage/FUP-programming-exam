@@ -51,3 +51,4 @@ From these hints, you can come up with a recursive formula for `(f n)`.
 `(contains as bs)`
 that answers how many valid strings there are with `as` opening parenthesis and `bs` closing parenthesis.
 * Think about how to recursively use such information to build up the final result.
+* Even this solution might appear too slow. But as long as it works for `(f 17)`, it's okay for now...
