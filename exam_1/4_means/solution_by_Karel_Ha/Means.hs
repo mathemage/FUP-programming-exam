@@ -20,21 +20,33 @@ arithmeticMean doubles = sum doubles / lengthAsDouble doubles
 quadraticMean :: [Double] -> Double
 quadraticMean doubles = ( (sum . map (** 2) $ doubles) / lengthAsDouble doubles ) ** 0.5
 
--- testLine   = "1 2 3 4"
-testLine   = "1 2 39.3 2 3 -12 3.1415 -3.1415"
+mean :: String -> [Double] -> Double
+mean variant
+  | variant == "harmonic"   = harmonicMean
+  | variant == "geometric"  = geometricMean
+  | variant == "arithmetic" = arithmeticMean
+  | variant == "quadratic"  = quadraticMean
+
+testVersion = 1
+testLine
+  | testVersion == 1 = "1 2 3 4"
+  | testVersion == 2 = "1 2 39.3 2 3 -12 3.1415 -3.1415"
 testDoubles = stringToDoubles testLine
+
+printMean :: String -> IO ()
+printMean variant = print $ variant ++ "Mean == " ++ (show . mean variant $ testDoubles)
 
 main :: IO ()
 main = do
-{-  print testDoubles
-  print $ "harmonicMean == " ++ (show . harmonicMean $ testDoubles)
-  print $ "geometricMean == " ++ (show . geometricMean $ testDoubles)
-  print $ "arithmeticMean == " ++ (show . arithmeticMean $ testDoubles)
-  print $ "quadraticMean == " ++ (show . quadraticMean $ testDoubles)-}
+  print testDoubles
+  printMean "harmonic"
+  printMean "geometric"
+  printMean "arithmetic"
+  printMean "quadratic"
   -- from IO
-  line <- getLine
+{-  line <- getLine
   print . stringToDoubles $ line
   print $ "harmonicMean == " ++ (show . harmonicMean . stringToDoubles $ line)
   print $ "geometricMean == " ++ (show . geometricMean . stringToDoubles $ line)
   print $ "arithmeticMean == " ++ (show . arithmeticMean . stringToDoubles $ line)
-  print $ "quadraticMean == " ++ (show . quadraticMean . stringToDoubles $ line)
+  print $ "quadraticMean == " ++ (show . quadraticMean . stringToDoubles $ line)-}
