@@ -56,3 +56,9 @@ From these hints, you can come up with a recursive formula for `(f n)`.
 that answers how many valid strings there are with `as` opening parenthesis and `bs` closing parenthesis.
 * Think about how to recursively use such information to build up the final result.
 * Even this solution might appear too slow. But as long as it works for `(f 17)`, it's okay for now...
+
+### Approach 3: combinatorial formula
+* There is a combinatorial formula expressing this quantity.
+It allows for (almost) immediate calculation of the result.
+* So if you know what **Catalan numbers** are, you can achieve (almost) constant time complexity.
+* Or you can figure out the formula directly during this exam.
