@@ -1,35 +1,31 @@
 # 4. Means [Haskell]
 
 Write a simple **stand-alone** program that computes various types of mathematical **means** (i.e. averages) of given numbers.
-It will read a line of **space-separated** real numbers from the standard input and return 6 kinds of means:
+It will read a line of **space-separated** real numbers from the standard input and return 4 kinds of means/averages:
 
-* **minMean** as the minimum of numbers
-* **maxMean** as the maximum of numbers
-* **arithmeticMean** as the (standard) *arithmetic mean* (also called *average*):
+* **harmonicMean** as the *harmonic mean* (also called *subcontrary mean*):
 
-    ![arithmetic mean](arithmeticMean.svg)
+    ![harmonic mean](harmonicMean.svg)
     
 * **geometricMean** as the *geometric mean*:
 
     ![geometric mean](geometricMean.svg)
     
+* **arithmeticMean** as the (standard) *arithmetic mean* (also called *average*):
+
+    ![arithmetic mean](arithmeticMean.svg)
+    
 * **quadraticMean** as the *quadratic mean* (also called *root mean square* or *rms*):
 
     ![quadratic mean](quadraticMean.svg)
     
-* **harmonicMean** as the *harmonic mean* (also called *subcontrary mean*):
-
-    ![harmonic mean](harmonicMean.svg)
-    
 Preferably, implement following functions to make your stand-alone Haskell program work:
 
 ```haskell
-minMean :: [Double] -> Double
-maxMean :: [Double] -> Double
-arithmeticMean :: [Double] -> Double
-geometricMean :: [Double] -> Double
-quadraticMean :: [Double] -> Double
 harmonicMean :: [Double] -> Double
+geometricMean :: [Double] -> Double
+arithmeticMean :: [Double] -> Double
+quadraticMean :: [Double] -> Double
 ```
 
 Moreover, it could be useful to implement a parsing function:
@@ -40,7 +36,7 @@ stringToDoubles :: String -> [Double]
 
 ## Hints
 Keep in mind that there are many useful functions in the `Prelude` of Haskell,
-e.g. `map`, `words`, `fromIntegral`, `minimum`, `maximum`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
+e.g. `map`, `words`, `fromIntegral`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
 They may help you write the solution as fast as possible.
 
 ## Input
@@ -53,17 +49,13 @@ In particular, at least one number will be always entered.
 ## Output
 The first line displays the list of input numbers (parsed into `[Double]`).
 
-The second line displays `minMean == ` and the computed minimum.
+The second line displays `harmonicMean == ` and the computed harmonic mean.
 
-The third line displays `harmonicMean == ` and the computed harmonic mean.
+The third line displays `geometricMean == ` and the computed geometric mean.
 
-The fourth line displays `geometricMean == ` and the computed geometric mean.
+The fourth line displays `arithmeticMean == ` and the computed arithmetic mean.
 
-The fifth line displays `arithmeticMean == ` and the computed arithmetic mean.
-
-The sixth line displays `quadraticMean == ` and the computed quadratic mean.
-
-The last line displays `maxMean == ` and the computed maximum.
+The fifth line displays `quadraticMean == ` and the computed quadratic mean.
 
 ## Examples
 
