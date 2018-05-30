@@ -111,7 +111,7 @@ Input:
 1 2 3 4
 geometric
 ```
-output:
+Output:
 ```
 2.213363839400643
 ```
@@ -121,7 +121,7 @@ Input:
 1 2 3 4 5
 geometric
 ```
-output:
+Output:
 ```
 2.605171084697352
 ```
@@ -155,7 +155,7 @@ Input:
 1 2 3 4
 quadratic
 ```
-output:
+Output:
 ```
 2.7386127875258306
 ```
@@ -165,7 +165,7 @@ Input:
 1 2 3 4 5
 quadratic
 ```
-output:
+Output:
 ```
 3.3166247903554
 ```
