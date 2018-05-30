@@ -36,7 +36,7 @@ mean variant
   | variant == "arithmetic" = arithmeticMean
   | variant == "quadratic"  = quadraticMean
 ```
-It gives a generates the variant of a mean function based on the parameter `variant`.
+It generates the variant of a mean function based on the parameter `variant`.
 
 Use this function to implement:
 ```haskell
