@@ -57,11 +57,16 @@ stringToDoubles :: String -> [Double]
 ```
 
 ## Input
-A single line is read from the standard input containing real numbers (possibly with the *minus* signs and *decimal points*).
-The numbers are separated by spaces.
+Two lines are read from the standard input:
+* the first line contains **space-separated** real numbers (possibly with the *minus* signs and *decimal points*).
+* the second line contains a single word, namely one of the four available variants of the mean:
+    * `"harmonic"`
+    * `"geometric"`
+    * `"arithmetic"`
+    * `"quadratic"`
 
 You may assume that the user-given input is **always valid**.
-In particular, at least one number will be always entered.
+In particular, at least one number will be always entered, and the second line always contain only one of the four variants.
 
 ## Output
 The first line displays the list of input numbers (parsed into `[Double]`).
