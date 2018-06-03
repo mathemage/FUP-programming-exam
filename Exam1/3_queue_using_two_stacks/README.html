@@ -73,49 +73,112 @@
               
               <article class="markdown-body entry-content" itemprop="text" id="grip-content">
                 <h1>
-<a id="user-content-1-red-black-paths-scheme" class="anchor" href="#1-red-black-paths-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Red-Black Paths [Scheme]</h1>
-<p>Count number of possible red-black paths with <strong>n</strong> vertices.</p>
+<a id="user-content-3-queue-using-two-stacks-haskell" class="anchor" href="#3-queue-using-two-stacks-haskell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Queue using Two Stacks [Haskell]</h1>
+<p>Make a module <code>QueueStacks</code> that implements <strong>a queue using two stacks</strong>.</p>
 <h3>
-<a id="user-content-red-black-path-coloring" class="anchor" href="#red-black-path-coloring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Red-Black Path Coloring</h3>
-<p>A red-black tree:</p>
-<p><a href="rbt.svg" target="_blank"><img src="rbt.svg" alt="Red-Black Tree" style="max-width:100%;"></a>
-is a variant of <em>self-balancing binary search trees</em>,
-e.g. used as the underlying data structure for <code>map</code> and <code>set</code> in the C++ Standard Template Library.</p>
-<p>For the simplicity of the exam, let's ourselves restrict only to red-black paths.
-So we will consider only red-black trees where each vertex has at most 1 child:</p>
-<p><a href="rbp.png" target="_blank"><img src="rbp.png" alt="Red-Black Path" style="max-width:100%;"></a></p>
-<p>A <strong>red-black path</strong> is a (directed) graph such that:</p>
+<a id="user-content-stacks-using-lists" class="anchor" href="#stacks-using-lists" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Stacks using Lists</h3>
+<p>A <strong>stack</strong> (also called <em>Last In First Out</em> or <em>LIFO</em>) is a following data structure:</p>
+<p><a href="stack.png" target="_blank"><img src="stack.png" alt="LIFO" style="max-width:100%;"></a></p>
+<p>Stacks can be naturally implemented using Haskell lists:</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-k">type</span> <span class="pl-en">Stack</span> <span class="pl-smi">v</span> <span class="pl-k">=</span> [<span class="pl-smi">v</span>]</pre></div>
+<p>and with following implementations of  stack operations:</p>
 <ul>
-<li>It is a <strong>path</strong>.</li>
-<li>Each vertex has either <strong>red</strong> or <strong>black</strong> color.</li>
-<li>Any <em>red</em> vertex can only have a <strong>black child</strong>.
-(In other words, there can never be two red vertices next to each other.)</li>
+<li>
+<strong>push</strong> that adds a new element to a stack:</li>
 </ul>
-<p>A <strong>red-black path coloring</strong> is an assignment of colors to path vertices such that the <em>resulting coloring is a valid red-black path</em>.</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">push</span> <span class="pl-k">::</span> <span class="pl-smi">v</span> <span class="pl-k">-&gt;</span> <span class="pl-en">Stack</span> <span class="pl-smi">v</span> <span class="pl-k">-&gt;</span> <span class="pl-en">Stack</span> <span class="pl-smi">v</span>
+push value stack <span class="pl-k">=</span> value<span class="pl-k">:</span>stack</pre></div>
+<ul>
+<li>
+<strong>pop</strong> that removes the top element (the most recently added one) from a stack:</li>
+</ul>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">pop</span> <span class="pl-k">::</span> <span class="pl-en">Stack</span> <span class="pl-smi">v</span> <span class="pl-k">-&gt;</span> <span class="pl-en">Stack</span> <span class="pl-smi">v</span>
+pop <span class="pl-c1">[]</span>           <span class="pl-k">=</span> <span class="pl-c1">[]</span>
+pop (_<span class="pl-k">:</span>newStack) <span class="pl-k">=</span> newStack</pre></div>
+<p>These operations return <strong>new stacks</strong> with modified contents.</p>
 <h3>
-<a id="user-content-implementation-in-scheme" class="anchor" href="#implementation-in-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation in Scheme</h3>
-<p>In Scheme, implement a function</p>
-<div class="highlight highlight-source-scheme"><pre>(rbp n)</pre></div>
-<p>which returns <em>the total number of valid red-black path colorings on <strong>n &gt;= 0</strong> vertices</em>.</p>
+<a id="user-content-queues-using-stacks" class="anchor" href="#queues-using-stacks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Queues using Stacks</h3>
+<p>A <strong>queue</strong> (also called <em>First In Last Out</em> or <em>FIFO</em>) is a following data structure:</p>
+<p><a href="queue.svg" target="_blank"><img src="queue.svg" alt="FIFO" style="max-width:100%;"></a></p>
+<p>Unfortunately, queues are not that straightforward to implement in Haskell.
+At least not with the basic data structures we have learned so far.
+Using a list directly as a queue would not give desired time complexities for queue operations <code>enqueue</code> and <code>dequeue</code>.</p>
+<p>However, it is possible to achieve at least good <strong>amortized</strong> complexities using <strong>two stacks in a smart way</strong>,
+i.e., such a way that a sequence of <strong>e</strong> operations of <code>enqueue</code> and <strong>d</strong> operations of <code>dequeue</code>** would take <strong>O(e + d)</strong> time.
+This can be done if:</p>
+<ul>
+<li>one stack is dedicated for enqueueing incoming elements</li>
+<li>the other stack is dedicated for dequeueing outcoming elements</li>
+</ul>
+<p>Implement such a queue <strong>using the implementation of stacks from above</strong>.</p>
+<p>In particular, define a new data type:</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-k">data</span> <span class="pl-en">Queue</span> <span class="pl-smi">v</span> <span class="pl-k">=</span> <span class="pl-ent">InStackOutStack</span> (<span class="pl-en">Stack</span> <span class="pl-smi">v</span>) (<span class="pl-en">Stack</span> <span class="pl-smi">v</span>) <span class="pl-k">deriving</span> (<span class="pl-e">Eq</span>, <span class="pl-e">Show</span>)</pre></div>
+<p>Furthermore, implement queue operations with the type signatures below...</p>
+<ul>
+<li>
+<strong>enqueue</strong> that adds a new element <strong>v</strong> to the front of a queue <strong>q</strong>:</li>
+</ul>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">enqueue</span> <span class="pl-k">::</span> <span class="pl-smi">v</span> <span class="pl-k">-&gt;</span> <span class="pl-en">Queue</span> <span class="pl-smi">v</span> <span class="pl-k">-&gt;</span> <span class="pl-en">Queue</span> <span class="pl-smi">v</span></pre></div>
+<ul>
+<li>
+<strong>dequeue</strong> that removes an element (the least recently added one) from the back of a queue <strong>q</strong>:</li>
+</ul>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">dequeue</span> <span class="pl-k">::</span> <span class="pl-en">Queue</span> <span class="pl-smi">v</span> <span class="pl-k">-&gt;</span> <span class="pl-en">Queue</span> <span class="pl-smi">v</span></pre></div>
+<p>Moreover, you may find useful to have a function that "prepares" a queue for the <code>dequeue</code> operation.</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">dispatch</span> <span class="pl-k">::</span> <span class="pl-en">Queue</span> <span class="pl-smi">v</span> <span class="pl-k">-&gt;</span> <span class="pl-en">Queue</span> <span class="pl-smi">v</span></pre></div>
+<p>This function would transform a queue by conveniently manipulating elements between the incoming stack and the outcoming stack.
+Doing so, the following <code>dequeue</code> operation afterwards could be done easily and with the desired amortized time complexity.</p>
 <h2>
 <a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
-<p>For <code>0</code>, <code>1</code>, <code>2</code>, <code>10</code>, <code>20</code> and <code>40</code> the corresponding values of <code>(rbp n)</code> are:</p>
-<pre><code>&gt; (map rbp '(0 1 2 10 20 40))
-(1 2 3 144 17711 267914296)
+<p>The modules will be loaded with command:</p>
+<pre lang="commandline"><code>ghci QueueStacks.hs
 </code></pre>
-<h2>
-<a id="user-content-hints" class="anchor" href="#hints" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hints</h2>
-<p>Any solution is okay, even the very inefficient one.
-There are several alternative solutions to this problem and we are not forcing you into any specific.
-Should you feel especially in need of hints, you may find some ideas to some approaches below.</p>
-<p>We will test for <strong>n &lt;= TODO DECIDE ON UPPER LIMIT HERE</strong>.
-So as long as your solution can manage <code>(rbp TODO DECIDE ON UPPER LIMIT HERE)</code>, it's efficient enough for this exam.</p>
 <h3>
-<a id="user-content-approach-1-recursive-calculation" class="anchor" href="#approach-1-recursive-calculation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach 1: recursive calculation</h3>
-<ul>
-<li><strong>TODO</strong></li>
-</ul>
-<p>From these hints, you should be able to come up with a recursive formula for <code>(rbp n)</code>.</p>
+<a id="user-content-example-1-stacks" class="anchor" href="#example-1-stacks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 1 (stacks)</h3>
+<p>With following user-defined stacks:</p>
+<div class="highlight highlight-source-haskell"><pre>emptyStack <span class="pl-k">=</span> <span class="pl-c1">[]</span>
+stack0 <span class="pl-k">=</span> push <span class="pl-c1">0</span> emptyStack
+stack01 <span class="pl-k">=</span> push <span class="pl-c1">1</span> stack0
+completeStack <span class="pl-k">=</span> push <span class="pl-c1">7</span> <span class="pl-k">.</span> push <span class="pl-c1">6</span> <span class="pl-k">.</span> push <span class="pl-c1">5</span> <span class="pl-k">.</span> push <span class="pl-c1">4</span> <span class="pl-k">.</span> push <span class="pl-c1">3</span> <span class="pl-k">.</span> push <span class="pl-c1">2</span> <span class="pl-k">.</span> push <span class="pl-c1">1</span> <span class="pl-k">.</span> push <span class="pl-c1">0</span> <span class="pl-k">$</span> emptyStack
+stack42 <span class="pl-k">=</span> push <span class="pl-c1">7</span> <span class="pl-k">.</span> push <span class="pl-c1">6</span> <span class="pl-k">.</span> push <span class="pl-c1">5</span> <span class="pl-k">.</span> push <span class="pl-c1">42</span> <span class="pl-k">.</span> pop <span class="pl-k">.</span> pop <span class="pl-k">.</span> pop <span class="pl-k">.</span> pop <span class="pl-k">$</span> completeStack
+inStack  <span class="pl-k">=</span> push <span class="pl-c1">7</span> <span class="pl-k">.</span> push <span class="pl-c1">6</span> <span class="pl-k">.</span> push <span class="pl-c1">5</span> <span class="pl-k">.</span> push <span class="pl-c1">4</span> <span class="pl-k">$</span> emptyStack
+outStack <span class="pl-k">=</span> push <span class="pl-c1">3</span> <span class="pl-k">.</span> push <span class="pl-c1">2</span> <span class="pl-k">.</span> push <span class="pl-c1">1</span> <span class="pl-k">.</span> push <span class="pl-c1">0</span> <span class="pl-k">$</span> emptyStack
+
+listOfStacks <span class="pl-k">=</span> [emptyStack, stack0, stack01, completeStack, stack42, inStack, outStack]</pre></div>
+<p>the forced implementation above gives following stacks:</p>
+<pre><code>*QueueStacks&gt; map show listOfStacks 
+["[]","[0]","[1,0]","[7,6,5,4,3,2,1,0]","[7,6,5,42,3,2,1,0]","[7,6,5,4]","[3,2,1,0]"]
+</code></pre>
+<h3>
+<a id="user-content-example-2-queues" class="anchor" href="#example-2-queues" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 2 (queues)</h3>
+<p>With following user-defined queues:</p>
+<div class="highlight highlight-source-haskell"><pre>q1 <span class="pl-k">=</span> <span class="pl-ent">InStackOutStack</span> inStack outStack
+q2 <span class="pl-k">=</span> <span class="pl-ent">InStackOutStack</span> emptyStack outStack
+q3 <span class="pl-k">=</span> <span class="pl-ent">InStackOutStack</span> inStack emptyStack
+
+listOfQueues <span class="pl-k">=</span> [q1, q2, q3]</pre></div>
+<p>we get:</p>
+<pre><code>*QueueStacks&gt; map show listOfQueues 
+["InStackOutStack [7,6,5,4] [3,2,1,0]","InStackOutStack [] [3,2,1,0]","InStackOutStack [7,6,5,4] []"]
+</code></pre>
+<pre><code>*QueueStacks&gt; map (enqueue 42) listOfQueues
+[InStackOutStack [42,7,6,5,4] [3,2,1,0],InStackOutStack [42] [3,2,1,0],InStackOutStack [42,7,6,5,4] []]
+</code></pre>
+<pre><code>*QueueStacks&gt; map dequeue listOfQueues
+[InStackOutStack [7,6,5,4] [2,1,0],InStackOutStack [] [2,1,0],InStackOutStack [] [5,6,7]]
+</code></pre>
+<pre><code>*QueueStacks&gt; map (dequeue . dequeue) listOfQueues
+[InStackOutStack [7,6,5,4] [1,0],InStackOutStack [] [1,0],InStackOutStack [] [6,7]]
+</code></pre>
+<pre><code>*QueueStacks&gt; map (dequeue . dequeue . dequeue) listOfQueues
+[InStackOutStack [7,6,5,4] [0],InStackOutStack [] [0],InStackOutStack [] [7]]
+</code></pre>
+<pre><code>*QueueStacks&gt; map (dequeue . dequeue . dequeue . dequeue) listOfQueues
+[InStackOutStack [7,6,5,4] [],InStackOutStack [] [],InStackOutStack [] []]
+</code></pre>
+<pre><code>*QueueStacks&gt; map (dequeue . dequeue . dequeue . dequeue . dequeue) listOfQueues
+[InStackOutStack [] [5,6,7],InStackOutStack [] [],InStackOutStack [] []]
+</code></pre>
 
               </article>
             </div>

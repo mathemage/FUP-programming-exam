@@ -73,49 +73,63 @@
               
               <article class="markdown-body entry-content" itemprop="text" id="grip-content">
                 <h1>
-<a id="user-content-1-red-black-paths-scheme" class="anchor" href="#1-red-black-paths-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Red-Black Paths [Scheme]</h1>
-<p>Count number of possible red-black paths with <strong>n</strong> vertices.</p>
+<a id="user-content-1-count-valid-matching-of-parentheses-scheme" class="anchor" href="#1-count-valid-matching-of-parentheses-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Count Valid Matching of Parentheses [Scheme]</h1>
+<p>Count number of valid ways to arrange <strong>n</strong> pairs of parentheses.</p>
 <h3>
-<a id="user-content-red-black-path-coloring" class="anchor" href="#red-black-path-coloring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Red-Black Path Coloring</h3>
-<p>A red-black tree:</p>
-<p><a href="rbt.svg" target="_blank"><img src="rbt.svg" alt="Red-Black Tree" style="max-width:100%;"></a>
-is a variant of <em>self-balancing binary search trees</em>,
-e.g. used as the underlying data structure for <code>map</code> and <code>set</code> in the C++ Standard Template Library.</p>
-<p>For the simplicity of the exam, let's ourselves restrict only to red-black paths.
-So we will consider only red-black trees where each vertex has at most 1 child:</p>
-<p><a href="rbp.png" target="_blank"><img src="rbp.png" alt="Red-Black Path" style="max-width:100%;"></a></p>
-<p>A <strong>red-black path</strong> is a (directed) graph such that:</p>
+<a id="user-content-valid-matching-of-parentheses" class="anchor" href="#valid-matching-of-parentheses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Valid Matching of Parentheses</h3>
+<p>Let a string <strong>s</strong> contain only 2 types of characters:</p>
 <ul>
-<li>It is a <strong>path</strong>.</li>
-<li>Each vertex has either <strong>red</strong> or <strong>black</strong> color.</li>
-<li>Any <em>red</em> vertex can only have a <strong>black child</strong>.
-(In other words, there can never be two red vertices next to each other.)</li>
+<li>an <strong>opening parenthesis</strong> <code>(</code>
+</li>
+<li>a <strong>closing parenthesis</strong> <code>)</code>
+</li>
 </ul>
-<p>A <strong>red-black path coloring</strong> is an assignment of colors to path vertices such that the <em>resulting coloring is a valid red-black path</em>.</p>
+<p>A prefix of <strong>s</strong> is any initial segment <strong>s[0]s[1]...s[k]</strong> of string <strong>s</strong>, where <strong>0 &lt;= k &lt; length(s)</strong>.</p>
+<p>Parentheses in a string <strong>s</strong> are <strong>validly matched</strong> if and only if
+<em>every prefix of <strong>s</strong> has the count of opening parentheses <code>(</code> greater or equal to the count of closing parentheses <code>)</code></em>.</p>
 <h3>
 <a id="user-content-implementation-in-scheme" class="anchor" href="#implementation-in-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation in Scheme</h3>
 <p>In Scheme, implement a function</p>
-<div class="highlight highlight-source-scheme"><pre>(rbp n)</pre></div>
-<p>which returns <em>the total number of valid red-black path colorings on <strong>n &gt;= 0</strong> vertices</em>.</p>
+<div class="highlight highlight-source-scheme"><pre>(f n)</pre></div>
+<p>For a given integer <strong>n &gt;= 0</strong>, <code>(f n)</code> returns <em>the total number of possible ways to validly match <strong>n</strong> pairs of parentheses</em>.</p>
 <h2>
 <a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
-<p>For <code>0</code>, <code>1</code>, <code>2</code>, <code>10</code>, <code>20</code> and <code>40</code> the corresponding values of <code>(rbp n)</code> are:</p>
-<pre><code>&gt; (map rbp '(0 1 2 10 20 40))
-(1 2 3 144 17711 267914296)
+<p>For <code>0</code>, <code>1</code>, <code>2</code>, <code>5</code> and <code>17</code> the corresponding values of <code>f(n)</code> are:</p>
+<pre><code>&gt; (map f '(0 1 2 5 17))
+(1 1 2 42 129644790)
 </code></pre>
 <h2>
 <a id="user-content-hints" class="anchor" href="#hints" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hints</h2>
 <p>Any solution is okay, even the very inefficient one.
-There are several alternative solutions to this problem and we are not forcing you into any specific.
+There are several ways how to solve this problem and we are not forcing you into any specific.
 Should you feel especially in need of hints, you may find some ideas to some approaches below.</p>
-<p>We will test for <strong>n &lt;= TODO DECIDE ON UPPER LIMIT HERE</strong>.
-So as long as your solution can manage <code>(rbp TODO DECIDE ON UPPER LIMIT HERE)</code>, it's efficient enough for this exam.</p>
+<p>Keep in mind there may be alternative solutions to this and we are not pushing you into any specific implementation.
+We will test for <strong>n &lt;= 17</strong> so as long as your solution can manage <code>(f 17)</code>, it's efficient enough for this exam.</p>
 <h3>
 <a id="user-content-approach-1-recursive-calculation" class="anchor" href="#approach-1-recursive-calculation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach 1: recursive calculation</h3>
 <ul>
-<li><strong>TODO</strong></li>
+<li>Notice that every valid matching must start with an opening parenthesis <code>(</code>.</li>
+<li>This opening parenthesis must have its corresponding closing parenthesis <code>)</code>.</li>
+<li>Thus, any valid matching <strong>s</strong> of <strong>n</strong> parentheses is of the form <strong>"( s1 ) s2"</strong> for some substrings <strong>s1</strong> and <strong>s2</strong>.</li>
 </ul>
-<p>From these hints, you should be able to come up with a recursive formula for <code>(rbp n)</code>.</p>
+<p>From these hints, you can come up with a recursive formula for <code>(f n)</code>.</p>
+<h3>
+<a id="user-content-approach-2-dynamic-programming" class="anchor" href="#approach-2-dynamic-programming" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach 2: dynamic programming</h3>
+<ul>
+<li>Consider function
+<code>(contains as bs)</code>
+that answers how many valid strings there are with <code>as</code> opening parenthesis and <code>bs</code> closing parenthesis.</li>
+<li>Think about how to recursively use such information to build up the final result.</li>
+<li>Even this solution might appear too slow. But as long as it works for <code>(f 17)</code>, it's okay for now...</li>
+</ul>
+<h3>
+<a id="user-content-approach-3-combinatorial-formula" class="anchor" href="#approach-3-combinatorial-formula" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach 3: combinatorial formula</h3>
+<ul>
+<li>There is a combinatorial formula expressing this quantity.
+It allows for (almost) immediate calculation of the result.</li>
+<li>So if you know what <strong>Catalan numbers</strong> are, you can achieve (almost) constant time complexity.</li>
+<li>Or you can figure out the formula directly during this exam.</li>
+</ul>
 
               </article>
             </div>

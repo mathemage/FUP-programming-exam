@@ -73,49 +73,8 @@
               
               <article class="markdown-body entry-content" itemprop="text" id="grip-content">
                 <h1>
-<a id="user-content-1-red-black-paths-scheme" class="anchor" href="#1-red-black-paths-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Red-Black Paths [Scheme]</h1>
-<p>Count number of possible red-black paths with <strong>n</strong> vertices.</p>
-<h3>
-<a id="user-content-red-black-path-coloring" class="anchor" href="#red-black-path-coloring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Red-Black Path Coloring</h3>
-<p>A red-black tree:</p>
-<p><a href="rbt.svg" target="_blank"><img src="rbt.svg" alt="Red-Black Tree" style="max-width:100%;"></a>
-is a variant of <em>self-balancing binary search trees</em>,
-e.g. used as the underlying data structure for <code>map</code> and <code>set</code> in the C++ Standard Template Library.</p>
-<p>For the simplicity of the exam, let's ourselves restrict only to red-black paths.
-So we will consider only red-black trees where each vertex has at most 1 child:</p>
-<p><a href="rbp.png" target="_blank"><img src="rbp.png" alt="Red-Black Path" style="max-width:100%;"></a></p>
-<p>A <strong>red-black path</strong> is a (directed) graph such that:</p>
-<ul>
-<li>It is a <strong>path</strong>.</li>
-<li>Each vertex has either <strong>red</strong> or <strong>black</strong> color.</li>
-<li>Any <em>red</em> vertex can only have a <strong>black child</strong>.
-(In other words, there can never be two red vertices next to each other.)</li>
-</ul>
-<p>A <strong>red-black path coloring</strong> is an assignment of colors to path vertices such that the <em>resulting coloring is a valid red-black path</em>.</p>
-<h3>
-<a id="user-content-implementation-in-scheme" class="anchor" href="#implementation-in-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation in Scheme</h3>
-<p>In Scheme, implement a function</p>
-<div class="highlight highlight-source-scheme"><pre>(rbp n)</pre></div>
-<p>which returns <em>the total number of valid red-black path colorings on <strong>n &gt;= 0</strong> vertices</em>.</p>
-<h2>
-<a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
-<p>For <code>0</code>, <code>1</code>, <code>2</code>, <code>10</code>, <code>20</code> and <code>40</code> the corresponding values of <code>(rbp n)</code> are:</p>
-<pre><code>&gt; (map rbp '(0 1 2 10 20 40))
-(1 2 3 144 17711 267914296)
-</code></pre>
-<h2>
-<a id="user-content-hints" class="anchor" href="#hints" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hints</h2>
-<p>Any solution is okay, even the very inefficient one.
-There are several alternative solutions to this problem and we are not forcing you into any specific.
-Should you feel especially in need of hints, you may find some ideas to some approaches below.</p>
-<p>We will test for <strong>n &lt;= TODO DECIDE ON UPPER LIMIT HERE</strong>.
-So as long as your solution can manage <code>(rbp TODO DECIDE ON UPPER LIMIT HERE)</code>, it's efficient enough for this exam.</p>
-<h3>
-<a id="user-content-approach-1-recursive-calculation" class="anchor" href="#approach-1-recursive-calculation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach 1: recursive calculation</h3>
-<ul>
-<li><strong>TODO</strong></li>
-</ul>
-<p>From these hints, you should be able to come up with a recursive formula for <code>(rbp n)</code>.</p>
+<a id="user-content-fup-programming-exam" class="anchor" href="#fup-programming-exam" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FUP-programming-exam</h1>
+<p>Programming exams for B4B36FUP Functional Programming</p>
 
               </article>
             </div>

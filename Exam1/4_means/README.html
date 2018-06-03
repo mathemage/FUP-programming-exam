@@ -73,49 +73,162 @@
               
               <article class="markdown-body entry-content" itemprop="text" id="grip-content">
                 <h1>
-<a id="user-content-1-red-black-paths-scheme" class="anchor" href="#1-red-black-paths-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Red-Black Paths [Scheme]</h1>
-<p>Count number of possible red-black paths with <strong>n</strong> vertices.</p>
-<h3>
-<a id="user-content-red-black-path-coloring" class="anchor" href="#red-black-path-coloring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Red-Black Path Coloring</h3>
-<p>A red-black tree:</p>
-<p><a href="rbt.svg" target="_blank"><img src="rbt.svg" alt="Red-Black Tree" style="max-width:100%;"></a>
-is a variant of <em>self-balancing binary search trees</em>,
-e.g. used as the underlying data structure for <code>map</code> and <code>set</code> in the C++ Standard Template Library.</p>
-<p>For the simplicity of the exam, let's ourselves restrict only to red-black paths.
-So we will consider only red-black trees where each vertex has at most 1 child:</p>
-<p><a href="rbp.png" target="_blank"><img src="rbp.png" alt="Red-Black Path" style="max-width:100%;"></a></p>
-<p>A <strong>red-black path</strong> is a (directed) graph such that:</p>
+<a id="user-content-4-means-haskell" class="anchor" href="#4-means-haskell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Means [Haskell]</h1>
+<p>Write a simple <strong>stand-alone</strong> program that computes various types of mathematical <strong>means</strong> (i.e. averages) of given numbers.
+It will read a line of <strong>space-separated</strong> real numbers from the standard input and return 4 kinds of means/averages:</p>
 <ul>
-<li>It is a <strong>path</strong>.</li>
-<li>Each vertex has either <strong>red</strong> or <strong>black</strong> color.</li>
-<li>Any <em>red</em> vertex can only have a <strong>black child</strong>.
-(In other words, there can never be two red vertices next to each other.)</li>
+<li>
+<p><strong>harmonicMean</strong> as the <em>harmonic mean</em> (also called <em>subcontrary mean</em>) of <strong>n</strong> numbers <strong>x_1</strong>, ..., <strong>x_n</strong>:</p>
+<p><a href="harmonicMean.svg" target="_blank"><img src="harmonicMean.svg" alt="harmonic mean" style="max-width:100%;"></a></p>
+</li>
+<li>
+<p><strong>geometricMean</strong> as the <em>geometric mean</em> of <strong>n</strong> numbers <strong>a_1</strong>, ..., <strong>a_n</strong>:</p>
+<p><a href="geometricMean.svg" target="_blank"><img src="geometricMean.svg" alt="geometric mean" style="max-width:100%;"></a></p>
+</li>
+<li>
+<p><strong>arithmeticMean</strong> as the (standard) <em>arithmetic mean</em> (also called <em>average</em>) of <strong>n</strong> numbers <strong>a_1</strong>, ..., <strong>a_n</strong>:</p>
+<p><a href="arithmeticMean.svg" target="_blank"><img src="arithmeticMean.svg" alt="arithmetic mean" style="max-width:100%;"></a></p>
+</li>
+<li>
+<p><strong>quadraticMean</strong> as the <em>quadratic mean</em> (also called <em>root mean square</em> or <em>rms</em>) of <strong>n</strong> numbers <strong>x_1</strong>, ..., <strong>x_n</strong>:</p>
+<p><a href="quadraticMean.svg" target="_blank"><img src="quadraticMean.svg" alt="quadratic mean" style="max-width:100%;"></a></p>
+</li>
 </ul>
-<p>A <strong>red-black path coloring</strong> is an assignment of colors to path vertices such that the <em>resulting coloring is a valid red-black path</em>.</p>
-<h3>
-<a id="user-content-implementation-in-scheme" class="anchor" href="#implementation-in-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation in Scheme</h3>
-<p>In Scheme, implement a function</p>
-<div class="highlight highlight-source-scheme"><pre>(rbp n)</pre></div>
-<p>which returns <em>the total number of valid red-black path colorings on <strong>n &gt;= 0</strong> vertices</em>.</p>
-<h2>
-<a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
-<p>For <code>0</code>, <code>1</code>, <code>2</code>, <code>10</code>, <code>20</code> and <code>40</code> the corresponding values of <code>(rbp n)</code> are:</p>
-<pre><code>&gt; (map rbp '(0 1 2 10 20 40))
-(1 2 3 144 17711 267914296)
-</code></pre>
+<p>Preferably, implement following functions to make your stand-alone Haskell program work:</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">harmonicMean</span> <span class="pl-k">::</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>] <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">Double</span></span>
+<span class="pl-en">geometricMean</span> <span class="pl-k">::</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>] <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">Double</span></span>
+<span class="pl-en">arithmeticMean</span> <span class="pl-k">::</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>] <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">Double</span></span>
+<span class="pl-en">quadraticMean</span> <span class="pl-k">::</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>] <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">Double</span></span></pre></div>
+<p>In your program, use the following function <code>mean</code>:</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">mean</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>] <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">Double</span></span>
+mean variant
+  <span class="pl-k">|</span> variant <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>harmonic<span class="pl-pds">"</span></span>   <span class="pl-k">=</span> harmonicMean
+  <span class="pl-k">|</span> variant <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>geometric<span class="pl-pds">"</span></span>  <span class="pl-k">=</span> geometricMean
+  <span class="pl-k">|</span> variant <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>arithmetic<span class="pl-pds">"</span></span> <span class="pl-k">=</span> arithmeticMean
+  <span class="pl-k">|</span> variant <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>quadratic<span class="pl-pds">"</span></span>  <span class="pl-k">=</span> quadraticMean</pre></div>
+<p>It generates the variant of a mean function based on the parameter <code>variant</code>.</p>
+<p>Use this function to implement:</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">printMean</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">IO</span></span> <span class="pl-c1">()</span></pre></div>
+<p>which prints the result of a mean, given:</p>
+<ul>
+<li>a <code>String</code> parameter for the variant of the mean -- see the cases in <code>mean</code> implementation</li>
+<li>a <code>String</code> of real numbers to be used as values from which to compute the mean</li>
+</ul>
 <h2>
 <a id="user-content-hints" class="anchor" href="#hints" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hints</h2>
-<p>Any solution is okay, even the very inefficient one.
-There are several alternative solutions to this problem and we are not forcing you into any specific.
-Should you feel especially in need of hints, you may find some ideas to some approaches below.</p>
-<p>We will test for <strong>n &lt;= TODO DECIDE ON UPPER LIMIT HERE</strong>.
-So as long as your solution can manage <code>(rbp TODO DECIDE ON UPPER LIMIT HERE)</code>, it's efficient enough for this exam.</p>
-<h3>
-<a id="user-content-approach-1-recursive-calculation" class="anchor" href="#approach-1-recursive-calculation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach 1: recursive calculation</h3>
+<p>Keep in mind that there are many useful functions in the <code>Prelude</code> of Haskell,
+e.g. <code>map</code>, <code>words</code>, <code>fromIntegral</code>, <code>sum</code>, <code>product</code>, <code>**</code>, <code>read</code>, <code>show</code>, <code>.</code>, <code>$</code> etc.
+They may help you write the solution as fast as possible.</p>
+<p>Moreover, it could be also useful to implement a parsing function:</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">stringToDoubles</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>]</pre></div>
+<h2>
+<a id="user-content-input" class="anchor" href="#input" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Input</h2>
+<p>Two lines are read from the standard input:</p>
 <ul>
-<li><strong>TODO</strong></li>
+<li>the first line contains <strong>space-separated</strong> real numbers (possibly with the <em>minus</em> signs and <em>decimal points</em>).</li>
+<li>the second line contains a single word, namely one of the four available variants of the mean:
+<ul>
+<li><code>"harmonic"</code></li>
+<li><code>"geometric"</code></li>
+<li><code>"arithmetic"</code></li>
+<li><code>"quadratic"</code></li>
 </ul>
-<p>From these hints, you should be able to come up with a recursive formula for <code>(rbp n)</code>.</p>
+</li>
+</ul>
+<p>You may assume that the user-given input is <strong>always valid</strong>.
+In particular, at least one number will be always entered, and the second line always contain only one of the four variants.</p>
+<h2>
+<a id="user-content-output" class="anchor" href="#output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output</h2>
+<p>The first (and the only) line of the output displays the result of <code>printMean</code> with:</p>
+<ul>
+<li>the variant set by the second line of the input</li>
+<li>the values of numbers set by the first line of the input</li>
+</ul>
+<h2>
+<a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+<h4>
+<a id="user-content-harmonic-means" class="anchor" href="#harmonic-means" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Harmonic Means</h4>
+<p>Input:</p>
+<pre><code>1 2 3 4
+harmonic
+</code></pre>
+<p>Output:</p>
+<pre><code>1.9200000000000004
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>1 2 3 4 5
+harmonic
+</code></pre>
+<p>Output:</p>
+<pre><code>2.18978102189781
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>1 2 39.3 2 3 -12 3.1415 -3.1415
+</code></pre>
+<p>Output:</p>
+<pre><code>3.5157953592395867
+</code></pre>
+<h4>
+<a id="user-content-geometric-means" class="anchor" href="#geometric-means" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Geometric Means</h4>
+<p>Input:</p>
+<pre><code>1 2 3 4
+geometric
+</code></pre>
+<p>Output:</p>
+<pre><code>2.213363839400643
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>1 2 3 4 5
+geometric
+</code></pre>
+<p>Output:</p>
+<pre><code>2.605171084697352
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>1 2 39.3 2 3 -12 3.1415 -3.1415
+geometric
+</code></pre>
+<p>Output:</p>
+<pre><code>2.605171084697352
+</code></pre>
+<h4>
+<a id="user-content-arithmetic-means" class="anchor" href="#arithmetic-means" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Arithmetic Means</h4>
+<p>Input:</p>
+<pre><code>1 2 39.3 2 3 -12 3.1415 -3.1415
+arithmetic
+</code></pre>
+<p>Output:</p>
+<pre><code>4.4125
+</code></pre>
+<h4>
+<a id="user-content-quadratic-means" class="anchor" href="#quadratic-means" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quadratic Means</h4>
+<p>Input:</p>
+<pre><code>1 2 3 4
+quadratic
+</code></pre>
+<p>Output:</p>
+<pre><code>2.7386127875258306
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>1 2 3 4 5
+quadratic
+</code></pre>
+<p>Output:</p>
+<pre><code>3.3166247903554
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>1 2 39.3 2 3 -12 3.1415 -3.1415
+quadratic
+</code></pre>
+<p>Output:</p>
+<pre><code>14.689401130151628
+</code></pre>
 
               </article>
             </div>
