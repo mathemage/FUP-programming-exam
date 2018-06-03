@@ -4,7 +4,7 @@ Count number of possible red-black paths with **n** vertices.
 
 ### Red-Black Path Coloring
 
-A red-black tree (see below):
+A red-black tree:
 
 ![Red-Black Tree](rbt.svg)
 is a variant of *self-balancing binary search tree*,
