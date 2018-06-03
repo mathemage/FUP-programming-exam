@@ -4,13 +4,13 @@
 ;  red-black paths = 24 min
 
 ; red-black paths
-(define (rbt n)
+(define (rbp n)
  (cond
   ((= n 0) 1)
   ((= n 1) 2)
   (else (+
-         (rbt (- n 1))
-         (rbt (- n 2)))
+         (rbp (- n 1))
+         (rbp (- n 2)))
   )
  )
 )
@@ -21,4 +21,4 @@
  '(0 1 2 10 20 40)
 )
 publicSeq
-(map rbt publicSeq)
+(map rbp publicSeq)
