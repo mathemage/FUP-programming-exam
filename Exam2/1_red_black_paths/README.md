@@ -10,18 +10,18 @@ A red-black tree:
 is a variant of *self-balancing binary search trees*,
 e.g. used as the underlying data structure for `map` and `set` in the C++ Standard Template Library.
 
-For the simplicity of the exam, let's restrict only on red-black paths for now.
+For the simplicity of the exam, let's ourselves restrict only to red-black paths.
 So we will consider only red-black trees where each vertex has at most 1 child:
 
 ![Red-Black Path](rbp.png)
 
 A **red-black path** is a (directed) graph such that:
 * It is a **path**.
-* Each vertex has either **red** or **black** color
+* Each vertex has either **red** or **black** color.
 * Any *red* vertex can only have a **black child**.
 (In other words, there can never be two red vertices next to each other.)
 
-A **red-black path coloring** is an assignment of colors to vertices of path such that the *resulting coloring is a valid red-black path*.
+A **red-black path coloring** is an assignment of colors to path vertices such that the *resulting coloring is a valid red-black path*.
 
 ### Implementation in Scheme
 
@@ -29,7 +29,7 @@ In Scheme, implement a function
 ```scheme
 (rbp n)
 ``` 
-For a given integer **n >= 0**, `(rbp n)` returns *the total number of valid red-black path colorings on **n** vertices*.
+which returns *the total number of valid red-black path colorings on **n >= 0** vertices*.
 
 ## Examples
 For `0`, `1`, `2`, `10`, `20` and `40` the corresponding values of `(rbp n)` are:
@@ -41,13 +41,13 @@ For `0`, `1`, `2`, `10`, `20` and `40` the corresponding values of `(rbp n)` are
 ## Hints
 
 Any solution is okay, even the very inefficient one.
-There are several ways how to solve this problem and we are not forcing you into any specific.
+There are several alternative solutions to this problem and we are not forcing you into any specific.
 Should you feel especially in need of hints, you may find some ideas to some approaches below.
 
-Keep in mind there may be alternative solutions to this and we are not pushing you into any specific implementation. 
-We will test for **n <= TODO DECIDE ON UPPER LIMIT HERE** so as long as your solution can manage `(rbp 17)`, it's efficient enough for this exam.
+We will test for **n <= TODO DECIDE ON UPPER LIMIT HERE**.
+So as long as your solution can manage `(rbp TODO DECIDE ON UPPER LIMIT HERE)`, it's efficient enough for this exam.
 
 ### Approach 1: recursive calculation
 * **TODO**
 
-From these hints, you can come up with a recursive formula for `(rbp n)`.
+From these hints, you should be able to come up with a recursive formula for `(rbp n)`.
