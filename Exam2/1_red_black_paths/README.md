@@ -22,10 +22,10 @@ In Scheme, implement a function
 For a given integer **n >= 0**, `(f n)` returns *the total number of possible ways to validly match **n** pairs of parentheses*.
 
 ## Examples
-For `0`, `1`, `2`, `5` and `17` the corresponding values of `f(n)` are:
+For `0`, `1`, `2`, `10`, `20` and `40` the corresponding values of `f(n)` are:
 ```
-> (map f '(0 1 2 5 17))
-(1 1 2 42 129644790)
+> (map rbt '(0 1 2 10 20 40))
+(1 2 3 144 17711 267914296)
 ```
 
 ## Hints
