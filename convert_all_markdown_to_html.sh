@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-find . -name *.md | xargs -I '{}' -t sh -c 'markdown {} >{}.html'
+sudo pip install grip
+find . -name *.md | xargs -I '{}' -t sh -c 'grip {} --export >{}.html'
