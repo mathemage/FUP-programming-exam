@@ -1,6 +1,7 @@
 #lang scheme
 
 ; total time:
+;  red-black paths = 24 min
 
 ; red-black paths
 (define (rbt n)
