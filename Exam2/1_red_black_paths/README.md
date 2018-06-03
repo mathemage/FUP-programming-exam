@@ -5,11 +5,16 @@ Count number of possible red-black paths with **n** vertices.
 ### Red-Black Path Coloring
 
 A red-black tree (see below):
+
 ![Red-Black Tree](rbt.svg)
 is a variant of *self-balancing binary search tree*,
 e.g. used as the underlying data structure for `map` and `set` in the C++ Standard Template Library.
+
 For the simplicity of the exam, let's restrict only on red-black paths for now.
-So we will consider only red-black trees where each vertex has at most 1 child.
+So we will consider only red-black trees where each vertex has at most 1 child:
+
+![Red-Black Path](rbp.png)
+
 
 ### Implementation in Scheme
 
