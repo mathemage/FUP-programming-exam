@@ -15,6 +15,13 @@ So we will consider only red-black trees where each vertex has at most 1 child:
 
 ![Red-Black Path](rbp.png)
 
+A **red-black path** is a (directed) graph such that:
+* It is a **path**.
+* Each vertex has either **red** or **black** color
+* Any *red* vertex can only have a **black child**.
+(In other words, there can never be two red vertices next to each other.)
+
+A **red-black path coloring** is an assignment of colors to vertices of path such that the *resulting coloring is a valid red-black path*.
 
 ### Implementation in Scheme
 
