@@ -7,7 +7,7 @@ Count number of possible red-black paths with **n** vertices.
 A red-black tree:
 
 ![Red-Black Tree](rbt.svg)
-is a variant of *self-balancing binary search tree*,
+is a variant of *self-balancing binary search trees*,
 e.g. used as the underlying data structure for `map` and `set` in the C++ Standard Template Library.
 
 For the simplicity of the exam, let's restrict only on red-black paths for now.
