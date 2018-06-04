@@ -9,9 +9,15 @@ normalize values = map ((/ scale) . (subtract shift)) values
   where shift = minimum values
         scale = maximum values - shift
 
+-- bucket values between 0 and 1 into n buckets
+bucket :: Int -> [Double] -> [Int]
+bucket bins values = map (floor . (* (fromIntegral bins))) values
+
+-- countToHistogram :: [Int] -> [Int]
+
 -- TODO not finished
 printHistogram :: String -> IO ()
-printHistogram = print . normalize . stringToDoubles
+printHistogram = print . bucket testBins . normalize . stringToDoubles
 
 testVersion = 0
 primes = "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 \
@@ -28,6 +34,7 @@ testLine
   | testVersion == 2 = primes
   | testVersion == 3 = fibonacci
 testDoubles = stringToDoubles testLine
+testBins = 5
 
 main :: IO ()
 main = do
