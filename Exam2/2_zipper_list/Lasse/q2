@@ -1,0 +1,34 @@
+(define new-list
+  (list '() '()))
+
+(define (move-left zl)
+  (list (cdar zl) (cons (caar zl) (cadr zl))))
+
+(define (move-right zl)
+  (list (cons (caadr zl) (car zl)) (cdadr zl)))
+
+(define (rewind zl)
+  (if (null? (car zl)) zl
+      (rewind (move-left zl))))
+
+(define (index zl)
+  (length (car zl)))
+
+(define (iterate f n x)
+  (if (= n 0) x
+      (iterate f (- n 1) (f x))))
+
+(define (move-to n zl)
+  (iterate move-right n (rewind zl)))
+
+(define (get zl)
+  (caadr zl))
+
+(define (update x zl)
+  (list (car zl) (cons x (cdadr zl))))
+
+(define (insert x zl)
+  (list (car zl) (cons x (cadr zl))))
+
+(define (delete zl)
+  (list (car zl) (cdadr zl)))
