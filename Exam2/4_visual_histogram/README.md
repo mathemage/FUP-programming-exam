@@ -44,21 +44,23 @@ stringToDoubles :: String -> [Double]
 ```
 
 ## Input
-Two lines are read from the standard input:
-* the first line contains **space-separated** real numbers (possibly with the *minus* signs and *decimal points*).
-* the second line contains a single word, namely one of the four available variants of the mean:
-    * `"harmonic"`
-    * `"geometric"`
-    * `"arithmetic"`
-    * `"quadratic"`
+Two lines are read from the standard input.
+
+The first line contains **space-separated** real numbers (possibly with the *minus* signs and *decimal points*).
+
+The second line contains a single positive integer **n >= 1** (the number of bins). 
 
 You may assume that the user-given input is **always valid**.
-In particular, at least one number will be always entered, and the second line always contain only one of the four variants.
+In particular, at least one value will be always entered and only numbers in the correct (specified) format are given.
 
 ## Output
-The first (and the only) line of the output displays the result of `printMean` with:
-* the variant set by the second line of the input
-* the values of numbers set by the first line of the input
+There will be **n** lines in the standard output.
+
+For every *1 <= i <= n*, the **i-th** line consists of (in this order):
+
+1. the character `:`
+2. **b_i**-times character `|` where **b_i** is the number of values in the i-th bin
+2. the newline `\n`
 
 ## Examples
 
