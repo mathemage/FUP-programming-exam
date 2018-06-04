@@ -1,24 +1,11 @@
-# 4. Means [Haskell]
+# 4. Visual Histogram [Haskell]
 
-Write a simple **stand-alone** program that computes various types of mathematical **means** (i.e. averages) of given numbers.
-It will read a line of **space-separated** real numbers from the standard input and return 4 kinds of means/averages:
+Write a simple **stand-alone** program that "visually displays" a histogram of given numbers.
+It should read a line of **space-separated** real numbers and a line of a single integer (the number of bins) from the standard input.
+It should print a *visual histogram* to the standard output.
 
-* **harmonicMean** as the *harmonic mean* (also called *subcontrary mean*) of **n** numbers **x_1**, ..., **x_n**:
+**TODO remove below**
 
-    ![harmonic mean](harmonicMean.svg)
-    
-* **geometricMean** as the *geometric mean* of **n** numbers **a_1**, ..., **a_n**:
-
-    ![geometric mean](geometricMean.svg)
-    
-* **arithmeticMean** as the (standard) *arithmetic mean* (also called *average*) of **n** numbers **a_1**, ..., **a_n**:
-
-    ![arithmetic mean](arithmeticMean.svg)
-    
-* **quadraticMean** as the *quadratic mean* (also called *root mean square* or *rms*) of **n** numbers **x_1**, ..., **x_n**:
-
-    ![quadratic mean](quadraticMean.svg)
-    
 Preferably, implement following functions to make your stand-alone Haskell program work:
 
 ```haskell
@@ -75,7 +62,7 @@ The first (and the only) line of the output displays the result of `printMean` w
 
 ## Examples
 
-#### Harmonic Means
+#### Example 1
 Input:
 ```
 1 2 3 4
@@ -85,27 +72,8 @@ Output:
 ```
 1.9200000000000004
 ```
-___
-Input:
-```
-1 2 3 4 5
-harmonic
-```
-Output:
-```
-2.18978102189781
-```
-___
-Input:
-```
-1 2 39.3 2 3 -12 3.1415 -3.1415
-```
-Output:
-```
-3.5157953592395867
-```
 
-#### Geometric Means
+#### Example 2
 Input:
 ```
 1 2 3 4
@@ -114,68 +82,4 @@ geometric
 Output:
 ```
 2.213363839400643
-```
-___
-Input:
-```
-1 2 3 4 5
-geometric
-```
-Output:
-```
-2.605171084697352
-```
-___
-Input:
-```
-1 2 39.3 2 3 -12 3.1415 -3.1415
-geometric
-```
-Output:
-```
-2.605171084697352
-```
-
-#### Arithmetic Means
-
-Input:
-```
-1 2 39.3 2 3 -12 3.1415 -3.1415
-arithmetic
-```
-Output:
-```
-4.4125
-```
-
-#### Quadratic Means
-
-Input:
-```
-1 2 3 4
-quadratic
-```
-Output:
-```
-2.7386127875258306
-```
-___
-Input:
-```
-1 2 3 4 5
-quadratic
-```
-Output:
-```
-3.3166247903554
-```
-___
-Input:
-```
-1 2 39.3 2 3 -12 3.1415 -3.1415
-quadratic
-```
-Output:
-```
-14.689401130151628
 ```
