@@ -39,7 +39,10 @@ testBins = 5
 main :: IO ()
 main = do
   print testLine
-  printHistogram testLine
+  print . stringToDoubles $ testLine
+  print . normalize . stringToDoubles $ testLine
+  print . bucket testBins . normalize . stringToDoubles $ testLine
+--   printHistogram testLine
 
 {-  -- from IO
   lineOfValues <- getLine
