@@ -11,7 +11,7 @@ normalize values = map ((/ scale) . (subtract shift)) values
 
 -- bucket values between 0 and 1 into n buckets
 bucket :: Int -> [Double] -> [Int]
-bucket bins values = map (floor . (* (fromIntegral bins))) values
+bucket bins values = map ((min (bins - 1)) . floor . (* (fromIntegral bins))) values
 
 -- countToHistogram :: [Int] -> [Int]
 
