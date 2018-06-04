@@ -1,6 +1,6 @@
 # 4. Visual Histogram [Haskell]
 
-Write a simple **stand-alone** program that "visually displays" a histogram of given numbers.
+Write a simple **stand-alone** program that displays a histogram of given numbers in a "visual way" (in a text-based console).
 
 It should read a line of **space-separated** real numbers and a line of a single integer (the number of bins) from the standard input.
 
