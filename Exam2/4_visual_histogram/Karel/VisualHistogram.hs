@@ -16,9 +16,12 @@ bucket bins = map ((min (bins - 1)) . floor . (* (fromIntegral bins)))
 frequencies :: Int -> [Int] -> [Int]
 frequencies bins indices = [length . filter (==bin) $ indices | bin <- [0..bins-1]]
 
+visualize :: [Int] -> String
+visualize = concat . map (\count -> ":" ++ (replicate count '|') ++ "\n")
+
 -- TODO not finished
 printHistogram :: String -> IO ()
-printHistogram = print . bucket testBins . normalize . stringToDoubles
+printHistogram = putStr . visualize . frequencies testBins . bucket testBins . normalize . stringToDoubles
 
 testVersion = 0
 primes = "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 \
@@ -44,7 +47,7 @@ main = do
   print . normalize . stringToDoubles $ testLine
   print . bucket testBins . normalize . stringToDoubles $ testLine
   print . frequencies testBins . bucket testBins . normalize . stringToDoubles $ testLine
---   printHistogram testLine
+  printHistogram testLine
 
 {-  -- from IO
   lineOfValues <- getLine
