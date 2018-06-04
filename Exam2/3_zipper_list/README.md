@@ -24,12 +24,12 @@ Creates an empty list
 ```haskell
 moveLeft :: ZipList a -> ZipList a
 ```
-Moves the focus to the left. If this is not possible the result should be undefined.
+Moves the focus to the left. If this is not possible the program may crash.
 
 ```haskell
 moveRight :: ZipList a -> ZipList a
 ```
-Moves the focus to the right. If this is not possible the result should be undefined.
+Moves the focus to the right. If this is not possible the program may crash.
 
 ```haskell
 rewind :: ZipList a -> ZipList a
@@ -44,17 +44,17 @@ Returns the index the zipper list is foccused on.
 ```haskell
 moveTo :: Int -> ZipList a -> ZipList a
 ```
-`moveTo n zl` moves the focus of `zl` to the `n`-th index of the list. If `n` is bigger than the size of the list the result should be undefined.
+`moveTo n zl` moves the focus of `zl` to the `n`-th index of the list. If `n` is bigger than the size of the list the program may crash.
 
 ```haskell
 get :: ZipList a -> a
 ```
-Returns the element of the list that is currently to the right of the focus. If there is no element to the right of the focus the result should be undefined.
+Returns the element of the list that is currently to the right of the focus. If there is no element to the right of the focus the program may crash.
 
 ```haskell
 update :: a -> ZipList a -> ZipList a
 ```
-Updates the element to the right of the focus. If there is no element to the right of the focus, the result should be undefined.
+Updates the element to the right of the focus. If there is no element to the right of the focus, the program may crash.
 
 ```haskell
 insert :: a -> ZipList a -> ZipList a
@@ -64,7 +64,7 @@ Insert a new element to the right of the focus.
 ```haskell
 delete :: ZipList a -> ZipList a
 ```
-Deletes the element to the right of the focus. If there is no element to the right, the result should be undefined.
+Deletes the element to the right of the focus. If there is no element to the right, the program may crash.
 
 ## Examples
 ```haskell
