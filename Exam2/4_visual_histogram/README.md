@@ -6,6 +6,10 @@ It should read a line of **space-separated** real numbers and a line of a single
 
 Then it should print a *visual representation of their histogram* to the standard output.
 
+## Histogram (definition)
+
+![histogram](histogram.svg)
+
 ## Hints
 * Keep in mind that there are many useful functions in the `Prelude` of Haskell,
 e.g. `map`, `read`, `words`, `subtract`, `min`, `fromIntegral`, `length`, `filter`, `concat`, `replicate`, `putStr` and `readLn`.
