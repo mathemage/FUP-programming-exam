@@ -19,7 +19,6 @@ frequencies bins indices = [length . filter (==bin) $ indices | bin <- [0..bins-
 visualize :: [Int] -> String
 visualize = concat . map (\count -> ":" ++ (replicate count '|') ++ "\n")
 
--- TODO not finished
 histogram :: Int -> String -> IO ()
 histogram bins = putStr . visualize . frequencies bins . bucket bins . normalize . stringToDoubles
 
@@ -42,15 +41,15 @@ testBins = 5
 
 main :: IO ()
 main = do
-  print testLine
+{-  print testLine
   print testBins
   print . stringToDoubles $ testLine
   print . normalize . stringToDoubles $ testLine
   print . bucket testBins . normalize . stringToDoubles $ testLine
   print . frequencies testBins . bucket testBins . normalize . stringToDoubles $ testLine
-  histogram testBins testLine
+  histogram testBins testLine-}
 
-{-  -- from IO
+  -- using IO
   lineOfValues <- getLine
-  print lineOfValues
-  printHistogram lineOfValues-}
+  binCounts <- readLn :: IO Int
+  histogram binCounts lineOfValues
