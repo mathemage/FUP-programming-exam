@@ -35,8 +35,9 @@ which prints the result of a mean, given:
 
 ## Hints
 Keep in mind that there are many useful functions in the `Prelude` of Haskell,
-e.g. `map`, `words`, `fromIntegral`, `sum`, `product`, `**`, `read`, `show`, `.`, `$` etc.
-They may help you write the solution as fast as possible.
+e.g. `map`, `read`, `words`, `subtract`, `min`, `fromIntegral`, `length`, `filter`, `concat`, `replicate`, `putStr` and `readLn`.
+Other Haskell things such as `.`, `$`, *operator sections* or *list comprehension* can be also useful.
+They may help you implement the solution very rapidly.
 
 Moreover, it could be also useful to implement a parsing function:
 ```haskell
