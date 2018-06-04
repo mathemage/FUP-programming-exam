@@ -44,10 +44,18 @@ Any solution is okay, even the very inefficient one.
 There are several alternative solutions to this problem and we are not forcing you into any specific.
 Should you feel especially in need of hints, you may find some ideas to some approaches below.
 
-We will test for **n <= TODO DECIDE ON UPPER LIMIT HERE**.
-So as long as your solution can manage `(rbp TODO DECIDE ON UPPER LIMIT HERE)`, it's efficient enough for this exam.
+We will test for **n <= TODO @Lasse DECIDE ON UPPER LIMIT HERE**.
+As long as your solution can manage `(rbp TODO DECIDE ON UPPER LIMIT HERE)`, it's efficient enough for this exam.
 
-### Approach 1: recursive calculation
-* **TODO**
+From following hints, you should be able to come up with a recursive formula for `(rbp n)`.
 
-From these hints, you should be able to come up with a recursive formula for `(rbp n)`.
+**SPOILER ALERT - BELOW!**
+
+**@Lasse Use this hint only after 15 min of struggling without any idea.**
+* Analyse the problem in such a way that the recursion can be used.
+Can you reduce the problem to "sub-instances" of the same problem?
+
+**@Lasse Use another hint only after another 15 min of struggling without any idea.**
+* Focus on the root vertex and the 2 cases for the root's color.
+For each of the root's color, which colors can follow in the child?
+Which "subproblems" are hidden in each of those cases?
