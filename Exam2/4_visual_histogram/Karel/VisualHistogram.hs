@@ -13,7 +13,8 @@ normalize values = map ((/ scale) . (subtract shift)) values
 bucket :: Int -> [Double] -> [Int]
 bucket bins = map ((min (bins - 1)) . floor . (* (fromIntegral bins)))
 
--- countToHistogram :: [Int] -> [Int]
+frequencies :: Int -> [Int] -> [Int]
+frequencies bins indices = [length . filter (==bin) $ indices | bin <- [0..bins-1]]
 
 -- TODO not finished
 printHistogram :: String -> IO ()
@@ -42,6 +43,7 @@ main = do
   print . stringToDoubles $ testLine
   print . normalize . stringToDoubles $ testLine
   print . bucket testBins . normalize . stringToDoubles $ testLine
+  print . frequencies testBins . bucket testBins . normalize . stringToDoubles $ testLine
 --   printHistogram testLine
 
 {-  -- from IO
