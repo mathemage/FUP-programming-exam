@@ -25,17 +25,6 @@ Thus, for the following example of a histogram:
 * *Arrivals per minute* (and their intervals) represent *bins*.
 * *Frequency* represents the *count* in each bin.
 
-## Hints
-* Keep in mind that there are many useful functions in the `Prelude` of Haskell,
-e.g. `map`, `read`, `words`, `subtract`, `min`, `fromIntegral`, `length`, `filter`, `concat`, `replicate`, `putStr` and `readLn`.
-Other Haskell things such as `.`, `$`, *operator sections* or *list comprehension* can be also useful.
-They may help you implement the solution very rapidly.
-
-* Moreover, it could be also useful to implement a parsing function:
-```haskell
-stringToDoubles :: String -> [Double]
-```
-
 ## Input
 Two lines are read from the standard input.
 
@@ -54,6 +43,17 @@ For every *1 <= i <= n*, the **i-th** line consists of (in this order):
 1. the character `:`
 2. **b_i**-times character `|` where **b_i** is the number of values in the i-th bin
 2. the newline `\n`
+
+## Hints
+* Keep in mind that there are many useful functions in the `Prelude` of Haskell,
+e.g. `map`, `read`, `words`, `subtract`, `min`, `fromIntegral`, `length`, `filter`, `concat`, `replicate`, `putStr` and `readLn`.
+Other Haskell things such as `.`, `$`, *operator sections* or *list comprehension* can be also useful.
+They may help you implement the solution very rapidly.
+
+* Moreover, it could be also useful to implement a parsing function:
+```haskell
+stringToDoubles :: String -> [Double]
+```
 
 ## Examples
 
