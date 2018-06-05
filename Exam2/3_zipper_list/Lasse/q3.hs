@@ -1,3 +1,5 @@
+module ZipList where
+
 type ZipList a = ([a], [a])
 
 newList :: ZipList a
