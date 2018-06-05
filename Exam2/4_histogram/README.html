@@ -101,7 +101,8 @@ The bins are (in our case):
 <li>
 <em>Frequency</em> represents the <em>count</em> in each bin.</li>
 </ul>
-<p>E.g. for 5 bins, the interval [0, 1] would be split into following 5 bins:</p>
+<p>Another example:
+for 5 bins, the interval [0, 1] would be split into following 5 bins:</p>
 <ol>
 <li>[0, 0.2)</li>
 <li>[0.2, 0.4)</li>
@@ -149,11 +150,11 @@ stringToDoubles string <span class="pl-k">=</span> <span class="pl-c1">map</span
 <li><code>frequencies</code></li>
 <li><code>visualize</code></li>
 </ul>
-<p>and the final function may look like:</p>
+<p>and the final function may look like this:</p>
 </li>
 </ul>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">histogram</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">Int</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">IO</span></span> <span class="pl-c1">()</span>
-histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <span class="pl-k">.</span> visualize <span class="pl-k">.</span> frequencies bins <span class="pl-k">.</span> bucket bins <span class="pl-k">.</span> normalize <span class="pl-k">.</span> stringToDoubles</pre></div>
+histogram binCount <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <span class="pl-k">.</span> visualize <span class="pl-k">.</span> frequencies binCount <span class="pl-k">.</span> bucket binCount <span class="pl-k">.</span> normalize <span class="pl-k">.</span> stringToDoubles</pre></div>
 <h2>
 <a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
 <h4>
