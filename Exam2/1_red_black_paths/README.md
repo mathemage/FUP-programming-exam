@@ -10,7 +10,7 @@ A red-black tree:
 is a variant of *self-balancing binary search trees*,
 e.g. used as the underlying data structure for `map` and `set` in the C++ Standard Template Library.
 
-For the simplicity of the exam, let's ourselves restrict only to red-black paths.
+For the simplicity of the exam, let's restrict ourselves only to red-black paths.
 So we will consider only red-black trees where each vertex has at most 1 child:
 
 ![Red-Black Path](rbp.png)
