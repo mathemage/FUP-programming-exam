@@ -73,10 +73,10 @@
               
               <article class="markdown-body entry-content" itemprop="text" id="grip-content">
                 <h1>
-<a id="user-content-4-visual-histogram-haskell" class="anchor" href="#4-visual-histogram-haskell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Visual Histogram [Haskell]</h1>
-<p>Write a simple <strong>stand-alone</strong> program that displays a histogram of given numbers in a "visual way" (in a text-based console).</p>
+<a id="user-content-4-histogram-haskell" class="anchor" href="#4-histogram-haskell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Histogram [Haskell]</h1>
+<p>Write a simple <strong>stand-alone</strong> program that displays a histogram of given numbers.</p>
 <p>It should read a line of <strong>space-separated real values</strong> and a line of a <strong>single integer</strong> (the number of bins) from the standard input.</p>
-<p>Then it should print a <strong>visual representation of their histogram</strong> to the standard output.</p>
+<p>Then it should print their <strong>histogram</strong> to the standard output.</p>
 <h2>
 <a id="user-content-histogram-from-wikipedia" class="anchor" href="#histogram-from-wikipedia" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Histogram (from Wikipedia)</h2>
 <p>To construct a histogram:</p>
@@ -120,16 +120,7 @@ In particular, at least one value will be always entered and only numbers in the
 <h2>
 <a id="user-content-output" class="anchor" href="#output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output</h2>
 <p>There will be <strong>n</strong> lines in the standard output.</p>
-<p>For every <em>1 &lt;= i &lt;= n</em>, the <strong>i-th</strong> line consists of (in this order):</p>
-<ol>
-<li>the character <code>:</code>
-</li>
-<li>
-<strong>b_i</strong>-times character <code>|</code> where <em>b_i</em> is the number of (input) values that fall into the <em>i-th bin</em>
-</li>
-<li>the newline <code>\n</code>
-</li>
-</ol>
+<p>For every <em>1 &lt;= i &lt;= n</em>, the <strong>i-th</strong> line contains a single integer <strong>b_i</strong>, which is the number of (input) values that fall into the <em>i-th bin</em>.</p>
 <h2>
 <a id="user-content-hints" class="anchor" href="#hints" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hints</h2>
 <ul>
@@ -139,7 +130,7 @@ So the minimum value is mapped to 0 and the maximum value to 1.</p>
 </li>
 <li>
 <p>Keep in mind that there are many useful functions in the <code>Prelude</code> of Haskell,
-e.g. <code>map</code>, <code>read</code>, <code>words</code>, <code>subtract</code>, <code>min</code>, <code>fromIntegral</code>, <code>length</code>, <code>filter</code>, <code>concat</code>, <code>replicate</code>, <code>putStr</code> and <code>readLn</code>.
+e.g. <code>map</code>, <code>subtract</code>, <code>min</code>, <code>fromIntegral</code>, <code>length</code>, <code>filter</code>, <code>concat</code>, <code>putStr</code> and <code>readLn</code>.
 Other Haskell things such as <code>.</code>, <code>$</code>, <em>operator sections</em> or <em>list comprehension</em> can be also useful.
 They may help you implement the solution very rapidly.</p>
 </li>
@@ -149,7 +140,8 @@ They may help you implement the solution very rapidly.</p>
 </ul>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">stringToDoubles</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>]
 stringToDoubles string <span class="pl-k">=</span> <span class="pl-c1">map</span> <span class="pl-c1">read</span> <span class="pl-k">$</span> <span class="pl-c1">words</span> <span class="pl-k">$</span> string</pre></div>
-<p><strong>TODO Are following hints necessary or do they reveal too much?</strong></p>
+<ul>
+<li>
 <p>A possible outline of functions to implement:</p>
 <ul>
 <li><code>normalize</code></li>
@@ -157,7 +149,9 @@ stringToDoubles string <span class="pl-k">=</span> <span class="pl-c1">map</span
 <li><code>frequencies</code></li>
 <li><code>visualize</code></li>
 </ul>
-<p>The final function may look like:</p>
+<p>and the final function may look like:</p>
+</li>
+</ul>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">histogram</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">Int</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">IO</span></span> <span class="pl-c1">()</span>
 histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <span class="pl-k">.</span> visualize <span class="pl-k">.</span> frequencies bins <span class="pl-k">.</span> bucket bins <span class="pl-k">.</span> normalize <span class="pl-k">.</span> stringToDoubles</pre></div>
 <h2>
@@ -169,9 +163,9 @@ histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <sp
 3
 </code></pre>
 <p>Output:</p>
-<pre><code>:|
-:|
-:||
+<pre><code>1
+1
+2
 </code></pre>
 <hr>
 <p>Input:</p>
@@ -179,12 +173,12 @@ histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <sp
 6
 </code></pre>
 <p>Output:</p>
-<pre><code>:|
-:
-:|
-:
-:|
-:|
+<pre><code>1
+0
+1
+0
+1
+1
 </code></pre>
 <h4>
 <a id="user-content-example-2" class="anchor" href="#example-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 2</h4>
@@ -193,10 +187,10 @@ histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <sp
 4
 </code></pre>
 <p>Output:</p>
-<pre><code>:|||
-:|
-:||
-:|||
+<pre><code>3
+1
+2
+3
 </code></pre>
 <hr>
 <p>Input:</p>
@@ -204,14 +198,14 @@ histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <sp
 8
 </code></pre>
 <p>Output:</p>
-<pre><code>:||
-:|
-:|
-:
-:|
-:|
-:|
-:||
+<pre><code>2
+1
+1
+0
+1
+1
+1
+2
 </code></pre>
 <h4>
 <a id="user-content-example-3-sampled-from-the-normal-distribution" class="anchor" href="#example-3-sampled-from-the-normal-distribution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 3 (sampled from the normal distribution)</h4>
@@ -220,16 +214,16 @@ histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <sp
 10
 </code></pre>
 <p>Output:</p>
-<pre><code>:||
-:|||
-:|||||||||||||||
-:|||||||||||||||||||||||||||||||||||||||||||
-:|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-:||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-:||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-:||||||||||||||||||||||||||||||||||||||||
-:|||||||||||||||||||||||
-:|||
+<pre><code>2
+3
+15
+43
+89
+94
+88
+40
+23
+3
 </code></pre>
 <hr>
 <p>Input:</p>
@@ -237,26 +231,26 @@ histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <sp
 20
 </code></pre>
 <p>Output:</p>
-<pre><code>:|
-:|
-:|
-:||
-:|||||||
-:||||||||
-:||||||||||||||
-:|||||||||||||||||||||||||||||
-:|||||||||||||||||||||||||||||||||||||||||||||||||||||||
-:||||||||||||||||||||||||||||||||||
-:|||||||||||||||||||||||||||||||||||||||||||||||||
-:|||||||||||||||||||||||||||||||||||||||||||||
-:|||||||||||||||||||||||||||||||||||||||||||||||||||||||
-:|||||||||||||||||||||||||||||||||
-:||||||||||||||||||||||||
-:||||||||||||||||
-:||||||||||||||
-:|||||||||
-:
-:|||
+<pre><code>1
+1
+1
+2
+7
+8
+14
+29
+55
+34
+49
+45
+55
+33
+24
+16
+14
+9
+0
+3
 </code></pre>
 <h4>
 <a id="user-content-example-4-prime-numbers-less-than-1000" class="anchor" href="#example-4-prime-numbers-less-than-1000" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 4 (prime numbers less than 1000)</h4>
@@ -265,16 +259,16 @@ histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <sp
 10
 </code></pre>
 <p>Output:</p>
-<pre><code>:||||||||||||||||||||||||||
-:||||||||||||||||||||
-:||||||||||||||||
-:||||||||||||||||
-:|||||||||||||||||
-:|||||||||||||
-:|||||||||||||||||
-:||||||||||||||
-:|||||||||||||||
-:||||||||||||||
+<pre><code>26
+20
+16
+16
+17
+13
+17
+14
+15
+14
 </code></pre>
 <hr>
 <p>Input:</p>
@@ -282,26 +276,26 @@ histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <sp
 20
 </code></pre>
 <p>Output:</p>
-<pre><code>:|||||||||||||||
-:|||||||||||
-:||||||||||
-:||||||||||
-:|||||||
-:|||||||||
-:||||||||
-:||||||||
-:|||||||||
-:||||||||
-:||||||
-:|||||||
-:||||||||||
-:|||||||
-:|||||||
-:|||||||
-:|||||||
-:||||||||
-:|||||||
-:|||||||
+<pre><code>15
+11
+10
+10
+7
+9
+8
+8
+9
+8
+6
+7
+10
+7
+7
+7
+7
+8
+7
+7
 </code></pre>
 
               </article>
