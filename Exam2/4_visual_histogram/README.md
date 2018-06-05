@@ -25,6 +25,15 @@ Thus, for the following example of a histogram:
 * *Arrivals per minute* (and their intervals) represent *bins*.
 * *Frequency* represents the *count* in each bin.
 
+E.g. for 5 bins, the interval [0, 1] would be split into following 5 bins:
+1. [0, 0.2)
+2. [0.2, 0.4)
+3. [0.4, 0.6)
+4. [0.6, 0.8)
+5. [0.8, 1]
+
+*(For simplicity, assume the maximum value always belongs to the last bin.)*
+
 ## Input
 Two lines are read from the standard input.
 
