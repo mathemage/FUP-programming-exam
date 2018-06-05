@@ -50,7 +50,7 @@ There will be **n** lines in the standard output.
 For every *1 <= i <= n*, the **i-th** line consists of (in this order):
 
 1. the character `:`
-2. **b_i**-times character `|` where **b_i** is the number of values in the i-th bin
+2. **b_i**-times character `|` where *b_i* is the number of (input) values that fall into the *i-th bin*
 2. the newline `\n`
 
 ## Hints
