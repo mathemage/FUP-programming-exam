@@ -74,7 +74,7 @@ stringToDoubles string = map read $ words $ string
     and the final function may look like:
 ```haskell
 histogram :: Int -> String -> IO ()
-histogram bins = putStr . visualize . frequencies bins . bucket bins . normalize . stringToDoubles
+histogram binCount = putStr . visualize . frequencies binCount . bucket binCount . normalize . stringToDoubles
 ```
 
 ## Examples
