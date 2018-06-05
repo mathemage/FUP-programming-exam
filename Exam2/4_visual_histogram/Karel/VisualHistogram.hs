@@ -17,7 +17,7 @@ frequencies :: Int -> [Int] -> [Int]
 frequencies bins indices = [length . filter (==bin) $ indices | bin <- [0..bins-1]]
 
 visualize :: [Int] -> String
-visualize = concat . map (\count -> ":" ++ (replicate count '|') ++ "\n")
+visualize = concat . map (\count -> show count ++ "\n")
 
 histogram :: Int -> String -> IO ()
 histogram bins = putStr . visualize . frequencies bins . binRange bins . normalize . stringToDoubles
