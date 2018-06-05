@@ -6,9 +6,24 @@ It should read a line of **space-separated** real numbers and a line of a single
 
 Then it should print a *visual representation of their histogram* to the standard output.
 
-## Histogram (definition)
+## Histogram (from Wikipedia)
+
+To construct a histogram:
+1. "Bin" the range of values:
+divide the entire range of values into a series of intervals (called *bins*).
+The bins are (in our case):
+    * consecutive
+    * non-overlapping 
+    * adjacent 
+    * of equal size (width).
+2. Count how many values fall into each bin.
+
+Thus, for the following example of a histogram:
 
 ![histogram](histogram.svg)
+
+* *Arrivals per minute* (and their intervals) represent *bins*.
+* *Frequency* represents the *count* in each bin.
 
 ## Hints
 * Keep in mind that there are many useful functions in the `Prelude` of Haskell,
