@@ -4,6 +4,8 @@ A downside of the purity in Haskell is that it can be difficult and slow to upda
 updating an arbitrary element from the list takes O(n) time. We will implement a so-called Zipper List that
 can make local updates in constant time.
 
+Create a module named `ZipList` with the following functionality:
+
 The datatype of the zipper list is as follows:
 
 ```haskell
