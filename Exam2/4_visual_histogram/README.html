@@ -144,10 +144,11 @@ Other Haskell things such as <code>.</code>, <code>$</code>, <em>operator sectio
 They may help you implement the solution very rapidly.</p>
 </li>
 <li>
-<p>Moreover, it could be also useful to implement a parsing function:</p>
+<p>Moreover, it could be also use the following parsing function:</p>
 </li>
 </ul>
-<div class="highlight highlight-source-haskell"><pre><span class="pl-en">stringToDoubles</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>]</pre></div>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">stringToDoubles</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>]
+stringToDoubles string <span class="pl-k">=</span> <span class="pl-c1">map</span> <span class="pl-c1">read</span> <span class="pl-k">$</span> <span class="pl-c1">words</span> <span class="pl-k">$</span> string</pre></div>
 <p><strong>TODO Are following hints necessary or do they reveal too much?</strong></p>
 <p>A possible outline of functions to implement:</p>
 <ul>

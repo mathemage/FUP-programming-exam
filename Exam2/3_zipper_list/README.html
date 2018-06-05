@@ -77,6 +77,7 @@
 <p>A downside of the purity in Haskell is that it can be difficult and slow to update lists. For a normal list,
 updating an arbitrary element from the list takes O(n) time. We will implement a so-called Zipper List that
 can make local updates in constant time.</p>
+<p>Create a module named <code>ZipList</code> with the following functionality:</p>
 <p>The datatype of the zipper list is as follows:</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-k">type</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">=</span> ([<span class="pl-smi">a</span>], [<span class="pl-smi">a</span>])</pre></div>
 <p>The zipper list allows you to keep a certain index of the list under 'focus'.
