@@ -62,9 +62,10 @@ e.g. `map`, `read`, `words`, `subtract`, `min`, `fromIntegral`, `length`, `filte
 Other Haskell things such as `.`, `$`, *operator sections* or *list comprehension* can be also useful.
 They may help you implement the solution very rapidly.
 
-* Moreover, it could be also useful to implement a parsing function:
+* Moreover, it could be also use the following parsing function:
 ```haskell
 stringToDoubles :: String -> [Double]
+stringToDoubles string = map read $ words $ string
 ```
 
 **TODO Are following hints necessary or do they reveal too much?**
