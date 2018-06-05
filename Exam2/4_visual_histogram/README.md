@@ -54,6 +54,9 @@ For every *1 <= i <= n*, the **i-th** line consists of (in this order):
 2. the newline `\n`
 
 ## Hints
+* It might be helpful to *normalize* values into the interval [0, 1].
+So the minimum value is mapped to 0 and the maximum value to 1.
+
 * Keep in mind that there are many useful functions in the `Prelude` of Haskell,
 e.g. `map`, `read`, `words`, `subtract`, `min`, `fromIntegral`, `length`, `filter`, `concat`, `replicate`, `putStr` and `readLn`.
 Other Haskell things such as `.`, `$`, *operator sections* or *list comprehension* can be also useful.
@@ -63,6 +66,8 @@ They may help you implement the solution very rapidly.
 ```haskell
 stringToDoubles :: String -> [Double]
 ```
+
+**TODO Are following hints necessary?**
 
 ## Examples
 
