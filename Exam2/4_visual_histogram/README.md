@@ -67,7 +67,19 @@ They may help you implement the solution very rapidly.
 stringToDoubles :: String -> [Double]
 ```
 
-**TODO Are following hints necessary?**
+**TODO Are following hints necessary or do they reveal too much?**
+
+A possible outline of functions to implement:
+* `normalize`
+* `binRange`
+* `frequencies`
+* `visualize`
+
+The final function may look like:
+```haskell
+histogram :: Int -> String -> IO ()
+histogram bins = putStr . visualize . frequencies bins . bucket bins . normalize . stringToDoubles
+```
 
 ## Examples
 
