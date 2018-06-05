@@ -94,29 +94,3 @@ t6 = index t3
 t7 = moveTo 1 t3
 -- ([101],[102,2,3,100])
 ```
-
-## Tests
-```haskell
-lawLeftRight zl = (moveRight . moveLeft $ zl) == zl
-lawRightLeft zl = (moveLeft . moveRight $ zl) == zl
-lawMoveToIndex zl = (moveTo (index zl) zl) == zl
-lawInsertDeleteGet zl = (insert (get zl) . delete $ zl) == zl
-lawUpdateGet zl = (update (get zl) . update 0 $ zl) == zl
-lawRewind zl = (rewind . rewind $ zl) == rewind zl
-lawInsert zl = (get . insert 2156548 $ zl) == 2156548
-lawInsert2 zl = (get . moveLeft . moveRight . insert 785 $ zl) == 785
-
-laws = [ lawLeftRight, lawRightLeft, lawMoveToIndex
-       , lawInsertDeleteGet, lawUpdateGet, lawRewind
-       , lawInsert, lawInsert2]
-
-tests :: [ZipList Int]
-tests = [ -- ([], [])
-        --, ([], [1]) These tests are sometimes undefined
-        --, ([1], [])
-          ([1,2], [3,4])
-        , ([1, 2, 3], [4])
-        , ([1], [2, 3, 4])]
-
-test = map (\t -> map ($ t) laws) tests
-```
