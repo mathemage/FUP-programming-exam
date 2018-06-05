@@ -1,10 +1,10 @@
-# 4. Visual Histogram [Haskell]
+# 4. Histogram [Haskell]
 
-Write a simple **stand-alone** program that displays a histogram of given numbers in a "visual way" (in a text-based console).
+Write a simple **stand-alone** program that displays a histogram of given numbers.
 
 It should read a line of **space-separated real values** and a line of a **single integer** (the number of bins) from the standard input.
 
-Then it should print a **visual representation of their histogram** to the standard output.
+Then it should print their **histogram** to the standard output.
 
 ## Histogram (from Wikipedia)
 
@@ -47,18 +47,14 @@ In particular, at least one value will be always entered and only numbers in the
 ## Output
 There will be **n** lines in the standard output.
 
-For every *1 <= i <= n*, the **i-th** line consists of (in this order):
-
-1. the character `:`
-2. **b_i**-times character `|` where *b_i* is the number of (input) values that fall into the *i-th bin*
-2. the newline `\n`
+For every *1 <= i <= n*, the **i-th** line contains a single integer **b_i**, which is the number of (input) values that fall into the *i-th bin*.
 
 ## Hints
 * It might be helpful to *normalize* values into the interval [0, 1].
 So the minimum value is mapped to 0 and the maximum value to 1.
 
 * Keep in mind that there are many useful functions in the `Prelude` of Haskell,
-e.g. `map`, `read`, `words`, `subtract`, `min`, `fromIntegral`, `length`, `filter`, `concat`, `replicate`, `putStr` and `readLn`.
+e.g. `map`, `subtract`, `min`, `fromIntegral`, `length`, `filter`, `concat`, `putStr` and `readLn`.
 Other Haskell things such as `.`, `$`, *operator sections* or *list comprehension* can be also useful.
 They may help you implement the solution very rapidly.
 
@@ -68,15 +64,13 @@ stringToDoubles :: String -> [Double]
 stringToDoubles string = map read $ words $ string
 ```
 
-**TODO Are following hints necessary or do they reveal too much?**
+* A possible outline of functions to implement:
+    * `normalize`
+    * `binRange`
+    * `frequencies`
+    * `visualize`
 
-A possible outline of functions to implement:
-* `normalize`
-* `binRange`
-* `frequencies`
-* `visualize`
-
-The final function may look like:
+    and the final function may look like:
 ```haskell
 histogram :: Int -> String -> IO ()
 histogram bins = putStr . visualize . frequencies bins . bucket bins . normalize . stringToDoubles
