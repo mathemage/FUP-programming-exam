@@ -25,7 +25,8 @@ Thus, for the following example of a histogram:
 * *Arrivals per minute* (and their intervals) represent *bins*.
 * *Frequency* represents the *count* in each bin.
 
-E.g. for 5 bins, the interval [0, 1] would be split into following 5 bins:
+Another example:
+for 5 bins, the interval [0, 1] would be split into following 5 bins:
 1. [0, 0.2)
 2. [0.2, 0.4)
 3. [0.4, 0.6)

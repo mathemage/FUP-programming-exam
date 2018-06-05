@@ -129,30 +129,6 @@ t6 <span class="pl-k">=</span> index t3
 
 t7 <span class="pl-k">=</span> moveTo <span class="pl-c1">1</span> t3
 <span class="pl-c"><span class="pl-c">--</span> ([101],[102,2,3,100])</span></pre></div>
-<h2>
-<a id="user-content-tests" class="anchor" href="#tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tests</h2>
-<div class="highlight highlight-source-haskell"><pre>lawLeftRight zl <span class="pl-k">=</span> (moveRight <span class="pl-k">.</span> moveLeft <span class="pl-k">$</span> zl) <span class="pl-k">==</span> zl
-lawRightLeft zl <span class="pl-k">=</span> (moveLeft <span class="pl-k">.</span> moveRight <span class="pl-k">$</span> zl) <span class="pl-k">==</span> zl
-lawMoveToIndex zl <span class="pl-k">=</span> (moveTo (index zl) zl) <span class="pl-k">==</span> zl
-lawInsertDeleteGet zl <span class="pl-k">=</span> (insert (get zl) <span class="pl-k">.</span> delete <span class="pl-k">$</span> zl) <span class="pl-k">==</span> zl
-lawUpdateGet zl <span class="pl-k">=</span> (update (get zl) <span class="pl-k">.</span> update <span class="pl-c1">0</span> <span class="pl-k">$</span> zl) <span class="pl-k">==</span> zl
-lawRewind zl <span class="pl-k">=</span> (rewind <span class="pl-k">.</span> rewind <span class="pl-k">$</span> zl) <span class="pl-k">==</span> rewind zl
-lawInsert zl <span class="pl-k">=</span> (get <span class="pl-k">.</span> insert <span class="pl-c1">2156548</span> <span class="pl-k">$</span> zl) <span class="pl-k">==</span> <span class="pl-c1">2156548</span>
-lawInsert2 zl <span class="pl-k">=</span> (get <span class="pl-k">.</span> moveLeft <span class="pl-k">.</span> moveRight <span class="pl-k">.</span> insert <span class="pl-c1">785</span> <span class="pl-k">$</span> zl) <span class="pl-k">==</span> <span class="pl-c1">785</span>
-
-laws <span class="pl-k">=</span> [ lawLeftRight, lawRightLeft, lawMoveToIndex
-       , lawInsertDeleteGet, lawUpdateGet, lawRewind
-       , lawInsert, lawInsert2]
-
-<span class="pl-en">tests</span> <span class="pl-k">::</span> [<span class="pl-en">ZipList</span> <span class="pl-en"><span class="pl-c1">Int</span></span>]
-tests <span class="pl-k">=</span> [ <span class="pl-c"><span class="pl-c">--</span> ([], [])</span>
-        <span class="pl-c"><span class="pl-c">--</span>, ([], [1]) These tests are sometimes undefined</span>
-        <span class="pl-c"><span class="pl-c">--</span>, ([1], [])</span>
-          ([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>], [<span class="pl-c1">3</span>,<span class="pl-c1">4</span>])
-        , ([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>], [<span class="pl-c1">4</span>])
-        , ([<span class="pl-c1">1</span>], [<span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>])]
-
-test <span class="pl-k">=</span> <span class="pl-c1">map</span> (<span class="pl-k">\</span>t <span class="pl-k">-&gt;</span> <span class="pl-c1">map</span> (<span class="pl-k">$</span> t) laws) tests</pre></div>
 
               </article>
             </div>
