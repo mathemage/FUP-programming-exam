@@ -73,56 +73,117 @@
               
               <article class="markdown-body entry-content" itemprop="text" id="grip-content">
                 <h1>
-<a id="user-content-1-red-black-paths-scheme" class="anchor" href="#1-red-black-paths-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Red-Black Paths [Scheme]</h1>
-<p>Count number of possible red-black paths with <strong>n</strong> vertices.</p>
-<h3>
-<a id="user-content-red-black-path-coloring" class="anchor" href="#red-black-path-coloring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Red-Black Path Coloring</h3>
-<p>A red-black tree:</p>
-<p><a href="rbt.svg" target="_blank"><img src="rbt.svg" alt="Red-Black Tree" style="max-width:100%;"></a>
-is a variant of <em>self-balancing binary search trees</em>,
-e.g. used as the underlying data structure for <code>map</code> and <code>set</code> in the C++ Standard Template Library.</p>
-<p>For the simplicity of the exam, let's ourselves restrict only to red-black paths.
-So we will consider only red-black trees where each vertex has at most 1 child:</p>
-<p><a href="rbp.png" target="_blank"><img src="rbp.png" alt="Red-Black Path" style="max-width:100%;"></a></p>
-<p>A <strong>red-black path</strong> is a (directed) graph such that:</p>
-<ul>
-<li>It is a <strong>path</strong>.</li>
-<li>Each vertex has either <strong>red</strong> or <strong>black</strong> color.</li>
-<li>Any <em>red</em> vertex can only have a <strong>black child</strong>.
-(In other words, there can never be two red vertices next to each other.)</li>
-</ul>
-<p>A <strong>red-black path coloring</strong> is an assignment of colors to path vertices such that the <em>resulting coloring is a valid red-black path</em>.</p>
-<h3>
-<a id="user-content-implementation-in-scheme" class="anchor" href="#implementation-in-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation in Scheme</h3>
-<p>In Scheme, implement a function</p>
-<div class="highlight highlight-source-scheme"><pre>(rbp n)</pre></div>
-<p>which returns <em>the total number of valid red-black path colorings on <strong>n &gt;= 0</strong> vertices</em>.</p>
+<a id="user-content-3-zipper-list-scheme" class="anchor" href="#3-zipper-list-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Zipper List [Scheme]</h1>
+<p>A downside of the purity in functional programming languages is that it can be difficult and slow to update lists. For a normal list,
+updating an arbitrary element from the list takes O(n) time. We will implement a so-called Zipper List that
+can make local updates in constant time.</p>
+<p>The datastructure of a zipper list consists of a list containing two list. See the following example:</p>
+<div class="highlight highlight-source-scheme"><pre>((<span class="pl-c1">3</span> <span class="pl-c1">2</span> <span class="pl-c1">1</span>) (<span class="pl-c1">4</span> <span class="pl-c1">5</span> <span class="pl-c1">6</span>))</pre></div>
+<p>The zipper list allows you to keep a certain index of the list under 'focus'.
+All the elements on the left side of the focus go in the first list of the zipper (in this case 1 2 and 3).
+Likewise, all the elements on the right side of the focus go in the second list of the zipper (in this case 4 5 6).
+If we where to convert the zipper list above to a normal list it would become</p>
+<div class="highlight highlight-source-scheme"><pre>(<span class="pl-c1">1</span> <span class="pl-c1">2</span> <span class="pl-c1">3</span> <span class="pl-c1">4</span> <span class="pl-c1">5</span> <span class="pl-c1">6</span>)</pre></div>
+<p>Write the following functions that operate on the zipper list:</p>
+<div class="highlight highlight-source-scheme"><pre>new-list</pre></div>
+<p>Creates an empty list</p>
+<div class="highlight highlight-source-scheme"><pre>(move-left zl)</pre></div>
+<p>Moves the focus to the left. If this is not possible the program is allowed to crash.</p>
+<div class="highlight highlight-source-scheme"><pre>(move-right zl)</pre></div>
+<p>Moves the focus to the right. If this is not possible the program is allowed to crash</p>
+<div class="highlight highlight-source-scheme"><pre>(rewind zl)</pre></div>
+<p>Rewinds a zipper list so that the focus is on the beginning of the list.</p>
+<div class="highlight highlight-source-scheme"><pre>(index zl)</pre></div>
+<p>Returns a number that represents the index the zipper list is foccused on. For the example above this would be <code>3</code>.</p>
+<div class="highlight highlight-source-scheme"><pre>(move-to n zl)</pre></div>
+<p><code>(moveTo n zl)</code> moves the focus of <code>zl</code> to the <code>n</code>-th index of the list. If <code>n</code> is bigger than the size of the list the program may crash.</p>
+<div class="highlight highlight-source-scheme"><pre>(get zl)</pre></div>
+<p>Returns the element of the list that is currently to the right of the focus. If there is no element to the right of the focus the program may crash.</p>
+<div class="highlight highlight-source-scheme"><pre>(update x zl)</pre></div>
+<p>Updates the element to the right of the focus. If there is no element to the right of the focus, the program may crash.</p>
+<div class="highlight highlight-source-scheme"><pre>(insert x zl)</pre></div>
+<p>Insert a new element to the right of the focus.</p>
+<div class="highlight highlight-source-haskell"><pre>(delete zl)</pre></div>
+<p>Deletes the element to the right of the focus. If there is no element to the right, the program may crash.</p>
 <h2>
 <a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
-<p>For <code>0</code>, <code>1</code>, <code>2</code>, <code>10</code>, <code>20</code> and <code>40</code> the corresponding values of <code>(rbp n)</code> are:</p>
-<pre><code>&gt; (map rbp '(0 1 2 10 20 40))
-(1 2 3 144 17711 267914296)
-</code></pre>
+<div class="highlight highlight-source-scheme"><pre>(<span class="pl-k">define</span> <span class="pl-smi">t1</span>
+  (insert <span class="pl-c1">1</span> (insert <span class="pl-c1">2</span> (insert <span class="pl-c1">3</span> (insert <span class="pl-c1">4</span> (insert <span class="pl-c1">5</span> new-list))))))
+<span class="pl-c"><span class="pl-c">;</span> (() (1 2 3 4 5))</span>
+
+(<span class="pl-k">define</span> <span class="pl-smi">t2</span>
+  (delete (move-right (move-right (move-right (move-right
+  (insert <span class="pl-c1">102</span> (move-right
+  (update <span class="pl-c1">101</span> (move-left (move-left (move-left
+  (update <span class="pl-c1">100</span> (move-right (move-right (move-right t1))))))))))))))))
+<span class="pl-c"><span class="pl-c">;</span> ((100 3 2 102 101) ())</span>
+
+(<span class="pl-k">define</span> <span class="pl-smi">t3</span>
+  (move-left (move-left t2)))
+<span class="pl-c"><span class="pl-c">;</span> ((2 102 101) (3 100))</span>
+
+(<span class="pl-k">define</span> <span class="pl-smi">t4</span>
+  (get t3))
+<span class="pl-c"><span class="pl-c">;</span> 3</span>
+
+(<span class="pl-k">define</span> <span class="pl-smi">t5</span>
+  (rewind t2))
+<span class="pl-c"><span class="pl-c">;</span> (() (101 102 2 3 100))</span>
+
+(<span class="pl-k">define</span> <span class="pl-smi">t6</span>
+  (index t3))
+<span class="pl-c"><span class="pl-c">;</span> 3</span>
+
+(<span class="pl-k">define</span> <span class="pl-smi">t7</span>
+  (move-to <span class="pl-c1">1</span> t3))
+<span class="pl-c"><span class="pl-c">;</span> ((101) (102 2 3 100))</span></pre></div>
 <h2>
-<a id="user-content-hints" class="anchor" href="#hints" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hints</h2>
-<p>Any solution is okay, even the very inefficient one.
-There are several alternative solutions to this problem and we are not forcing you into any specific.
-Should you feel especially in need of hints, you may find some ideas to some approaches below.</p>
-<p>We will test for <strong>n &lt;= TODO @Lasse DECIDE ON UPPER LIMIT HERE</strong>.
-As long as your solution can manage <code>(rbp TODO DECIDE ON UPPER LIMIT HERE)</code>, it's efficient enough for this exam.</p>
-<p>From following hints, you should be able to come up with a recursive formula for <code>(rbp n)</code>.</p>
-<p><strong>SPOILER ALERT - BELOW!</strong></p>
-<p><strong>@Lasse Use this hint only after 15 min of struggling without any idea.</strong></p>
-<ul>
-<li>Analyse the problem in such a way that the recursion can be used.
-Can you reduce the problem to "sub-instances" of the same problem?</li>
-</ul>
-<p><strong>@Lasse Use another hint only after another 15 min of struggling without any idea.</strong></p>
-<ul>
-<li>Focus on the root vertex and the 2 cases for the root's color.
-For each of the root's color, which colors can follow in the child?
-Which "subproblems" are hidden in each of those cases?</li>
-</ul>
+<a id="user-content-tests" class="anchor" href="#tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tests</h2>
+<div class="highlight highlight-source-scheme"><pre>(<span class="pl-k">define</span> (<span class="pl-en">law-left-right</span><span class="pl-smi"> zl</span>)
+  (<span class="pl-c1">equal?</span> (move-right (move-left zl)) zl))
+
+(<span class="pl-k">define</span> (<span class="pl-en">law-right-left</span><span class="pl-smi"> zl</span>)
+  (<span class="pl-c1">equal?</span> (move-left (move-right zl)) zl))
+
+(<span class="pl-k">define</span> (<span class="pl-en">law-move-to-index</span><span class="pl-smi"> zl</span>)
+  (<span class="pl-c1">equal?</span> (move-to (index zl) zl) zl))
+
+(<span class="pl-k">define</span> (<span class="pl-en">law-insert-delete-get</span><span class="pl-smi"> zl</span>)
+  (<span class="pl-c1">equal?</span> (insert (get zl) (delete zl)) zl))
+
+(<span class="pl-k">define</span> (<span class="pl-en">law-update-get</span><span class="pl-smi"> zl</span>)
+  (<span class="pl-c1">equal?</span> (update (get zl) (update <span class="pl-c1">0</span> zl)) zl))
+
+(<span class="pl-k">define</span> (<span class="pl-en">law-rewind</span><span class="pl-smi"> zl</span>)
+  (<span class="pl-c1">equal?</span> (rewind (rewind zl)) (rewind zl)))
+
+(<span class="pl-k">define</span> (<span class="pl-en">law-insert</span><span class="pl-smi"> zl</span>)
+  (<span class="pl-c1">equal?</span> (get (insert <span class="pl-c1">2156548</span> zl)) <span class="pl-c1">2156548</span>))
+
+(<span class="pl-k">define</span> (<span class="pl-en">law-insert2</span><span class="pl-smi"> zl</span>)
+  (<span class="pl-c1">equal?</span> (get (move-left (move-right (insert <span class="pl-c1">2156548</span> zl)))) <span class="pl-c1">2156548</span>))
+
+(<span class="pl-k">define</span> <span class="pl-smi">laws</span>
+  (<span class="pl-c1">list</span>
+   law-left-right
+   law-right-left
+   law-move-to-index
+   law-insert-delete-get
+   law-update-get
+   law-rewind
+   law-insert
+   law-insert2
+   ))
+
+(<span class="pl-k">define</span> <span class="pl-smi">tests</span>
+  '(
+    ((<span class="pl-c1">1</span> <span class="pl-c1">2</span>) (<span class="pl-c1">3</span> <span class="pl-c1">4</span>))
+    ((<span class="pl-c1">1</span> <span class="pl-c1">2</span> <span class="pl-c1">3</span>) (<span class="pl-c1">4</span>))
+    ((<span class="pl-c1">1</span>) (<span class="pl-c1">2</span> <span class="pl-c1">3</span> <span class="pl-c1">4</span>))
+   ))
+
+(<span class="pl-k">define</span> <span class="pl-smi">test</span>
+  (<span class="pl-c1">map</span> (<span class="pl-k">lambda</span> (<span class="pl-v">t</span>) (<span class="pl-c1">map</span> (<span class="pl-k">lambda</span> (<span class="pl-v">l</span>) (l t)) laws)) tests))</pre></div>
 
               </article>
             </div>

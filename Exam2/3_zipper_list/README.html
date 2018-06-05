@@ -86,23 +86,23 @@ Likewise, all the elements on the right side of the focus go in the second list 
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">newList</span> <span class="pl-k">::</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span></pre></div>
 <p>Creates an empty list</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">moveLeft</span> <span class="pl-k">::</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span></pre></div>
-<p>Moves the focus to the left. If this is not possible the result should be undefined.</p>
+<p>Moves the focus to the left. If this is not possible the program may crash.</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">moveRight</span> <span class="pl-k">::</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span></pre></div>
-<p>Moves the focus to the right. If this is not possible the result should be undefined.</p>
+<p>Moves the focus to the right. If this is not possible the program may crash.</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">rewind</span> <span class="pl-k">::</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span></pre></div>
 <p>Rewinds a zipper list so that the focus is on the beginning of the list.</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">index</span> <span class="pl-k">::</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">Int</span></span></pre></div>
 <p>Returns the index the zipper list is foccused on.</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">moveTo</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">Int</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span></pre></div>
-<p><code>moveTo n zl</code> moves the focus of <code>zl</code> to the <code>n</code>-th index of the list. If <code>n</code> is bigger than the size of the list the result should be undefined.</p>
+<p><code>moveTo n zl</code> moves the focus of <code>zl</code> to the <code>n</code>-th index of the list. If <code>n</code> is bigger than the size of the list the program may crash.</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">get</span> <span class="pl-k">::</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-smi">a</span></pre></div>
-<p>Returns the element of the list that is currently to the right of the focus. If there is no element to the right of the focus the result should be undefined.</p>
+<p>Returns the element of the list that is currently to the right of the focus. If there is no element to the right of the focus the program may crash.</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">update</span> <span class="pl-k">::</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span></pre></div>
-<p>Updates the element to the right of the focus. If there is no element to the right of the focus, the result should be undefined.</p>
+<p>Updates the element to the right of the focus. If there is no element to the right of the focus, the program may crash.</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">insert</span> <span class="pl-k">::</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span></pre></div>
 <p>Insert a new element to the right of the focus.</p>
 <div class="highlight highlight-source-haskell"><pre><span class="pl-en">delete</span> <span class="pl-k">::</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span> <span class="pl-k">-&gt;</span> <span class="pl-en">ZipList</span> <span class="pl-smi">a</span></pre></div>
-<p>Deletes the element to the right of the focus. If there is no element to the right, the result should be undefined.</p>
+<p>Deletes the element to the right of the focus. If there is no element to the right, the program may crash.</p>
 <h2>
 <a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
 <div class="highlight highlight-source-haskell"><pre>t1 <span class="pl-k">=</span> insert <span class="pl-c1">1</span> <span class="pl-k">.</span> insert <span class="pl-c1">2</span> <span class="pl-k">.</span> insert <span class="pl-c1">3</span> <span class="pl-k">.</span> insert <span class="pl-c1">4</span> <span class="pl-k">.</span> insert <span class="pl-c1">5</span> <span class="pl-k">$</span> newList

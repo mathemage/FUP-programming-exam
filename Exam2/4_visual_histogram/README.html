@@ -73,56 +73,235 @@
               
               <article class="markdown-body entry-content" itemprop="text" id="grip-content">
                 <h1>
-<a id="user-content-1-red-black-paths-scheme" class="anchor" href="#1-red-black-paths-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Red-Black Paths [Scheme]</h1>
-<p>Count number of possible red-black paths with <strong>n</strong> vertices.</p>
-<h3>
-<a id="user-content-red-black-path-coloring" class="anchor" href="#red-black-path-coloring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Red-Black Path Coloring</h3>
-<p>A red-black tree:</p>
-<p><a href="rbt.svg" target="_blank"><img src="rbt.svg" alt="Red-Black Tree" style="max-width:100%;"></a>
-is a variant of <em>self-balancing binary search trees</em>,
-e.g. used as the underlying data structure for <code>map</code> and <code>set</code> in the C++ Standard Template Library.</p>
-<p>For the simplicity of the exam, let's ourselves restrict only to red-black paths.
-So we will consider only red-black trees where each vertex has at most 1 child:</p>
-<p><a href="rbp.png" target="_blank"><img src="rbp.png" alt="Red-Black Path" style="max-width:100%;"></a></p>
-<p>A <strong>red-black path</strong> is a (directed) graph such that:</p>
-<ul>
-<li>It is a <strong>path</strong>.</li>
-<li>Each vertex has either <strong>red</strong> or <strong>black</strong> color.</li>
-<li>Any <em>red</em> vertex can only have a <strong>black child</strong>.
-(In other words, there can never be two red vertices next to each other.)</li>
-</ul>
-<p>A <strong>red-black path coloring</strong> is an assignment of colors to path vertices such that the <em>resulting coloring is a valid red-black path</em>.</p>
-<h3>
-<a id="user-content-implementation-in-scheme" class="anchor" href="#implementation-in-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation in Scheme</h3>
-<p>In Scheme, implement a function</p>
-<div class="highlight highlight-source-scheme"><pre>(rbp n)</pre></div>
-<p>which returns <em>the total number of valid red-black path colorings on <strong>n &gt;= 0</strong> vertices</em>.</p>
+<a id="user-content-4-visual-histogram-haskell" class="anchor" href="#4-visual-histogram-haskell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Visual Histogram [Haskell]</h1>
+<p>Write a simple <strong>stand-alone</strong> program that displays a histogram of given numbers in a "visual way" (in a text-based console).</p>
+<p>It should read a line of <strong>space-separated real values</strong> and a line of a <strong>single integer</strong> (the number of bins) from the standard input.</p>
+<p>Then it should print a <strong>visual representation of their histogram</strong> to the standard output.</p>
 <h2>
-<a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
-<p>For <code>0</code>, <code>1</code>, <code>2</code>, <code>10</code>, <code>20</code> and <code>40</code> the corresponding values of <code>(rbp n)</code> are:</p>
-<pre><code>&gt; (map rbp '(0 1 2 10 20 40))
-(1 2 3 144 17711 267914296)
-</code></pre>
+<a id="user-content-histogram-from-wikipedia" class="anchor" href="#histogram-from-wikipedia" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Histogram (from Wikipedia)</h2>
+<p>To construct a histogram:</p>
+<ol>
+<li>"Bin" the range of values:
+divide the entire range of values into a series of intervals (called <em>bins</em>).
+The bins are (in our case):
+<ul>
+<li>consecutive</li>
+<li>non-overlapping</li>
+<li>adjacent</li>
+<li>of equal size (width).</li>
+</ul>
+</li>
+<li>Count how many values fall into each bin.</li>
+</ol>
+<p>Thus, for the following example of a histogram:</p>
+<p><a href="histogram.svg" target="_blank"><img src="histogram.svg" alt="histogram" style="max-width:100%;"></a></p>
+<ul>
+<li>
+<em>Arrivals per minute</em> (and their intervals) represent <em>bins</em>.</li>
+<li>
+<em>Frequency</em> represents the <em>count</em> in each bin.</li>
+</ul>
+<p>E.g. for 5 bins, the interval [0, 1] would be split into following 5 bins:</p>
+<ol>
+<li>[0, 0.2)</li>
+<li>[0.2, 0.4)</li>
+<li>[0.4, 0.6)</li>
+<li>[0.6, 0.8)</li>
+<li>[0.8, 1]</li>
+</ol>
+<p><em>(For simplicity, assume the maximum value always belongs to the last bin.)</em></p>
+<h2>
+<a id="user-content-input" class="anchor" href="#input" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Input</h2>
+<p>Two lines are read from the standard input.</p>
+<p>The first line contains <strong>space-separated</strong> real numbers (possibly with the <em>minus</em> signs and <em>decimal points</em>).</p>
+<p>The second line contains a single positive integer <strong>n &gt;= 1</strong> (the number of bins).</p>
+<p>You may assume that the user-given input is <strong>always valid</strong>.
+In particular, at least one value will be always entered and only numbers in the correct (specified) format are given.</p>
+<h2>
+<a id="user-content-output" class="anchor" href="#output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output</h2>
+<p>There will be <strong>n</strong> lines in the standard output.</p>
+<p>For every <em>1 &lt;= i &lt;= n</em>, the <strong>i-th</strong> line consists of (in this order):</p>
+<ol>
+<li>the character <code>:</code>
+</li>
+<li>
+<strong>b_i</strong>-times character <code>|</code> where <em>b_i</em> is the number of (input) values that fall into the <em>i-th bin</em>
+</li>
+<li>the newline <code>\n</code>
+</li>
+</ol>
 <h2>
 <a id="user-content-hints" class="anchor" href="#hints" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hints</h2>
-<p>Any solution is okay, even the very inefficient one.
-There are several alternative solutions to this problem and we are not forcing you into any specific.
-Should you feel especially in need of hints, you may find some ideas to some approaches below.</p>
-<p>We will test for <strong>n &lt;= TODO @Lasse DECIDE ON UPPER LIMIT HERE</strong>.
-As long as your solution can manage <code>(rbp TODO DECIDE ON UPPER LIMIT HERE)</code>, it's efficient enough for this exam.</p>
-<p>From following hints, you should be able to come up with a recursive formula for <code>(rbp n)</code>.</p>
-<p><strong>SPOILER ALERT - BELOW!</strong></p>
-<p><strong>@Lasse Use this hint only after 15 min of struggling without any idea.</strong></p>
 <ul>
-<li>Analyse the problem in such a way that the recursion can be used.
-Can you reduce the problem to "sub-instances" of the same problem?</li>
+<li>
+<p>It might be helpful to <em>normalize</em> values into the interval [0, 1].
+So the minimum value is mapped to 0 and the maximum value to 1.</p>
+</li>
+<li>
+<p>Keep in mind that there are many useful functions in the <code>Prelude</code> of Haskell,
+e.g. <code>map</code>, <code>read</code>, <code>words</code>, <code>subtract</code>, <code>min</code>, <code>fromIntegral</code>, <code>length</code>, <code>filter</code>, <code>concat</code>, <code>replicate</code>, <code>putStr</code> and <code>readLn</code>.
+Other Haskell things such as <code>.</code>, <code>$</code>, <em>operator sections</em> or <em>list comprehension</em> can be also useful.
+They may help you implement the solution very rapidly.</p>
+</li>
+<li>
+<p>Moreover, it could be also useful to implement a parsing function:</p>
+</li>
 </ul>
-<p><strong>@Lasse Use another hint only after another 15 min of struggling without any idea.</strong></p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">stringToDoubles</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> [<span class="pl-en"><span class="pl-c1">Double</span></span>]</pre></div>
+<p><strong>TODO Are following hints necessary or do they reveal too much?</strong></p>
+<p>A possible outline of functions to implement:</p>
 <ul>
-<li>Focus on the root vertex and the 2 cases for the root's color.
-For each of the root's color, which colors can follow in the child?
-Which "subproblems" are hidden in each of those cases?</li>
+<li><code>normalize</code></li>
+<li><code>binRange</code></li>
+<li><code>frequencies</code></li>
+<li><code>visualize</code></li>
 </ul>
+<p>The final function may look like:</p>
+<div class="highlight highlight-source-haskell"><pre><span class="pl-en">histogram</span> <span class="pl-k">::</span> <span class="pl-en"><span class="pl-c1">Int</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">String</span></span> <span class="pl-k">-&gt;</span> <span class="pl-en"><span class="pl-c1">IO</span></span> <span class="pl-c1">()</span>
+histogram bins <span class="pl-k">=</span> <span class="pl-c1">putStr</span> <span class="pl-k">.</span> visualize <span class="pl-k">.</span> frequencies bins <span class="pl-k">.</span> bucket bins <span class="pl-k">.</span> normalize <span class="pl-k">.</span> stringToDoubles</pre></div>
+<h2>
+<a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+<h4>
+<a id="user-content-example-1" class="anchor" href="#example-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 1</h4>
+<p>Input:</p>
+<pre><code>1 2 3 4
+3
+</code></pre>
+<p>Output:</p>
+<pre><code>:|
+:|
+:||
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>1 2 3 4
+6
+</code></pre>
+<p>Output:</p>
+<pre><code>:|
+:
+:|
+:
+:|
+:|
+</code></pre>
+<h4>
+<a id="user-content-example-2" class="anchor" href="#example-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 2</h4>
+<p>Input:</p>
+<pre><code>-3.14 -3 -2 -1 0 1 2 3 3.14
+4
+</code></pre>
+<p>Output:</p>
+<pre><code>:|||
+:|
+:||
+:|||
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>-3.14 -3 -2 -1 0 1 2 3 3.14
+8
+</code></pre>
+<p>Output:</p>
+<pre><code>:||
+:|
+:|
+:
+:|
+:|
+:|
+:||
+</code></pre>
+<h4>
+<a id="user-content-example-3-sampled-from-normal-distribution" class="anchor" href="#example-3-sampled-from-normal-distribution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 3 (sampled from normal distribution)</h4>
+<p>Input:</p>
+<pre><code>4 10 5 -2 5 9 -8 -12 -2 10 -8 4 4 -5 -8 7 11 -4 -8 -20 20 -2 -22 11 7 7 20 -15 9 -6 -12 4 -9 8 11 8 8 -11 -7 13 6 2 -12 -7 -9 21 -9 4 -8 19 -8 9 9 2 -4 13 16 6 12 -8 5 -8 -1 8 -2 -29 20 -18 -5 10 1 -12 -4 11 -8 -2 17 8 -13 3 3 -10 10 3 -8 13 -4 -12 -15 -4 8 -6 8 -6 0 -5 10 13 -16 -13 -1 -2 14 -2 -2 -23 8 -3 -13 15 -25 18 -5 -2 -11 -8 4 -8 3 1 -6 -7 11 8 -1 -8 -7 1 23 -8 -12 -12 13 2 -1 0 21 -11 9 -10 -8 5 -1 1 -5 8 -8 1 2 -3 11 -16 6 -6 -1 4 -1 10 0 -11 -12 -11 8 6 6 -19 5 6 -3 0 6 11 16 6 -5 3 3 12 13 15 -4 -6 5 -1 4 4 20 15 -13 -1 -11 4 8 -7 -8 2 5 -8 -2 -6 -4 8 -6 -7 2 15 -14 -2 -12 -2 5 4 -9 2 -6 6 13 16 -5 -7 21 9 2 15 -2 -9 0 18 21 -9 2 14 14 -2 6 3 1 14 5 12 20 1 2 4 9 -18 2 -2 19 7 -21 7 -8 11 -7 6 -9 -11 11 -16 -35 -3 3 -16 8 0 11 3 5 -10 5 0 9 3 -13 -5 2 1 -5 -6 -4 -10 -1 -8 0 6 5 -4 -5 16 -4 -10 1 11 0 -8 7 12 6 -3 2 -15 1 -12 -14 -12 15 9 7 -3 6 27 -19 4 6 -19 0 -8 9 21 -2 -10 -8 -1 3 1 -8 1 5 -15 5 -4 -11 -6 -1 8 6 -5 -9 3 0 22 4 3 5 1 -4 -3 -7 18 0 30 15 1 1 -1 -11 -5 8 12 -1 -15 -10 -4 6 -17 -9 -1 -5 -14 9 -20 11 0 -10 19 14 17 22 3 0 -1 2 -2 4 -7 -12 0 -6 18 -4 1 30 -17 -27 23 5 0 3 -15
+10
+</code></pre>
+<p>Output:</p>
+<pre><code>:||
+:|||
+:|||||||||||||||
+:|||||||||||||||||||||||||||||||||||||||||||
+:|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+:||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+:||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+:||||||||||||||||||||||||||||||||||||||||
+:|||||||||||||||||||||||
+:|||
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>4 10 5 -2 5 9 -8 -12 -2 10 -8 4 4 -5 -8 7 11 -4 -8 -20 20 -2 -22 11 7 7 20 -15 9 -6 -12 4 -9 8 11 8 8 -11 -7 13 6 2 -12 -7 -9 21 -9 4 -8 19 -8 9 9 2 -4 13 16 6 12 -8 5 -8 -1 8 -2 -29 20 -18 -5 10 1 -12 -4 11 -8 -2 17 8 -13 3 3 -10 10 3 -8 13 -4 -12 -15 -4 8 -6 8 -6 0 -5 10 13 -16 -13 -1 -2 14 -2 -2 -23 8 -3 -13 15 -25 18 -5 -2 -11 -8 4 -8 3 1 -6 -7 11 8 -1 -8 -7 1 23 -8 -12 -12 13 2 -1 0 21 -11 9 -10 -8 5 -1 1 -5 8 -8 1 2 -3 11 -16 6 -6 -1 4 -1 10 0 -11 -12 -11 8 6 6 -19 5 6 -3 0 6 11 16 6 -5 3 3 12 13 15 -4 -6 5 -1 4 4 20 15 -13 -1 -11 4 8 -7 -8 2 5 -8 -2 -6 -4 8 -6 -7 2 15 -14 -2 -12 -2 5 4 -9 2 -6 6 13 16 -5 -7 21 9 2 15 -2 -9 0 18 21 -9 2 14 14 -2 6 3 1 14 5 12 20 1 2 4 9 -18 2 -2 19 7 -21 7 -8 11 -7 6 -9 -11 11 -16 -35 -3 3 -16 8 0 11 3 5 -10 5 0 9 3 -13 -5 2 1 -5 -6 -4 -10 -1 -8 0 6 5 -4 -5 16 -4 -10 1 11 0 -8 7 12 6 -3 2 -15 1 -12 -14 -12 15 9 7 -3 6 27 -19 4 6 -19 0 -8 9 21 -2 -10 -8 -1 3 1 -8 1 5 -15 5 -4 -11 -6 -1 8 6 -5 -9 3 0 22 4 3 5 1 -4 -3 -7 18 0 30 15 1 1 -1 -11 -5 8 12 -1 -15 -10 -4 6 -17 -9 -1 -5 -14 9 -20 11 0 -10 19 14 17 22 3 0 -1 2 -2 4 -7 -12 0 -6 18 -4 1 30 -17 -27 23 5 0 3 -15
+20
+</code></pre>
+<p>Output:</p>
+<pre><code>:|
+:|
+:|
+:||
+:|||||||
+:||||||||
+:||||||||||||||
+:|||||||||||||||||||||||||||||
+:|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+:||||||||||||||||||||||||||||||||||
+:|||||||||||||||||||||||||||||||||||||||||||||||||
+:|||||||||||||||||||||||||||||||||||||||||||||
+:|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+:|||||||||||||||||||||||||||||||||
+:||||||||||||||||||||||||
+:||||||||||||||||
+:||||||||||||||
+:|||||||||
+:
+:|||
+</code></pre>
+<h4>
+<a id="user-content-example-4-first-100-prime-numbers" class="anchor" href="#example-4-first-100-prime-numbers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 4 (first 100 prime numbers)</h4>
+<p>Input:</p>
+<pre><code>2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293 307 311 313 317 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419 421 431 433 439 443 449 457 461 463 467 479 487 491 499 503 509 521 523 541 547 557 563 569 571 577 587 593 599 601 607 613 617 619 631 641 643 647 653 659 661 673 677 683 691 701 709 719 727 733 739 743 751 757 761 769 773 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883 887 907 911 919 929 937 941 947 953 967 971 977 983 991 997
+10
+</code></pre>
+<p>Output:</p>
+<pre><code>:||||||||||||||||||||||||||
+:||||||||||||||||||||
+:||||||||||||||||
+:||||||||||||||||
+:|||||||||||||||||
+:|||||||||||||
+:|||||||||||||||||
+:||||||||||||||
+:|||||||||||||||
+:||||||||||||||
+</code></pre>
+<hr>
+<p>Input:</p>
+<pre><code>2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293 307 311 313 317 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419 421 431 433 439 443 449 457 461 463 467 479 487 491 499 503 509 521 523 541 547 557 563 569 571 577 587 593 599 601 607 613 617 619 631 641 643 647 653 659 661 673 677 683 691 701 709 719 727 733 739 743 751 757 761 769 773 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883 887 907 911 919 929 937 941 947 953 967 971 977 983 991 997
+20
+</code></pre>
+<p>Output:</p>
+<pre><code>:|||||||||||||||
+:|||||||||||
+:||||||||||
+:||||||||||
+:|||||||
+:|||||||||
+:||||||||
+:||||||||
+:|||||||||
+:||||||||
+:||||||
+:|||||||
+:||||||||||
+:|||||||
+:|||||||
+:|||||||
+:|||||||
+:||||||||
+:|||||||
+:|||||||
+</code></pre>
 
               </article>
             </div>
