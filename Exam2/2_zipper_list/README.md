@@ -1,4 +1,4 @@
-# 3. Zipper List [Scheme]
+# 2. Zipper List [Scheme]
 
 A downside of the purity in functional programming languages is that it can be difficult and slow to update lists. For a normal list,
 updating an arbitrary element from the list takes O(n) time. We will implement a so-called Zipper List that
