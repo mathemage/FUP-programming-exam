@@ -1,7 +1,7 @@
 -- total time:
 
 stringToDoubles :: String -> [Double]
-stringToDoubles line = map read (words line)
+stringToDoubles = map read . words
 
 -- normalize values between 0 and 1
 normalize :: [Double] -> [Double]
