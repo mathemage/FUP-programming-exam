@@ -42,7 +42,6 @@ However, if a number is more than one digit long, the caret can point at any dig
 3946
 ```
 ```
-main
 695 492 825 809 306 6 161 463 558 554 916 390 19 46 9 697 546 757 3 941
                                             ^
 178872
