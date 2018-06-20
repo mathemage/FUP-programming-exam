@@ -1,0 +1,78 @@
+(define (find-map k m d)
+  (cond ((null? m) d)
+        ((equal? k (caar m)) (cadar m))
+        (else (find-map k (cdr m) d))))
+
+(define (replace-map k v m)
+  (cond ((null? m) (list (list k v)))
+        ((equal? k (caar m)) (cons (list k v) (cdr m)))
+        (else (cons (car m) (replace-map k v (cdr m))))))
+
+(define (delete-map k m)
+  (cond ((null? m) '())
+        ((equal? k (caar m)) (cdr m))
+        (else (cons (car m) (delete-map k (cdr m))))))
+
+(define empty-trie '(#f ()))
+
+(define (insert-trie s t)
+  (define (insert-list s t)
+    (if (null? s) (list #t (cadr t))
+        (let* ((st (find-map (car s) (cadr t) empty-trie))
+               (nt (insert-list (cdr s) st))
+               (nm (replace-map (car s) nt (cadr t))))
+          (list (car t) nm))))
+  (insert-list (string->list s) t))
+
+(define (lookup-trie s t)
+  (define (lookup-list s t)
+    (if (null? s) (car t)
+        (lookup-list (cdr s) (find-map (car s) (cadr t) empty-trie))))
+  (lookup-list (string->list s) t))
+
+(define (delete-trie s t)
+  (define (delete-list s t)
+    (if (null? s) (list #f (cadr t))
+        (let* ((st (find-map (car s) (cadr t) empty-trie))
+               (nt (delete-list (cdr s) st)))
+          (if (and (eq? #f (car nt)) (null? (cadr nt)))
+              (list (car t) (delete-map (car s) (cadr t)))
+              (list (car t) (replace-map (car s) nt (cadr t)))))))
+  (delete-list (string->list s) t))
+
+(define t1
+  (insert-trie "" empty-trie))
+; (#t ())
+
+(define t2
+  (insert-trie "tea" (insert-trie "trap" (insert-trie "trick" empty-trie))))
+; (#f ((#\t (#f ((#\r (#f ((#\i (#f ((#\c (#f ((#\k (#t ())))))))) (#\a (#f ((#\p (#t ())))))))) (#\e (#f ((#\a (#t ()))))))))))
+
+(define l1
+  (lookup-trie "tea" t2))
+; #t
+
+(define l2
+  (lookup-trie "te" t2))
+; #f
+
+(define d1
+  (delete-trie "trap" t2))
+; (#f ((#\t (#f ((#\r (#f ((#\i (#f ((#\c (#f ((#\k (#t ()))))))))))) (#\e (#f ((#\a (#t ()))))))))))
+
+(define l3
+  (lookup-trie "trap" d1))
+; #f
+
+(define t3
+  (insert-trie "a" (insert-trie "aaa" empty-trie)))
+; (#f ((#\a (#t ((#\a (#f ((#\a (#t ()))))))))))
+
+(define d2
+  (delete-trie "a" t3))
+; (#f ((#\a (#f ((#\a (#f ((#\a (#t ()))))))))))
+
+(define d3
+  (delete-trie "aaa" t3))
+; (#f ((#\a (#t ()))))
+        
