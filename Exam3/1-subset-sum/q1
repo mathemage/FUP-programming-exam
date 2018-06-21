@@ -1,0 +1,7 @@
+(define (subset-sum-unique ls n)
+  (cond ((= 0 n) '(()))
+        ((or (< n 0) (null? ls)) '())
+        (else (append
+               (map (lambda (s) (cons (car ls) s))
+                    (subset-sum-unique (cdr ls) (- n (car ls))))
+               (subset-sum-unique (cdr ls) n)))))
