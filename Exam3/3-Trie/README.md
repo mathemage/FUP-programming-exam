@@ -10,7 +10,7 @@ This trie contains the strings `a, at, ate, on, one, out, me , mud, my`.
 Note, however, that the trie does not contain the empty string nor `o, ou, m, mu`.
 A string is only 'present' in the trie when the node that ends the string is black.
 
-Write a module `Trie` in haskell provides the functionality of a trie.
+Write a module `Trie` in haskell that provides the functionality of a trie.
 The trie will be encoded as follows:
 
 ```haskell
