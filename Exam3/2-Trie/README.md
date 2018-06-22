@@ -19,8 +19,6 @@ Variable `m` is an associative map represented as a list of list-pairs, `((k1 v1
 The mapping contains an entry for each character in the alphabet that has a non-empty subtree.
 The value that corresponds to a character in the mapping is again a trie node `(p2 m2)`.
 Note that in Scheme, the character 'a' is encoded as `#\a`.
-**Note:** This means that for example the trie `(#t ((#\a (#f ()))))` is **not valid**, because the subtree corresponding to 'a' is empty.
-This trie should therefore have been represented as `(#t ())`.
 
 In order to implement operations on the trie, we provide you with the following two functions that operate on associative maps:
 
