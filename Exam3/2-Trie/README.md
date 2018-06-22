@@ -74,8 +74,4 @@ Check if a string `s` exists in a trie `t`.
 (define l2
   (lookup-trie "te" t2))
 ; #f
-
-(define l3
-  (lookup-trie "trap" d1))
-; #f
 ```
