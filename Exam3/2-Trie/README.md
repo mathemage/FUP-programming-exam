@@ -14,7 +14,7 @@ Write functions that can operate on a trie in Scheme.
 A trie is encoded in Scheme as follows:
 
 A node in a trie is a list-pair `(p m)`.
-Here, `p` indicates whether or not the string that ends at the current node is present (indicated as black and white in the picture)
+Here, `p` is a boolean that indicates whether or not the string that ends at the current node is present (indicated as black and white in the picture)
 Variable `m` is an associative map represented as a list of list-pairs, `((k1 v1) (k2 v2) (k3 v3) ...)`.
 The mapping contains an entry for each character in the alphabet that has a non-empty subtree.
 The value that corresponds to a character in the mapping is again a trie node `(p2 m2)`.
