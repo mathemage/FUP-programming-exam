@@ -21,13 +21,13 @@ main = do s1 <- getLine
 
 -- Solution 2
 
-solve :: [String] -> Int -> Int -> Int
-solve (s:ls) acc n | acc + l + 1 > n = sum . map read . take i $ ls
-                   | otherwise       = solve ls (acc + l + 1) n
-                   where l = length s
-                         i = read s
+solve :: [String] -> Int -> Int
+solve (s:ls) n | l + 1 > n = sum . map read . take i $ ls
+               | otherwise       = solve ls (n - l - 1)
+               where l = length s
+                     i = read s
 
 main2 :: IO ()
 main2 = do s1 <- getLine
            s2 <- getLine
-           putStrLn . show $ solve (cycle . words $ s1) 0 (countUntil s2)
+           putStrLn . show $ solve (cycle . words $ s1) (countUntil s2)
